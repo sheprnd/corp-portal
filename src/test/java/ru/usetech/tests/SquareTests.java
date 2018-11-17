@@ -1,5 +1,9 @@
 package ru.usetech.tests;
 
+
+import org.testng.annotations.Test;
+
+@Test
 public class SquareTests {
     public void testArea() {
         Square s = new Square(5.0);
