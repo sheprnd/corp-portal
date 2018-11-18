@@ -13,8 +13,7 @@ repositories {
 }
 
 dependencies {
-   /* testCompile group: 'junit', name: 'junit', version: '4.12'*/
     compile 'org.testng:testng:6.14.3'
-    compile 'ru.stqa.selenium:webdriver-testng-archetype:4.3'
+    compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
 
 }
