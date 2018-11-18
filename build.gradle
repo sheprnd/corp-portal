@@ -1,7 +1,8 @@
-plugins {
+/*plugins {
     id 'java'
-}
-
+}*/
+apply plugin: 'java'
+apply plugin: 'application'
 group 'ru.usetech.test'
 version '1.0-SNAPSHOT'
 
@@ -12,6 +13,8 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+   /* testCompile group: 'junit', name: 'junit', version: '4.12'*/
     compile 'org.testng:testng:6.14.3'
+    compile 'ru.stqa.selenium:webdriver-testng-archetype:4.3'
+
 }
