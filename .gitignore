@@ -16,6 +16,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 chromedriver.exe
 .idea/*
+.idea\*
 *.jar
 *.ear
 *.war
