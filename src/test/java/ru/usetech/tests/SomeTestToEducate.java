@@ -16,15 +16,16 @@ public class SomeTestToEducate {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }
-
-    @Test
-    public void loginTest() throws Exception {
         driver.get("https://mlgext.usetech.ru/");
         driver.findElement(By.name("login")).sendKeys("vm_user01@mail.ru");
         driver.findElement(By.name("password")).sendKeys("12345");
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
         driver.findElement(By.linkText("Выход")).click();
+    }
+
+    @Test
+    public void loginTest() throws Exception {
+
     }
 
     @AfterMethod(alwaysRun = true)
