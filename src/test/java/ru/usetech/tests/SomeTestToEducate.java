@@ -20,7 +20,7 @@ public class SomeTestToEducate {
         driver.findElement(By.name("login")).sendKeys("vm_user01@mail.ru");
         driver.findElement(By.name("password")).sendKeys("12345");
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
-        driver.findElement(By.linkText("Выход")).click();
+        /*driver.findElement(By.linkText("Выход")).click();*/
     }
 
     @Test
