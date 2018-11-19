@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ByIdOrName;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.interactions.Actions;
 
 import static org.openqa.selenium.By.className;
+import static org.openqa.selenium.By.name;
 
 
 public class NewUserAdding {
@@ -26,19 +28,23 @@ public class NewUserAdding {
     public void setUp() throws Exception {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://mlgext.usetech.ru/#/login");
     }
 
     @Test
     private void Actions() throws Exception {
-        Actions actions = new Actions(driver);
+
         login();
         goToUsers();
-
-        WebElement element = driver.findElement(By.className("btn-left"));
-        actions.moveToElement(element).build().perform();
-        actions.click(element);
+        Actions actions = new Actions(driver);
+        WebElement createBtn = driver.findElement(By.className("btn-left"));
+        actions.moveToElement(createBtn).build().perform();
+        actions.click(createBtn);
+        WebElement lastNameField = driver.findElement(By.cssSelector("input.ng-pristine"));
+        //actions.moveToElement(lastNameField).build().perform();
+        actions.click(lastNameField);
+        actions.sendKeys(lastNameField, "Last");
         /*driver.findElement(By.name("lastName")).clear();
         driver.findElement(By.name("lastName")).sendKeys("Last");
         driver.findElement(By.name("firstName")).clear();
@@ -58,6 +64,7 @@ public class NewUserAdding {
     }
 
     private void goToUsers() {
+
         driver.get("https://mlgext.usetech.ru/#/settings/users");
     }
 
@@ -71,7 +78,7 @@ public class NewUserAdding {
 
     @AfterClass(alwaysRun = true)
     public void tearDown() throws Exception {
-        driver.quit();
+        //driver.quit();
 
     }
 

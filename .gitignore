@@ -21,3 +21,5 @@ chromedriver.exe
 
 .idea/workspace.xml
 *.java___jb_tmp___
+*.class
+.idea/workspace.xml
