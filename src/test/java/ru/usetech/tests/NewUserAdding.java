@@ -29,9 +29,8 @@ public class NewUserAdding {
         driver.findElement(By.name("login")).sendKeys("vm_user01@mail.ru");
         driver.findElement(By.name("password")).clear();
         driver.findElement(By.name("password")).sendKeys("12345");
-        driver.wait(5);
-        driver.findElement(By.linkText("Настройки")).click();
-        driver.wait(5);
+        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
+        /*driver.wait(5);
         driver.findElement(By.linkText("Пользователи")).click();
         driver.wait(5);
         driver.findElement(By.name("lastName")).click();
@@ -51,7 +50,7 @@ public class NewUserAdding {
         driver.wait(15);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Админ без прав'])[1]/following::div[4]")).click();
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Выберите файл'])[1]/following::button[1]")).click();
-        driver.findElement(By.linkText("Выход")).click();
+        driver.findElement(By.linkText("Выход")).click();*/
     }
 
     @AfterClass(alwaysRun = true)
