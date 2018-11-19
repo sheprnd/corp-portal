@@ -41,7 +41,7 @@ public class NewUserAdding {
         WebElement createBtn = driver.findElement(By.className("btn-left"));
         actions.moveToElement(createBtn).build().perform();
         actions.click(createBtn);
-        WebElement lastNameField = driver.findElement(By.cssSelector("input.ng-pristine"));
+        WebElement lastNameField = driver.findElement(By.cssSelector("input[name='lastName'][type='text']"));
         //actions.moveToElement(lastNameField).build().perform();
         actions.click(lastNameField);
         actions.sendKeys(lastNameField, "Last");
