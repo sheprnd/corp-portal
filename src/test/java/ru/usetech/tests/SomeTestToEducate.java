@@ -21,7 +21,7 @@ public class SomeTestToEducate {
     }
 
     @Test
-    public void LoginTest() throws Exception {
+    public void loginTest() throws Exception {
         driver.get("https://mlgext.usetech.ru/");
         driver.findElement(By.name("login")).sendKeys("vm_user01@mail.ru");
         driver.findElement(By.name("password")).sendKeys("12345");
