@@ -28,7 +28,7 @@ public class NewUserAdding {
     public void setUp() throws Exception {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://mlgext.usetech.ru/#/login");
     }
 
@@ -36,15 +36,14 @@ public class NewUserAdding {
     private void Actions() throws Exception {
 
         login();
-        goToUsers();
-        Actions actions = new Actions(driver);
-        WebElement createBtn = driver.findElement(By.className("btn-left"));
-        actions.moveToElement(createBtn).build().perform();
-        actions.click(createBtn);
-        WebElement lastNameField = driver.findElement(By.cssSelector("input[name='lastName'][type='text']"));
-        //actions.moveToElement(lastNameField).build().perform();
-        actions.click(lastNameField);
-        actions.sendKeys(lastNameField, "Last");
+        driver.findElement(By.cssSelector("[classname=left-menu__link][text='↵        ↵        Настройки↵      ']")).click();
+        driver.findElement(By.cssSelector("button[textContent=Добавить][type='button']")).click();
+  /*      actions.moveToElement(createBtn).build().perform();
+        actions.click(createBtn);*/
+        driver.findElement(By.cssSelector("input[placeholder=Введите фамилию][type='text']")).click();
+        driver.findElement(By.cssSelector("input[name='lastName'][type='text']")).sendKeys("Last");
+
+
         /*driver.findElement(By.name("lastName")).clear();
         driver.findElement(By.name("lastName")).sendKeys("Last");
         driver.findElement(By.name("firstName")).clear();
@@ -65,7 +64,7 @@ public class NewUserAdding {
 
     private void goToUsers() {
 
-        driver.get("https://mlgext.usetech.ru/#/settings/users");
+        driver.navigate().to("mlgext.usetech.ru/#/settings/users");
     }
 
     private void login() {
@@ -78,7 +77,7 @@ public class NewUserAdding {
 
     @AfterClass(alwaysRun = true)
     public void tearDown() throws Exception {
-        //driver.quit();
+        driver.quit();
 
     }
 
