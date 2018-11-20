@@ -1,14 +1,17 @@
 .gradle
 /build/
-.idea/*
 *.class
-
+.idea
+*.jar
+*.ear
+*.war
 
 # Ignore Gradle GUI config
 gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+!build.gradle
 
 # Cache of project
 .gradletasknamecache
@@ -16,9 +19,9 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 chromedriver.exe
-.idea/*
-.idea\*
-*.jar
-*.ear
-*.war
-corp-portal.iml
+
+.idea/workspace.xml
+*.java___jb_tmp___
+*.class
+.idea/workspace.xml
+.idea/workspace.xml
