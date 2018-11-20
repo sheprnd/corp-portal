@@ -16,6 +16,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import static org.openqa.selenium.By.className;
 import static org.openqa.selenium.By.name;
+import static org.testng.Assert.assertTrue;
 
 
 public class NewUserAdding {
@@ -28,7 +29,7 @@ public class NewUserAdding {
     public void setUp() throws Exception {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://mlgext.usetech.ru/#/login");
     }
 
@@ -36,12 +37,11 @@ public class NewUserAdding {
     private void Actions() throws Exception {
 
         login();
-        driver.findElement(By.cssSelector("[classname=left-menu__link][text='↵        ↵        Настройки↵      ']")).click();
-        driver.findElement(By.cssSelector("button[textContent=Добавить][type='button']")).click();
-  /*      actions.moveToElement(createBtn).build().perform();
-        actions.click(createBtn);*/
+
+        driver .findElement(By.cssSelector("a.left-menu__link[href*='#/settings]::after")).click();
+       /* driver.findElement(By.cssSelector("button[textContent=Добавить][type='button']")).click();
         driver.findElement(By.cssSelector("input[placeholder=Введите фамилию][type='text']")).click();
-        driver.findElement(By.cssSelector("input[name='lastName'][type='text']")).sendKeys("Last");
+        driver.findElement(By.cssSelector("input[name='lastName'][type='text']")).sendKeys("Last");*/
 
 
         /*driver.findElement(By.name("lastName")).clear();
@@ -69,7 +69,7 @@ public class NewUserAdding {
 
     private void login() {
         driver.findElement(By.name("login")).clear();
-        driver.findElement(By.name("login")).sendKeys("vm_user01@mail.ru");
+        driver.findElement(By.name("login")).sendKeys("vm_user04@mail.ru");
         driver.findElement(By.name("password")).clear();
         driver.findElement(By.name("password")).sendKeys("12345");
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
