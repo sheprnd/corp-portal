@@ -54,81 +54,60 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1467148318">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.36" value="1" />
+          <entry key="project.open.time.65" value="1" />
+          <entry key="project.open.time.74" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="gitignore" value="2" />
+          <entry key="java" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="3" />
+          <entry key="PLAIN_TEXT" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="gitignore" value="2" />
+          <entry key="java" value="589" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="589" />
+          <entry key="PLAIN_TEXT" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/usetech/tests/MyFirstProgram.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ru/usetech/tests/SomeTestToEducate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-              <folding>
-                <element signature="e#505#506#0" expanded="true" />
-                <element signature="e#537#538#0" expanded="true" />
-                <element signature="e#581#582#0" expanded="true" />
-                <element signature="e#613#614#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/ru/usetech/tests/SquareTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="22" column="59" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/ru/usetech/tests/LoginLogoutTest.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ru/usetech/tests/NewUserAdding.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+            <state relative-caret-position="154">
+              <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/usetech/tests/Rectangle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="e#211#212#0" expanded="true" />
-                <element signature="e#238#239#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/usetech/tests/Square.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="25" selection-start-column="25" selection-end-column="25" />
-              <folding>
-                <element signature="e#99#100#0" expanded="true" />
-                <element signature="e#125#126#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -354,9 +333,9 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4627521282941" />
+        <entry key="$PROJECT_DIR$" value="4628026383987" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="1639404692" />
+        <entry key="$PROJECT_DIR$/build.gradle" value="2663929651" />
         <entry key="$PROJECT_DIR$/settings.gradle" value="318150618" />
       </map>
     </option>
@@ -399,6 +378,9 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/test/java/ru/usetech/tests/Test.java" />
         <option value="$PROJECT_DIR$/src/test/java/ru/usetech/tests/LoginLogoutTest.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/usetech/tests/SomeTestToEducate.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/usetech/tests/NewUserAdding.java" />
       </list>
     </option>
   </component>
@@ -414,6 +396,64 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="im-tests" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="im-tests" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="im-tests" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="im-tests" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="im-tests" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="corp-portal" type="58d84e3e:PackageViewProjectNode" />
+              <item name="corp-portal" type="eaaa3913:PackageViewModuleGroupNode" />
+            </path>
+            <path>
+              <item name="corp-portal" type="58d84e3e:PackageViewProjectNode" />
+              <item name="corp-portal" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="corp-portal_main" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="corp-portal" type="58d84e3e:PackageViewProjectNode" />
+              <item name="corp-portal" type="eaaa3913:PackageViewModuleGroupNode" />
+              <item name="corp-portal_test" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Production'; set:Production; class com.intellij.psi.search.scope.ProjectProductionScope">
           <expand>
@@ -469,97 +509,16 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="corp-portal" type="58d84e3e:PackageViewProjectNode" />
-              <item name="corp-portal" type="eaaa3913:PackageViewModuleGroupNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="58d84e3e:PackageViewProjectNode" />
-              <item name="corp-portal" type="eaaa3913:PackageViewModuleGroupNode" />
-              <item name="corp-portal_main" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="58d84e3e:PackageViewProjectNode" />
-              <item name="corp-portal" type="eaaa3913:PackageViewModuleGroupNode" />
-              <item name="corp-portal_test" type="616d4139:PackageViewModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="corp-portal" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="corp-portal" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="corp-portal" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="corp-portal" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="corp-portal" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="corp-portal" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="corp-portal" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="corp-portal" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="corp-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542559687529" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542745891653" />
+    <property name="extract.method.default.visibility" value="public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -573,8 +532,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.SomeTestToEducate.LoginTest">
-    <configuration name="ru.usetech.tests in corp-portal_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.NewUserAdding">
+    <configuration name="NewUserAdding" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="corp-portal_test" />
       <extension name="coverage">
         <pattern>
@@ -583,7 +542,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.usetech.tests" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="ru.usetech.tests.NewUserAdding" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -657,19 +618,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ru.usetech.tests in corp-portal_test" />
       <item itemvalue="TestNG.SquareTests.testArea" />
       <item itemvalue="TestNG.SquareTests" />
       <item itemvalue="TestNG.SomeTestToEducate" />
       <item itemvalue="TestNG.SomeTestToEducate.LoginTest" />
+      <item itemvalue="TestNG.NewUserAdding" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.SomeTestToEducate.LoginTest" />
+        <item itemvalue="TestNG.NewUserAdding" />
         <item itemvalue="TestNG.SomeTestToEducate" />
         <item itemvalue="TestNG.SquareTests" />
+        <item itemvalue="TestNG.SomeTestToEducate.LoginTest" />
         <item itemvalue="TestNG.SquareTests.testArea" />
-        <item itemvalue="JUnit.ru.usetech.tests in corp-portal_test" />
       </list>
     </recent_temporary>
   </component>
@@ -687,70 +648,70 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="LoginLogoutTest - 2018.11.18 at 19h 04m 50s.xml">
-      <configuration name="LoginLogoutTest" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 22h 54m 20s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="LoginLogoutTest - 2018.11.18 at 19h 14m 15s.xml">
-      <configuration name="LoginLogoutTest" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 22h 55m 10s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="SquareTests - 2018.11.18 at 19h 18m 18s.xml">
-      <configuration name="SquareTests" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 22h 55m 59s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="LoginLogoutTest - 2018.11.18 at 19h 18m 44s.xml">
-      <configuration name="LoginLogoutTest" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 22h 59m 06s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="LoginLogoutTest - 2018.11.18 at 19h 19m 45s.xml">
-      <configuration name="LoginLogoutTest" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 22h 59m 48s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="LoginLogoutTest - 2018.11.18 at 19h 25m 33s.xml">
-      <configuration name="LoginLogoutTest" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 23h 00m 32s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="LoginLogoutTest - 2018.11.18 at 19h 27m 50s.xml">
-      <configuration name="LoginLogoutTest" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 23h 01m 21s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="LoginLogoutTest - 2018.11.18 at 19h 30m 17s.xml">
-      <configuration name="LoginLogoutTest" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 23h 03m 13s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="LoginLogoutTest - 2018.11.18 at 19h 40m 19s.xml">
-      <configuration name="LoginLogoutTest" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 23h 08m 39s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="LoginLogoutTest - 2018.11.18 at 19h 41m 49s.xml">
-      <configuration name="LoginLogoutTest" configurationId="TestNG" />
+    <history-entry file="NewUserAdding - 2018.11.20 at 23h 16m 36s.xml">
+      <configuration name="NewUserAdding" configurationId="TestNG" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" sideWeight="0.36157337" side_tool="true" visible="true" weight="0.35188216" />
-      <window_info anchor="bottom" id="Build" sideWeight="0.49924356" weight="0.13420622" />
-      <window_info anchor="bottom" id="Messages" weight="0.3289689" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6384266" visible="true" weight="0.35188216" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.27659574" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49924356" weight="0.3289689" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.62632376" visible="true" weight="0.42389524" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49848714" weight="0.57610476" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Coverage" side_tool="true" visible="true" weight="0.15128593" />
-      <window_info anchor="right" id="Gradle" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.37367624" side_tool="true" weight="0.27659574" />
+      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.49924356" weight="0.13420622" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.4969743" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Gradle" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" visible="true" weight="0.15128593" />
     </layout>
     <layout-to-restore>
       <window_info id="Image Layers" order="0" />
@@ -786,6 +747,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
   <component name="editorHistoryManager">
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.testng/testng/6.14.3/bfd2538501a129a142fe8366169c48b91609dc0b/testng-6.14.3-sources.jar!/org/testng/TestNG.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -794,44 +760,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/usetech/tests/LoginLogoutTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/usetech/tests/MyFirstProgram.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-          <folding>
-            <element signature="e#505#506#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#581#582#0" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/usetech/tests/Rectangle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#211#212#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/usetech/tests/Square.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" selection-start-column="25" selection-end-column="25" />
-          <folding>
-            <element signature="e#99#100#0" expanded="true" />
-            <element signature="e#125#126#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ru/usetech/tests/SquareTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="323">
           <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -841,7 +780,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="221">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -849,10 +788,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ru/usetech/tests/LoginLogoutTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/usetech/tests/Rectangle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/usetech/tests/Square.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/usetech/tests/SomeTestToEducate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="59" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.testng/testng/6.14.3/bfd2538501a129a142fe8366169c48b91609dc0b/testng-6.14.3-sources.jar!/org/testng/internal/Invoker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-75">
+          <caret line="592" selection-start-line="592" selection-end-line="592" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/usetech/tests/NewUserAdding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
