@@ -59,11 +59,11 @@ public class UserCreationTest {
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
   }
 
-  /*@AfterClass(alwaysRun = true)
+  @AfterClass(alwaysRun = true)
   public void tearDown() throws Exception {
     driver.quit();
 
-  }*/
+  }
 
 
 }

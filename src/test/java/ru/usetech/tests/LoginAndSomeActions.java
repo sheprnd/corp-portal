@@ -2,7 +2,6 @@ package ru.usetech.tests;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,27 +30,29 @@ public class LoginAndSomeActions {
     @Test
     private void LoginToIM() throws Exception {
         login();
-        createManualButton();
-
-    }
-
-    @Test
-    private void SettingsButtonPress() throws Exception {
         settingsButtonPress();
+        createManualIncButtonPress();
 
     }
 
-    private void createManualButton() {
+    private void createManualIncButtonPress() {
         WebElement createIncButton = driver.findElement(By.cssSelector(".btn-big"));
         Actions actionbtn = new Actions(driver);
-        actionbtn.moveToElement(createIncButton).click().build().perform();
-        driver.findElement(By.cssSelector(".fa-times")).click();
+        actionbtn.moveToElement(createIncButton).contextClick();
+        driver.findElement(By.cssSelector(".btn-big")).click();
+
+        /*WebElement closeButtonIcon = driver.findElement(By.cssSelector(".fa-times"));
+        Actions actionCloseBtn = new Actions(driver);
+        actionCloseBtn.moveToElement(closeButtonIcon).click().build().perform();*/
+
+    /*    driver.findElement(By.cssSelector(".fa-times")).isDisplayed();
+        driver.findElement(By.cssSelector(".fa-times")).click();*/
     }
 
     private void settingsButtonPress() {
         WebElement settingsButton = driver.findElement(By.cssSelector("a.left-menu__link[href*='settings']"));
         Actions action = new Actions(driver);
-        action.moveToElement(settingsButton).click().build().perform();
+        action.moveToElement(settingsButton).contextClick();
 
     }
 
