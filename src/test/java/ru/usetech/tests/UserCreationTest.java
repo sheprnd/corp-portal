@@ -31,34 +31,27 @@ public class UserCreationTest {
     login();
     goToSettings();
     selectUsersLink();
-    openCreationUserForm();
-    formSubmission();
+    /*openCreationUserForm();
+    formSubmission();*/
 
 
   }
 
   private void selectUsersLink() {
     /*Confirm that page is needen*/
-    
+    driver.findElement(By.cssSelector("h3.content__title")).isDisplayed();
   }
 
   private void goToSettings() {
     WebElement settingsButton = driver.findElement(By.cssSelector("a.left-menu__link[href*='settings']"));
     Actions action = new Actions(driver);
-    action.moveToElement(settingsButton).click().build().perform();
+    action.moveToElement(settingsButton).click().perform();
+    driver.findElement(By.cssSelector("a.left-menu__link[href*='settings']")).click();
 
   }
 
 
-  private void newUserCreation() {
-    WebElement settingsButton = driver.findElement(By.cssSelector("a.left-menu__link[href*='settings']"));
-    Actions action = new Actions(driver);
-    action.moveToElement(settingsButton).click().build().perform();
-
-  }
-
-
-  private void login() {
+   private void login() {
     driver.findElement(By.name("login")).clear();
     driver.findElement(By.name("login")).sendKeys("vm_user02@mail.ru");
     driver.findElement(By.name("password")).clear();
@@ -66,11 +59,11 @@ public class UserCreationTest {
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
   }
 
-  @AfterClass(alwaysRun = true)
+  /*@AfterClass(alwaysRun = true)
   public void tearDown() throws Exception {
     driver.quit();
 
-  }
+  }*/
 
 
 }
