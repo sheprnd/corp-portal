@@ -39,7 +39,6 @@ public class LoginAndSomeActions {
         WebElement createIncButton = driver.findElement(By.cssSelector(".btn-big"));
         Actions actionbtn = new Actions(driver);
         actionbtn.moveToElement(createIncButton).contextClick();
-        driver.findElement(By.cssSelector(".btn-big")).click();
 
         /*WebElement closeButtonIcon = driver.findElement(By.cssSelector(".fa-times"));
         Actions actionCloseBtn = new Actions(driver);
