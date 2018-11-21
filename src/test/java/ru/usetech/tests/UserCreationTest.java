@@ -29,13 +29,28 @@ public class UserCreationTest {
   @Test
   private void LoginToIM() throws Exception {
     login();
+    goToSettings();
+    selectUsersLink();
+    openCreationUserForm();
+    formSubmission();
 
 
   }
 
+  private void selectUsersLink() {
+    /*Confirm that page is needen*/
+    
+  }
+
+  private void goToSettings() {
+    WebElement settingsButton = driver.findElement(By.cssSelector("a.left-menu__link[href*='settings']"));
+    Actions action = new Actions(driver);
+    action.moveToElement(settingsButton).click().build().perform();
+
+  }
 
 
-   private void newUserCreation() {
+  private void newUserCreation() {
     WebElement settingsButton = driver.findElement(By.cssSelector("a.left-menu__link[href*='settings']"));
     Actions action = new Actions(driver);
     action.moveToElement(settingsButton).click().build().perform();
