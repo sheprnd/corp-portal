@@ -20,8 +20,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 chromedriver.exe
 
-.idea/workspace.xml
 *.java___jb_tmp___
 *.class
-.idea/workspace.xml
-.idea/workspace.xml
