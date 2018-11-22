@@ -2,12 +2,12 @@ package ru.usetech.tests;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-/*template Claas to create a manual incident*/
 public class ManualIncCreationTest {
 
     private WebDriver driver;
@@ -26,15 +26,21 @@ public class ManualIncCreationTest {
     @Test
     private void testBody() throws Exception {
         login();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(5);
         openModal();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(5);
         enterAnswerText();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(5);
         enterPostUrl();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(5);
         selectLocation();
+        TimeUnit.SECONDS.sleep(5);
+        pressCreateBtn();
 
+    }
+
+    private void pressCreateBtn() {
+        driver.findElement(By.cssSelector("div.modal-footer > button.btn__blue")).click();
     }
 
     private void selectLocation() throws InterruptedException {
@@ -85,13 +91,13 @@ public class ManualIncCreationTest {
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
     }
 
-  /*@AfterClass(alwaysRun = true)
+  @AfterClass(alwaysRun = true)
   public void tearDown() throws Exception {
 
-    //TimeUnit.SECONDS.sleep(10);
+
     driver.quit();
 
-  }*/
+  }
 
 
 }
