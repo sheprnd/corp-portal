@@ -31,25 +31,50 @@ public class ManualIncCreationTest {
   @Test
   private void testBody() throws Exception {
     login();
+    TimeUnit.SECONDS.sleep(5);
     openModal();
+    TimeUnit.SECONDS.sleep(5);
+    enterAnswerText();
+    TimeUnit.SECONDS.sleep(5);
+    enterPostUrl();
+    // need to fix selectLocation();
 
   }
 
+  private void selectLocation() {
+    WebElement settingsButton = driver.findElement(By.cssSelector(".ng-tns-c0-27.ui-dropdown-label.ng-star-inserted"));
+    Actions action = new Actions(driver);
+    action.moveToElement(settingsButton).sendKeys(Keys.RETURN);
+    /*driver.findElement(By.cssSelector(".ng-tns-c0-27.ui-dropdown-label.ng-star-inserted")).sendKeys(Keys.RETURN);*/
+  }
+
+  private void enterPostUrl() {
+    driver.findElement(By.cssSelector(".textarea")).sendKeys(Keys.RETURN);
+    driver.findElement(By.cssSelector(".textarea")).sendKeys("Текст ответа такой-то");
+    System.out.println("Answer text has been inputed");
+  }
+
+  private void enterAnswerText() {
+    long suffix = System.currentTimeMillis() / 1000L;
+    driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys(Keys.RETURN);
+    driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys("http://dwarfpool.com/xmr/" + suffix);
+    System.out.println("Post url has been added");
+
+  }
 
 
   private void openModal() throws InterruptedException {
     /*WebElement settingsButton = driver.findElement(By.cssSelector(".btn-big"));
     Actions action = new Actions(driver);
     action.moveToElement(settingsButton).click().perform();*/
-    TimeUnit.SECONDS.sleep(5);
     if (driver.findElement(By.cssSelector(".btn-big")).isDisplayed()){
       /*driver.findElement(By.cssSelector(".btn-big")).sendKeys(Keys.ENTER);*/
       driver.findElement(By.cssSelector(".btn-big")).sendKeys(Keys.RETURN);
-      System.out.println("Works fine");
+      System.out.println("Modal opened");
       TimeUnit.SECONDS.sleep(5);
     }
     else {
-      System.out.println("Doesn't work");
+      System.out.println("Modal has not been opened");
     }
 
 
