@@ -1,9 +1,6 @@
 package ru.usetech.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
@@ -33,19 +30,24 @@ public class ManualIncCreationTest {
     login();
     TimeUnit.SECONDS.sleep(5);
     openModal();
-    TimeUnit.SECONDS.sleep(5);
+    /*TimeUnit.SECONDS.sleep(5);
     enterAnswerText();
     TimeUnit.SECONDS.sleep(5);
-    enterPostUrl();
-    // need to fix selectLocation();
+    enterPostUrl();*/
+    selectLocation();
 
   }
 
   private void selectLocation() {
-    WebElement settingsButton = driver.findElement(By.cssSelector(".ng-tns-c0-27.ui-dropdown-label.ng-star-inserted"));
-    Actions action = new Actions(driver);
-    action.moveToElement(settingsButton).sendKeys(Keys.RETURN);
-    /*driver.findElement(By.cssSelector(".ng-tns-c0-27.ui-dropdown-label.ng-star-inserted")).sendKeys(Keys.RETURN);*/
+    JavascriptExecutor jse = (JavascriptExecutor)driver;
+    jse.executeScript("scroll(0, 250);");
+    WebElement locationSelectorOpen = driver.findElement(By.cssSelector("label.ng-tns-c0-8"));
+    locationSelectorOpen.click();
+
+
+
+    //driver.findElement(By.cssSelector(".ng-tns-c0-27.ui-dropdown-label.ng-star-inserted")).sendKeys(Keys.RETURN);
+    //WebElement imageLink = image.findElements(By.tagName("a")).get(0);
   }
 
   private void enterPostUrl() {
@@ -89,11 +91,13 @@ public class ManualIncCreationTest {
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
   }
 
-  @AfterClass(alwaysRun = true)
+  /*@AfterClass(alwaysRun = true)
   public void tearDown() throws Exception {
+
+    //TimeUnit.SECONDS.sleep(10);
     driver.quit();
 
-  }
+  }*/
 
 
 }
