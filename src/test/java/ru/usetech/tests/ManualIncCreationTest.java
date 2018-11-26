@@ -25,7 +25,7 @@ public class ManualIncCreationTest {
 
     @Test
     private void testBody() throws Exception {
-        login();
+        login("vm_user02@mail.ru", "12345");
         TimeUnit.SECONDS.sleep(5);
         openModal();
         TimeUnit.SECONDS.sleep(5);
@@ -83,11 +83,11 @@ public class ManualIncCreationTest {
     }
 
 
-    private void login() {
+    private void login(String username, String password) {
         driver.findElement(By.name("login")).clear();
-        driver.findElement(By.name("login")).sendKeys("vm_user02@mail.ru");
+        driver.findElement(By.name("login")).sendKeys(username);
         driver.findElement(By.name("password")).clear();
-        driver.findElement(By.name("password")).sendKeys("12345");
+        driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
     }
 
