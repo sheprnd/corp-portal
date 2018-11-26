@@ -25,13 +25,13 @@ public class ManualIncCreationTest {
 
     @Test
     private void testBody() throws Exception {
-        login();
+        login("vm_user02@mail.ru", "12345");
         TimeUnit.SECONDS.sleep(5);
         openModal();
         TimeUnit.SECONDS.sleep(5);
-        enterAnswerText();
+        enterPostUrl(new EnterPostUrl("http://dwarfpool.com/xmr/"));
         TimeUnit.SECONDS.sleep(5);
-        enterPostUrl();
+        enterAnswerContent("Текст ответа такой-то");
         TimeUnit.SECONDS.sleep(5);
         selectLocation();
         TimeUnit.SECONDS.sleep(5);
@@ -44,8 +44,7 @@ public class ManualIncCreationTest {
     }
 
     private void selectLocation() throws InterruptedException {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("scroll(0, 500);");
+        scrollPage(new Scroll("0", "500"));
 
         WebElement locationSelectorOpen = driver.findElement(By.cssSelector("label.ng-tns-c0-8"));
         locationSelectorOpen.click();
@@ -55,16 +54,21 @@ public class ManualIncCreationTest {
         System.out.println("Location has been added");
     }
 
-    private void enterPostUrl() {
+    private void scrollPage(Scroll scroll) {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("scroll(" + scroll.getStart() + ", " + scroll.getFinish() + ");");
+    }
+
+    private void enterAnswerContent(String answercontent) {
         driver.findElement(By.cssSelector(".textarea")).sendKeys(Keys.RETURN);
-        driver.findElement(By.cssSelector(".textarea")).sendKeys("Текст ответа такой-то");
+        driver.findElement(By.cssSelector(".textarea")).sendKeys(answercontent);
         System.out.println("Answer text has been inputed");
     }
 
-    private void enterAnswerText() {
+    private void enterPostUrl(EnterPostUrl enterPostUrl) {
         long suffix = System.currentTimeMillis() / 1000L;
         driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys(Keys.RETURN);
-        driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys("http://dwarfpool.com/xmr/" + suffix);
+        driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys(enterPostUrl.getPostUrlDummy() + suffix);
         System.out.println("Post url has been added");
 
     }
@@ -83,11 +87,11 @@ public class ManualIncCreationTest {
     }
 
 
-    private void login() {
+    private void login(String username, String password) {
         driver.findElement(By.name("login")).clear();
-        driver.findElement(By.name("login")).sendKeys("vm_user02@mail.ru");
+        driver.findElement(By.name("login")).sendKeys(username);
         driver.findElement(By.name("password")).clear();
-        driver.findElement(By.name("password")).sendKeys("12345");
+        driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
     }
 
