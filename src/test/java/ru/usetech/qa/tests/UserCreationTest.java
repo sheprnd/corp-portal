@@ -1,21 +1,16 @@
-package ru.usetech.tests.tests_set;
-
+package ru.usetech.qa.tests;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
-
 public class UserCreationTest extends TestBase {
-
-
 
   @Test
   private void goToUsersPage() throws Exception {
-    login("vm_user02@mail.ru", "12345");
+    app.login("vm_user02@mail.ru", "12345");
     TimeUnit.SECONDS.sleep(2);
-    goToSettings();
+    app.goToSettings();
     TimeUnit.SECONDS.sleep(2);
-    openCreationUserForm();
+    app.openCreationUserForm();
     TimeUnit.SECONDS.sleep(2);
-    newUserFormSubmission();
+    app.newUserFormSubmission();
   }
 }

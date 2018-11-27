@@ -1,22 +1,18 @@
-package ru.usetech.tests.tests_set;
-
+package ru.usetech.qa.tests;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
-
 public class RoleCreationTest extends TestBase {
-
 
 
   @Test
   private void createNewRole() throws Exception {
-    login("vm_user02@mail.ru", "12345");
+    app.login("vm_user02@mail.ru", "12345");
     TimeUnit.SECONDS.sleep(5);
-    goToSettings();
+    app.goToSettings();
     TimeUnit.SECONDS.sleep(5);
-    openCreationRoleForm();
+    app.openCreationRoleForm();
     TimeUnit.SECONDS.sleep(5);
-    newRoleFormSubmission();
+    app.newRoleFormSubmission();
   }
 
 }
