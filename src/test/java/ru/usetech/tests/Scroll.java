@@ -16,4 +16,5 @@ public class Scroll {
     public String getFinish() {
         return finish;
     }
+
 }

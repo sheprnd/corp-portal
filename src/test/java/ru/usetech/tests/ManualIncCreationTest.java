@@ -14,6 +14,7 @@ public class ManualIncCreationTest extends TestBase {
         selectLocation();
         pressCreateBtn();
 
+
     }
 
 

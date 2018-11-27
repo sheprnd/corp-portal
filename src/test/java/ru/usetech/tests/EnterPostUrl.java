@@ -6,7 +6,6 @@ public class EnterPostUrl {
     public EnterPostUrl(String postUrlDumb) {
         this.postUrlDumb = postUrlDumb;
     }
-
     public String getPostUrlDummy() {
         return postUrlDumb;
     }

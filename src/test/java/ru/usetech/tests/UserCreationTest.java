@@ -12,5 +12,6 @@ public class UserCreationTest extends TestBase{
     goToSettings();
     openCreationUserForm();
     newUserFormSubmission();
+
   }
 }

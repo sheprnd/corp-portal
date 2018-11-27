@@ -21,4 +21,3 @@ gradle-app.setting
 chromedriver.exe
 
 *.java___jb_tmp___
-*.class

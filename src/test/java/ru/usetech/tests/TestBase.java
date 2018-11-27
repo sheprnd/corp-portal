@@ -109,6 +109,7 @@ public class TestBase {
         driver.findElement(By.cssSelector("input[name = 'pass1']")).sendKeys("passwd" + randomid);
         driver.findElement(By.cssSelector("input[name = 'pass2']")).sendKeys("passwd" + randomid);
         scrollPage(new Scroll("0", "400"));
+
         //select checkbox for role
         driver.findElement(By.cssSelector("div:nth-child(4) > p-checkbox > label")).click();
         driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-left.btn__blue")).click();
