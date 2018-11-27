@@ -1,10 +1,12 @@
-package ru.usetech.tests;
+package ru.usetech.tests.tests_set;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import ru.usetech.tests.model.EnterPostUrl;
+import ru.usetech.tests.model.Scroll;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;

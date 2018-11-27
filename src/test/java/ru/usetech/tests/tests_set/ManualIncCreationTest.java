@@ -1,6 +1,7 @@
-package ru.usetech.tests;
+package ru.usetech.tests.tests_set;
 
 import org.testng.annotations.Test;
+import ru.usetech.tests.model.EnterPostUrl;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +19,6 @@ public class ManualIncCreationTest extends TestBase {
         enterAnswerContent("Текст ответа такой-то");
         TimeUnit.SECONDS.sleep(2);
         selectLocation();
-        TimeUnit.SECONDS.sleep(2);
         TimeUnit.SECONDS.sleep(2);
         pressCreateBtn();
 

@@ -1,8 +1,10 @@
-package ru.usetech.tests;
+package ru.usetech.tests.tests_set;
 
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import ru.usetech.tests.Rectangle;
+import ru.usetech.tests.Square;
 
 public class SquareTests {
     @Test

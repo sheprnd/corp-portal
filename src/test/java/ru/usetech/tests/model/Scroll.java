@@ -1,4 +1,4 @@
-package ru.usetech.tests;
+package ru.usetech.tests.model;
 
 public class Scroll {
     private final String start;

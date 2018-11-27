@@ -1,10 +1,10 @@
-package ru.usetech.tests;
+package ru.usetech.tests.tests_set;
 
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class UserCreationTest extends TestBase{
+public class UserCreationTest extends TestBase {
 
 
 

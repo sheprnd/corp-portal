@@ -1,4 +1,4 @@
-package ru.usetech.tests;
+package ru.usetech.tests.model;
 
 public class EnterPostUrl {
     private final String postUrlDumb;
