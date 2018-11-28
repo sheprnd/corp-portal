@@ -2,6 +2,7 @@
 /build/
 *.class
 .idea
+.iml
 *.jar
 *.ear
 *.war
