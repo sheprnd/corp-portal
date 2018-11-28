@@ -9,12 +9,30 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   public WebDriver driver;
+
+  private NavigationHelper navigationHelper;
+  private RolesHelper rolesHelper;
+  private SessionHelper sessionHelper;
+
+
+  public void init() {
+    driver = new ChromeDriver();
+    driver.manage().window().maximize();
+    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    driver.get("https://mlgext.usetech.ru/#/login");
+    rolesHelper = new RolesHelper(driver);
+    navigationHelper = new NavigationHelper(driver);
+    sessionHelper = new SessionHelper(driver);
+    sessionHelper.login("vm_user02@mail.ru", "12345");
+  }
+
+  public void scrollPage(int start, int finish) {
+    JavascriptExecutor jse = (JavascriptExecutor) driver;
+    jse.executeScript("scroll(" + start + ", " + finish + ")");
+  }
+
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-
-  public void pressCreateBtn() {
-    driver.findElement(By.cssSelector("div.modal-footer > button.btn__blue")).click();
-  }
 
   public void selectLocation() throws InterruptedException {
     scrollPage(250, 0);
@@ -24,51 +42,20 @@ public class ApplicationManager {
 
     WebElement searchField = driver.findElement(By.cssSelector("ul.ui-dropdown-items"));
     searchField.click();
-    System.out.println("Location has been added");
-  }
-
-  private void scrollPage(final int start, final int finish) {
-    JavascriptExecutor jse = (JavascriptExecutor) driver;
-    jse.executeScript("scroll(" + start + ", " + finish + ")");
   }
 
   public void enterAnswerContent(String answercontent) {
     driver.findElement(By.cssSelector(".textarea")).sendKeys(Keys.RETURN);
     driver.findElement(By.cssSelector(".textarea")).sendKeys(answercontent);
-    System.out.println("Answer text has been inputed");
   }
 
   public void enterPostUrl(String posturl) {
     long suffix = System.currentTimeMillis() / 1000L;
     driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys(Keys.RETURN);
     driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys(posturl + suffix);
-    System.out.println("Post url has been added");
 
   }
 
-  public void openModal() throws InterruptedException {
-    if (driver.findElement(By.cssSelector(".btn-big")).isDisplayed()) {
-      driver.findElement(By.cssSelector(".btn-big")).sendKeys(Keys.RETURN);
-      System.out.println("Modal opened");
-
-    } else {
-      System.out.println("Modal has not been opened");
-    }
-  }
-
-  public void login(String username, String password) {
-    driver.findElement(By.name("login")).clear();
-    driver.findElement(By.name("login")).sendKeys(username);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(password);
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
-  }
-
-  public void goToSettings() {
-    WebElement settingsButton = driver.findElement(By.cssSelector("a.left-menu__link[href*='settings']"));
-    Actions action = new Actions(driver);
-    action.moveToElement(settingsButton).click().perform();
-  }
 
   public void openCreationUserForm() {
     WebElement settingsButton = driver.findElement(By.cssSelector("div.content__filtr_btn > button.btn.btn-left"));
@@ -89,40 +76,22 @@ public class ApplicationManager {
     driver.findElement(By.cssSelector("input[name = 'pass1']")).sendKeys("passwd" + randomid);
     driver.findElement(By.cssSelector("input[name = 'pass2']")).sendKeys("passwd" + randomid);
 
-    scrollPage(250, 0);
+    rolesHelper.scrollPage(250, 0);
     //select checkbox for role
     driver.findElement(By.cssSelector("div:nth-child(4) > p-checkbox > label")).click();
     driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-left.btn__blue")).click();
   }
 
-  public void openCreationRoleForm() throws InterruptedException {
-    driver.findElement(By.cssSelector("a[href= '#/settings/groups']")).click();
-    TimeUnit.SECONDS.sleep(5);
-    WebElement settingsButton = driver.findElement(By.cssSelector("div.content__filtr_btn > button.btn.btn-left"));
-    Actions action = new Actions(driver);
-    action.moveToElement(settingsButton).click().perform();
-
-  }
-
-  public void newRoleFormSubmission() {
-    UUID randomidraw = UUID.randomUUID();
-    String randomid = randomidraw.toString().substring(2, 6);
-    //Enter group name
-    driver.findElement(By.cssSelector("input[name= 'nameGroup']")).sendKeys("Group" + randomid);
-    scrollPage(250, 0);
-    //select checkbox for role
-    driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-left.btn__blue")).click();
-
-  }
-
-  public void init() {
-    driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-    driver.get("https://mlgext.usetech.ru/#/login");
-  }
 
   public void stop() {
     driver.quit();
+  }
+
+  public RolesHelper getRolesHelper() {
+    return rolesHelper;
+  }
+
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
   }
 }
