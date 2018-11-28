@@ -10,9 +10,9 @@ public class RoleCreationTest extends TestBase {
     TimeUnit.SECONDS.sleep(5);
     app.goToSettings();
     TimeUnit.SECONDS.sleep(5);
-    app.openCreationRoleForm();
+    app.getRolesHelper().openCreationRoleForm();
     TimeUnit.SECONDS.sleep(5);
-    app.newRoleFormSubmission();
+    app.getRolesHelper().newRoleFormSubmission();
   }
 
 }
