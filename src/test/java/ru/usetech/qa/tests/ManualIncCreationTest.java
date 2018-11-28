@@ -8,7 +8,6 @@ public class ManualIncCreationTest extends TestBase {
 
   @Test
   private void testBody() throws Exception {
-    app.login("vm_user02@mail.ru", "12345");
     TimeUnit.SECONDS.sleep(2);
     app.getNavigationHelper().openModal();
     TimeUnit.SECONDS.sleep(2);

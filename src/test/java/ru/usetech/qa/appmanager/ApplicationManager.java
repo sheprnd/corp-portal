@@ -12,6 +12,7 @@ public class ApplicationManager {
 
   private NavigationHelper navigationHelper;
   private RolesHelper rolesHelper;
+  private SessionHelper sessionHelper;
 
 
   public void init() {
@@ -21,6 +22,8 @@ public class ApplicationManager {
     driver.get("https://mlgext.usetech.ru/#/login");
     rolesHelper = new RolesHelper(driver);
     navigationHelper = new NavigationHelper(driver);
+    sessionHelper = new SessionHelper(driver);
+    sessionHelper.login("vm_user02@mail.ru", "12345");
   }
 
   public void scrollPage(int start, int finish) {
@@ -56,13 +59,6 @@ public class ApplicationManager {
 
   }
 
-  public void login(String username, String password) {
-    driver.findElement(By.name("login")).clear();
-    driver.findElement(By.name("login")).sendKeys(username);
-    driver.findElement(By.name("password")).clear();
-    driver.findElement(By.name("password")).sendKeys(password);
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
-  }
 
   public void openCreationUserForm() {
     WebElement settingsButton = driver.findElement(By.cssSelector("div.content__filtr_btn > button.btn.btn-left"));
