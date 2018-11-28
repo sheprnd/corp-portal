@@ -1,5 +1,7 @@
 package ru.usetech.qa.tests;
+
 import org.testng.annotations.Test;
+
 import java.util.concurrent.TimeUnit;
 public class RoleCreationTest extends TestBase {
 

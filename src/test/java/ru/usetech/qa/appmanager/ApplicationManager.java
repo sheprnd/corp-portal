@@ -3,6 +3,7 @@ package ru.usetech.qa.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -11,8 +12,6 @@ public class ApplicationManager {
 
   private NavigationHelper navigationHelper;
   private RolesHelper rolesHelper;
-
-
 
 
   public void init() {
@@ -89,7 +88,6 @@ public class ApplicationManager {
     driver.findElement(By.cssSelector("div:nth-child(4) > p-checkbox > label")).click();
     driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-left.btn__blue")).click();
   }
-
 
 
   public void stop() {

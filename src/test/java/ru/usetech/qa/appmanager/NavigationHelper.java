@@ -10,7 +10,7 @@ public class NavigationHelper {
 
   private WebDriver driver;
 
-  public  NavigationHelper(WebDriver driver) {
+  public NavigationHelper(WebDriver driver) {
     this.driver = driver;
   }
 
