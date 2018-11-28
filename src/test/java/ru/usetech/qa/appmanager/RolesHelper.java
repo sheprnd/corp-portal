@@ -10,9 +10,13 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class RolesHelper {
-  public WebDriver driver;
+  private WebDriver driver;
 
-  protected void scrollPage(final int start, final int finish) {
+  public RolesHelper(WebDriver driver) {
+    this.driver = driver;
+  }
+
+  public void scrollPage(int start, int finish) {
     JavascriptExecutor jse = (JavascriptExecutor) driver;
     jse.executeScript("scroll(" + start + ", " + finish + ")");
   }

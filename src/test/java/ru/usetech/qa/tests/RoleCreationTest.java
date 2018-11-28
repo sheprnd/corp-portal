@@ -8,7 +8,7 @@ public class RoleCreationTest extends TestBase {
   private void createNewRole() throws Exception {
     app.login("vm_user02@mail.ru", "12345");
     TimeUnit.SECONDS.sleep(5);
-    app.goToSettings();
+    app.getNavigationHelper().goToSettings();
     TimeUnit.SECONDS.sleep(5);
     app.getRolesHelper().openCreationRoleForm();
     TimeUnit.SECONDS.sleep(5);
