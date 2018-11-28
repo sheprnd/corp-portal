@@ -42,20 +42,17 @@ public class ApplicationManager {
 
     WebElement searchField = driver.findElement(By.cssSelector("ul.ui-dropdown-items"));
     searchField.click();
-    System.out.println("Location has been added");
   }
 
   public void enterAnswerContent(String answercontent) {
     driver.findElement(By.cssSelector(".textarea")).sendKeys(Keys.RETURN);
     driver.findElement(By.cssSelector(".textarea")).sendKeys(answercontent);
-    System.out.println("Answer text has been inputed");
   }
 
   public void enterPostUrl(String posturl) {
     long suffix = System.currentTimeMillis() / 1000L;
     driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys(Keys.RETURN);
     driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys(posturl + suffix);
-    System.out.println("Post url has been added");
 
   }
 
