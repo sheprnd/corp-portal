@@ -33,6 +33,9 @@ public class ManualIncPage extends Page {
     @FindBy(css=".textarea")
     private WebElement textArea;
 
+    @FindBy(css="label.ng-tns-c0-8")
+    private WebElement locationSelector;
+
 
 
 }
