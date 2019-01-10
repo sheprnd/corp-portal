@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class RoleCreationTest extends TestBase {
 
 
-  @Test
+  /*@Test
   private void createNewRole() throws Exception {
     TimeUnit.SECONDS.sleep(5);
     app.getNavigationHelper().goToSettings();
@@ -15,6 +15,6 @@ public class RoleCreationTest extends TestBase {
     app.getRolesHelper().openCreationRoleForm();
     TimeUnit.SECONDS.sleep(5);
     app.getRolesHelper().newRoleFormSubmission();
-  }
+  }*/
 
 }

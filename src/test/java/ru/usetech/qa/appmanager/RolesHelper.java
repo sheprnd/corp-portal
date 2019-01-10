@@ -10,7 +10,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class RolesHelper {
-  private WebDriver driver;
+  /*private WebDriver driver;
 
   public RolesHelper(WebDriver driver) {
     this.driver = driver;
@@ -39,5 +39,5 @@ public class RolesHelper {
     //select checkbox for role
     driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-left.btn__blue")).click();
 
-  }
+  }*/
 }

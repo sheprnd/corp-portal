@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class SessionHelper {
 
-  private WebDriver driver;
+  /*private WebDriver driver;
 
   public SessionHelper(WebDriver driver) {
     this.driver = driver;
@@ -17,5 +17,5 @@ public class SessionHelper {
     driver.findElement(By.name("password")).clear();
     driver.findElement(By.name("password")).sendKeys(password);
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Загрузка параметров'])[1]/preceding::button[1]")).click();
-  }
+  }*/
 }

@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ManualIncCreationTest extends TestBase {
 
-  @Test
+  /*@Test
   private void testBody() throws Exception {
     TimeUnit.SECONDS.sleep(2);
     app.getNavigationHelper().openModal();
@@ -20,7 +20,7 @@ public class ManualIncCreationTest extends TestBase {
     app.getNavigationHelper().pressCreateBtn();
 
 
-  }
+  }*/
 
 
 }

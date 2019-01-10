@@ -3,12 +3,33 @@ package ru.usetech.qa.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import ru.usetech.qa.pages.LoginPage;
+import ru.usetech.qa.pages.settings.RolesPage;
+import ru.usetech.qa.pages.settings.SettingsMainPage;
+import ru.usetech.qa.pages.settings.UsersPage;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-  public WebDriver driver;
+
+  private LoginPage loginPage;
+  private SettingsMainPage settingsMainPage;
+  private UsersPage usersPage;
+  private RolesPage rolesPage;
+
+  public ApplicationManager(WebDriver driver){
+
+    loginPage = new LoginPage(driver);
+    settingsMainPage = new SettingsMainPage(driver);
+    usersPage = new UsersPage (driver);
+    rolesPage = new RolesPage(driver);
+  }
+
+
+
+
+  /*public WebDriver driver;
 
   private NavigationHelper navigationHelper;
   private RolesHelper rolesHelper;
@@ -93,5 +114,5 @@ public class ApplicationManager {
 
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
-  }
+  }*/
 }
