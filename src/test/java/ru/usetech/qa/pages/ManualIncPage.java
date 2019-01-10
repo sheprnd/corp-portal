@@ -22,10 +22,10 @@ public class ManualIncPage extends Page {
 
     }
     @FindBy(css=".btn-big")
-    private WebElement createManualIncidentHeaderBtn;
+    private WebElement createBtn;
 
     @FindBy(css="div.modal-footer > button.btn__blue")
-    private WebElement createManualIncidentFooter;
+    private WebElement saveBtn;
 
     @FindBy(css="input.ng-invalid")
     private WebElement postUrlField;
