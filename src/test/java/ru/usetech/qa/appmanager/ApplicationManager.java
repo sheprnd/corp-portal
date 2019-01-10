@@ -26,6 +26,9 @@ public class ApplicationManager {
     rolesPage = new RolesPage(driver);
   }
 
+  public void login(){
+    LoginPage.open();
+  }
 
 
 

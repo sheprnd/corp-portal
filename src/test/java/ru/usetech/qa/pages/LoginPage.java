@@ -20,7 +20,7 @@ public class LoginPage extends Page {
         PageFactory.initElements(driver,this);
 
     }
-    
+
   @FindBy(name = "login")
   private WebElement login;
 
@@ -29,5 +29,10 @@ public class LoginPage extends Page {
 
   @FindBy(css=".btn")
   private WebElement submit;
+
+  public void open(){
+    driver.get("https://mlgext.usetech.ru/");
+    driver.
+  }
 
 }
