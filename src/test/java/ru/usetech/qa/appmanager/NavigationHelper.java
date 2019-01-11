@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 
 public class NavigationHelper {
 
-  private WebDriver driver;
+  /*private WebDriver driver;
 
   public NavigationHelper(WebDriver driver) {
     this.driver = driver;
@@ -33,5 +33,5 @@ public class NavigationHelper {
     WebElement settingsButton = driver.findElement(By.cssSelector("a.left-menu__link[href*='settings']"));
     Actions action = new Actions(driver);
     action.moveToElement(settingsButton).click().perform();
-  }
+  }*/
 }
