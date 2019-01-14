@@ -30,7 +30,8 @@ public class ApplicationManager {
   }
 
   public void login(){
-    LoginPage.open();
+    loginPage.open("vm_user02@mail.ru", "12345");
+
   }
 
 

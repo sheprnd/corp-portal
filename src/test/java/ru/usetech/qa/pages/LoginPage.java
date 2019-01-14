@@ -31,6 +31,9 @@ public class LoginPage extends Page {
   @FindBy(css=".btn")
   private WebElement submit;
 
+  @FindBy(css=".header__logo2_right-text")
+  private WebElement logo;
+
   public void open(String log,String pswd){
     driver.get("https://mlgext.usetech.ru/");
     login.clear();
@@ -38,6 +41,7 @@ public class LoginPage extends Page {
     password.clear();
     password.sendKeys(pswd);
     submit.click();
+    wait.until(visibilityOf(logo));
   }
 
 }
