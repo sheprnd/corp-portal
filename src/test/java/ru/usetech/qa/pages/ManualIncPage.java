@@ -50,6 +50,7 @@ public class ManualIncPage extends Page {
         wait.until(visibilityOf(saveBtn));
         saveBtn.click();
 
+
         }
     }
 

@@ -1,8 +1,5 @@
 package ru.usetech.qa.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
 public class SessionHelper {
 
   /*private WebDriver driver;

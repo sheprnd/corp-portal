@@ -1,17 +1,12 @@
 package ru.usetech.qa.appmanager;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebDriver;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationPage;
 import ru.usetech.qa.pages.settings.RolesPage;
 import ru.usetech.qa.pages.settings.SettingsMainPage;
 import ru.usetech.qa.pages.settings.UsersPage;
-
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
