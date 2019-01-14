@@ -28,8 +28,14 @@ public class TestBase {
 
   @BeforeClass
   public void start() {
+    if  (driver !=null){
+      return;
+    }
     driver = new ChromeDriver();
     app = new ApplicationManager(driver);
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("start-maximized");
+    driver = new ChromeDriver(options);
   }
 
   @AfterClass

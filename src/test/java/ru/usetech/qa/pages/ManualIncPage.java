@@ -14,26 +14,28 @@ import java.util.List;
 import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class LoginPage extends Page {
+public class ManualIncPage extends Page {
 
-    public LoginPage(WebDriver driver){
+    public ManualIncPage(WebDriver driver){
         super(driver);
         PageFactory.initElements(driver,this);
 
     }
+    @FindBy(css=".btn-big")
+    private WebElement createBtn;
 
-  @FindBy(name = "login")
-  private WebElement login;
+    @FindBy(css="div.modal-footer > button.btn__blue")
+    private WebElement saveBtn;
 
-  @FindBy(name = "password")
-  private WebElement password;
+    @FindBy(css="input.ng-invalid")
+    private WebElement postUrlField;
 
-  @FindBy(css=".btn")
-  private WebElement submit;
+    @FindBy(css=".textarea")
+    private WebElement textArea;
 
-  public void open(){
-    driver.get("https://mlgext.usetech.ru/");
-    driver.
-  }
+    @FindBy(css="label.ng-tns-c0-8")
+    private WebElement locationSelector;
+
+
 
 }
