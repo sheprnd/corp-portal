@@ -10,6 +10,7 @@ public class ManualIncCreationTest extends TestBase {
     @Test
     public void createManualInc() {
         app.login();
+        app.createManInc();
 
 
     }
