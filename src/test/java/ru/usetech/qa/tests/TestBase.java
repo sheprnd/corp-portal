@@ -17,11 +17,12 @@ public class TestBase {
         if (driver != null) {
             return;
         }
-        driver = new ChromeDriver();
-        app = new ApplicationManager(driver);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
+        app = new ApplicationManager(driver);
+
+
     }
 
     @AfterClass
