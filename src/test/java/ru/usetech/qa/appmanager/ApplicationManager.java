@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import ru.usetech.qa.pages.LoginPage;
+import ru.usetech.qa.pages.NavigationPage;
 import ru.usetech.qa.pages.settings.RolesPage;
 import ru.usetech.qa.pages.settings.SettingsMainPage;
 import ru.usetech.qa.pages.settings.UsersPage;
@@ -15,12 +16,14 @@ public class ApplicationManager {
 
   private LoginPage loginPage;
   private SettingsMainPage settingsMainPage;
+  private NavigationPage navigationPage;
   private UsersPage usersPage;
   private RolesPage rolesPage;
 
   public ApplicationManager(WebDriver driver){
 
     loginPage = new LoginPage(driver);
+    navigationPage = new NavigationPage(driver);
     settingsMainPage = new SettingsMainPage(driver);
     usersPage = new UsersPage (driver);
     rolesPage = new RolesPage(driver);
