@@ -9,39 +9,26 @@ import ru.usetech.qa.appmanager.ApplicationManager;
 
 public class TestBase {
 
-  /*protected final ApplicationManager app = new ApplicationManager();
+    private WebDriver driver;
+    public ApplicationManager app;
 
-  @BeforeClass(alwaysRun = true)
-  public void setUp() throws Exception {
-    app.init();
-  }
+    @BeforeClass
+    public void start() {
+        if (driver != null) {
+            return;
+        }
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
+        driver = new ChromeDriver(options);
+        app = new ApplicationManager(driver);
 
-  @AfterClass
-  public void tearDown() {
-    app.stop();
 
-  }*/
-
-
-  private WebDriver driver;
-  public ApplicationManager app;
-
-  @BeforeClass
-  public void start() {
-    if  (driver !=null){
-      return;
     }
-    driver = new ChromeDriver();
-    app = new ApplicationManager(driver);
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("start-maximized");
-    driver = new ChromeDriver(options);
-  }
 
-  @AfterClass
-  public void stop(){
-    driver.quit();
-    driver=null;
-  }
+    @AfterClass
+    public void stop() {
+        driver.quit();
+        driver = null;
+    }
 
 }

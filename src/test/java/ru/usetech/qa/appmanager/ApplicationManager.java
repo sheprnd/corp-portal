@@ -1,16 +1,12 @@
 package ru.usetech.qa.appmanager;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebDriver;
 import ru.usetech.qa.pages.LoginPage;
+import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationPage;
 import ru.usetech.qa.pages.settings.RolesPage;
 import ru.usetech.qa.pages.settings.SettingsMainPage;
 import ru.usetech.qa.pages.settings.UsersPage;
-
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
@@ -19,6 +15,7 @@ public class ApplicationManager {
   private NavigationPage navigationPage;
   private UsersPage usersPage;
   private RolesPage rolesPage;
+  private ManualIncPage manualincPage;
 
   public ApplicationManager(WebDriver driver){
 
@@ -27,10 +24,16 @@ public class ApplicationManager {
     settingsMainPage = new SettingsMainPage(driver);
     usersPage = new UsersPage (driver);
     rolesPage = new RolesPage(driver);
+    manualincPage = new ManualIncPage(driver);
   }
 
   public void login(){
-    LoginPage.open();
+    loginPage.open("vm_user02@mail.ru", "12345");
+
+  }
+  public void createManInc(){
+    manualincPage.CreateManInc();
+
   }
 
 
