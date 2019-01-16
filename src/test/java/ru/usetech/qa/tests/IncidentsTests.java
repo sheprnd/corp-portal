@@ -4,9 +4,9 @@ import org.testng.annotations.Test;
 
 public class IncidentsTests extends TestBase {
 
-    @Test
+    /*@Test
     public void createManualIncdent() {
         app.login();
         app.createManInc();
-    }
+    }*/
 }

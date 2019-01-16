@@ -1,17 +1,10 @@
 package ru.usetech.qa.pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class LoginPage extends Page {
@@ -34,12 +27,15 @@ public class LoginPage extends Page {
   @FindBy(css=".header__logo2_right-text")
   private WebElement logo;
 
-  public void open(String log,String pswd){
+  public void open(){
     driver.get("https://mlgext.usetech.ru/");
-    login.clear();
-    login.sendKeys(log);
-    password.clear();
-    password.sendKeys(pswd);
+  }
+
+  public void login(String log, String pswd) {
+
+    type(login, log);
+    type(password, pswd);
+
     submit.click();
     wait.until(visibilityOf(logo));
   }

@@ -12,8 +12,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 public class NavigationPage extends Page {
 
     public NavigationPage(WebDriver driver) {
+
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(driver,this);
     }
 
     @FindBy(css = "[href = '#/settings']")

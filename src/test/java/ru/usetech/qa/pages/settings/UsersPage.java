@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.usetech.qa.model.UserData;
 import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
@@ -50,18 +50,14 @@ public class UsersPage extends Page {
         wait.until(visibilityOf(userForm));
     }
 
-    public void fillTheField(WebElement field, String text) {
-        field.clear();
-        field.sendKeys(text);
-    }
 
-    public void fillUserForm(String lastNameText,  String firstNameText, String emailText, String passwordText) {
+    public void fillUserForm(UserData userData) {
 
-        fillTheField(lastName, lastNameText);
-        fillTheField(firstName, firstNameText);
-        fillTheField(email, emailText);
-        fillTheField(password, passwordText);
-        fillTheField(confirmPassword, passwordText);
+        type(lastName, userData.getLastName());
+        type(firstName, userData.getFirstName());
+        type(email, userData.getEmail());
+        type(password, userData.getPassword());
+        type(confirmPassword, userData.getPassword());
 
     }
 

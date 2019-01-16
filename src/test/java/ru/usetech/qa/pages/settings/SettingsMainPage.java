@@ -10,9 +10,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 // страница с меню разделов настроек (Пользователи, Отделы, Роли и т.д)
 
-public class SettingsMainPage extends Page {
+public class SettingsMainPage extends Page{
 
     public SettingsMainPage(WebDriver driver){
+
         super(driver);
         PageFactory.initElements(driver,this);
     }
@@ -34,8 +35,5 @@ public class SettingsMainPage extends Page {
         wait.until(visibilityOf(usersList));
     }
 
-    public void goToRolesList() {
-        rolesListLink.click();
-        wait.until(visibilityOf(rolesList));
-    }
+
 }

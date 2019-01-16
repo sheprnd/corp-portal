@@ -1,36 +1,40 @@
 package ru.usetech.qa.appmanager;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import ru.usetech.qa.model.UserData;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationPage;
-import ru.usetech.qa.pages.settings.RolesPage;
 import ru.usetech.qa.pages.settings.SettingsMainPage;
 import ru.usetech.qa.pages.settings.UsersPage;
 
 public class ApplicationManager {
 
+  WebDriver driver;
+
   private LoginPage loginPage;
   private SettingsMainPage settingsMainPage;
   private NavigationPage navigationPage;
   private UsersPage usersPage;
-  private RolesPage rolesPage;
   private ManualIncPage manualincPage;
 
   public ApplicationManager(WebDriver driver){
 
-    loginPage = new LoginPage(driver);
-    navigationPage = new NavigationPage(driver);
+    //loginPage = new LoginPage(driver);
+    //navigationPage = new NavigationPage(driver);
     settingsMainPage = new SettingsMainPage(driver);
-    usersPage = new UsersPage (driver);
-    rolesPage = new RolesPage(driver);
+    //usersPage = new UsersPage (driver);
+
     manualincPage = new ManualIncPage(driver);
   }
 
-  public void login(){
+  /*public void login(){
     loginPage.open("vm_user02@mail.ru", "12345");
 
-  }
+  }*/
+
   public void createManInc(){
     manualincPage.CreateManInc();
 
@@ -43,16 +47,11 @@ public class ApplicationManager {
     settingsMainPage.goToUsersList();
   }
 
-  public void goToRolesList() {
-    navigationPage.goToSettings();
-    settingsMainPage.goToRolesList();
-  }
+ // --------------- Пользователи --------------------------//
 
-  // --------------- Пользователи --------------------------//
-
-  public void addNewUser(String lastName,  String firstName, String email, String password){
+  public void addNewUser(UserData userData){
     usersPage.addNewUser();
-    usersPage.fillUserForm(lastName,  firstName, email, password);
+    usersPage.fillUserForm(userData);
     usersPage.saveUser();
 
   }
@@ -61,6 +60,30 @@ public class ApplicationManager {
   public int usersCount() {
     return usersPage.usersCount();
   }
+
+  public void stop() {
+    driver.quit();
+  }
+
+  public void init() {
+
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("start-maximized");
+    driver = new ChromeDriver(options);
+
+    loginPage = new LoginPage(driver);
+    navigationPage = new NavigationPage(driver);
+    usersPage = new UsersPage (driver);
+
+    loginPage.open();
+    loginPage.login("vm_user02@mail.ru", "12345");
+  }
+
+  public LoginPage getLoginPage() { return loginPage; }
+
+  public NavigationPage getNavigationPage() { return navigationPage; }
+
+  public UsersPage getUsersPage() { return usersPage; }
 
   /*public WebDriver driver;
 

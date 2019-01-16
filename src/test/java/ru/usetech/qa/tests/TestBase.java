@@ -2,14 +2,32 @@ package ru.usetech.qa.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import ru.usetech.qa.appmanager.ApplicationManager;
 
 public class TestBase {
 
-    private WebDriver driver;
+    protected static final ApplicationManager app = new ApplicationManager();
+
+    @BeforeSuite
+    public void setUp() {
+        app.init();
+    }
+
+    @AfterSuite
+    public void tearDown() {
+        app.stop();
+
+    }
+
+    @BeforeMethod
+    public void ensureLogin() {
+
+    }
+
+   /* private WebDriver driver;
     public ApplicationManager app;
 
     @BeforeClass
@@ -30,5 +48,7 @@ public class TestBase {
         driver.quit();
         driver = null;
     }
+*/
+
 
 }
