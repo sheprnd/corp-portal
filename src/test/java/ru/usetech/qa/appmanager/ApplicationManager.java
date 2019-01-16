@@ -36,7 +36,31 @@ public class ApplicationManager {
 
   }
 
+  // --------------- Настройки ------------------------------//
 
+  public void goToUsersList() {
+    navigationPage.goToSettings();
+    settingsMainPage.goToUsersList();
+  }
+
+  public void goToRolesList() {
+    navigationPage.goToSettings();
+    settingsMainPage.goToRolesList();
+  }
+
+  // --------------- Пользователи --------------------------//
+
+  public void addNewUser(String lastName,  String firstName, String email, String password){
+    usersPage.addNewUser();
+    usersPage.fillUserForm(lastName,  firstName, email, password);
+    usersPage.saveUser();
+
+  }
+
+
+  public int usersCount() {
+    return usersPage.usersCount();
+  }
 
   /*public WebDriver driver;
 
