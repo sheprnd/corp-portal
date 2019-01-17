@@ -28,7 +28,7 @@ public class TestBase {
 
         if (app.isLogOut()) {
             app.loginPage().login(app.getProperty("login"), app.getProperty("password"));
-            System.out.println("ensureLogin");
+
         }
 
     }

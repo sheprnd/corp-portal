@@ -4,8 +4,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.UserData;
 
-import java.util.Random;
-
 import static org.testng.Assert.assertEquals;
 
 public class UserCreationTests extends TestBase{
@@ -14,7 +12,7 @@ public class UserCreationTests extends TestBase{
     public void ensurePreconditions(){
         app.goTo().settings();
         app.settings().goToUsers();
-        System.out.println("ensurePreconditions");
+
     }
 
     @Test
