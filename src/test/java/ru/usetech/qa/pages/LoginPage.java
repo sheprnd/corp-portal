@@ -21,7 +21,7 @@ public class LoginPage extends Page {
   @FindBy(name = "password")
   private WebElement password;
 
-  @FindBy(css=".btn")
+  @FindBy(css=".login-box .btn:not([disabled])")
   private WebElement submit;
 
   @FindBy(css=".header__logo2_right-text")
@@ -36,9 +36,13 @@ public class LoginPage extends Page {
     type(login, log);
     type(password, pswd);
 
+    wait.until(visibilityOf(submit));
+
     submit.click();
     wait.until(visibilityOf(logo));
+
   }
+
 
 
 }
