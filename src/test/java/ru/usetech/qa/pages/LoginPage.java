@@ -27,8 +27,8 @@ public class LoginPage extends Page {
   @FindBy(css=".header__logo2_right-text")
   private WebElement logo;
 
-  public void open(){
-    driver.get("https://mlgext.usetech.ru/");
+  public void open(String baseUrl){
+    driver.get(baseUrl);
   }
 
   public void login(String log, String pswd) {
@@ -39,5 +39,6 @@ public class LoginPage extends Page {
     submit.click();
     wait.until(visibilityOf(logo));
   }
+
 
 }

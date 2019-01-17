@@ -1,18 +1,19 @@
 package ru.usetech.qa.tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.usetech.qa.appmanager.ApplicationManager;
 
+import java.io.IOException;
+
 public class TestBase {
 
-    protected static final ApplicationManager app = new ApplicationManager();
+    protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
     @BeforeSuite
-    public void setUp() {
+    public void setUp() throws IOException {
         app.init();
     }
 
@@ -25,30 +26,13 @@ public class TestBase {
     @BeforeMethod
     public void ensureLogin() {
 
-    }
-
-   /* private WebDriver driver;
-    public ApplicationManager app;
-
-    @BeforeClass
-    public void start() {
-        if (driver != null) {
-            return;
+        if (app.isLogOut()) {
+            app.loginPage().login(app.getProperty("login"), app.getProperty("password"));
+            System.out.println("ensureLogin");
         }
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        driver = new ChromeDriver(options);
-        app = new ApplicationManager(driver);
-
 
     }
 
-    @AfterClass
-    public void stop() {
-        driver.quit();
-        driver = null;
-    }
-*/
 
 
 }

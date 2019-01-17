@@ -9,9 +9,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 // левое меню с разделами системы (Главный экран, Авторы, Отчеты, Настройки)
 
-public class NavigationPage extends Page {
+public class NavigationMenu extends Page {
 
-    public NavigationPage(WebDriver driver) {
+    public NavigationMenu(WebDriver driver) {
 
         super(driver);
         PageFactory.initElements(driver,this);
@@ -23,7 +23,7 @@ public class NavigationPage extends Page {
     @FindBy(css = "settings-menu")
     private WebElement settingsMenu;
 
-    public void goToSettings() {
+    public void settings() {
         settingsButton.click();
         wait.until(visibilityOf(settingsMenu));
     }

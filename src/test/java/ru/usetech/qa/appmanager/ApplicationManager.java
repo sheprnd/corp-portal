@@ -3,172 +3,83 @@ package ru.usetech.qa.appmanager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import ru.usetech.qa.model.UserData;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
-import ru.usetech.qa.pages.NavigationPage;
-import ru.usetech.qa.pages.settings.SettingsMainPage;
+import ru.usetech.qa.pages.NavigationMenu;
+import ru.usetech.qa.pages.settings.SettingsMenu;
 import ru.usetech.qa.pages.settings.UsersPage;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 
 public class ApplicationManager {
 
   WebDriver driver;
+  private final Properties properties;
 
   private LoginPage loginPage;
-  private SettingsMainPage settingsMainPage;
-  private NavigationPage navigationPage;
+  private SettingsMenu settingsMenu;
+  private NavigationMenu navigationMenu;
   private UsersPage usersPage;
   private ManualIncPage manualincPage;
+  private String browser;
 
-  public ApplicationManager(WebDriver driver){
-
-    //loginPage = new LoginPage(driver);
-    //navigationPage = new NavigationPage(driver);
-    settingsMainPage = new SettingsMainPage(driver);
-    //usersPage = new UsersPage (driver);
-
-    manualincPage = new ManualIncPage(driver);
+  public ApplicationManager(String browser) {
+    this.browser = browser;
+    properties = new Properties();
   }
 
-  /*public void login(){
-    loginPage.open("vm_user02@mail.ru", "12345");
+  public void init() throws IOException {
 
-  }*/
-
-  public void createManInc(){
-    manualincPage.CreateManInc();
-
-  }
-
-  // --------------- Настройки ------------------------------//
-
-  public void goToUsersList() {
-    navigationPage.goToSettings();
-    settingsMainPage.goToUsersList();
-  }
-
- // --------------- Пользователи --------------------------//
-
-  public void addNewUser(UserData userData){
-    usersPage.addNewUser();
-    usersPage.fillUserForm(userData);
-    usersPage.saveUser();
-
-  }
-
-
-  public int usersCount() {
-    return usersPage.usersCount();
-  }
-
-  public void stop() {
-    driver.quit();
-  }
-
-  public void init() {
+    properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
 
     ChromeOptions options = new ChromeOptions();
     options.addArguments("start-maximized");
-    driver = new ChromeDriver(options);
+
+    if (browser.equals(BrowserType.CHROME)) {
+      driver = new ChromeDriver(options);
+    } else if (browser.equals(BrowserType.FIREFOX)) {
+      driver = new FirefoxDriver(); // погуглить как запускать с опциями
+    }
 
     loginPage = new LoginPage(driver);
-    navigationPage = new NavigationPage(driver);
+    navigationMenu = new NavigationMenu(driver);
+    settingsMenu = new SettingsMenu(driver);
     usersPage = new UsersPage (driver);
 
-    loginPage.open();
-    loginPage.login("vm_user02@mail.ru", "12345");
+    loginPage.open(getProperty("baseUrl"));
+    loginPage.login(getProperty("login"), getProperty("password"));
   }
 
-  public LoginPage getLoginPage() { return loginPage; }
+  public LoginPage loginPage() { return loginPage; }
 
-  public NavigationPage getNavigationPage() { return navigationPage; }
+  public SettingsMenu settings() { return settingsMenu; }
 
-  public UsersPage getUsersPage() { return usersPage; }
+  public NavigationMenu goTo() { return navigationMenu; }
 
-  /*public WebDriver driver;
+  public UsersPage users() { return usersPage; }
 
-  private NavigationHelper navigationHelper;
-  private RolesHelper rolesHelper;
-  private SessionHelper sessionHelper;
-
-
-  public void init() {
-    driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-    driver.get("https://mlgext.usetech.ru/#/login");
-    rolesHelper = new RolesHelper(driver);
-    navigationHelper = new NavigationHelper(driver);
-    sessionHelper = new SessionHelper(driver);
-    sessionHelper.login("vm_user02@mail.ru", "12345");
+  public String getProperty(String key){
+    return properties.getProperty(key);
   }
 
-  public void scrollPage(int start, int finish) {
-    JavascriptExecutor jse = (JavascriptExecutor) driver;
-    jse.executeScript("scroll(" + start + ", " + finish + ")");
+  public boolean isLogOut() {
+
+    if (driver.getCurrentUrl().equals(getProperty("baseUrl"))) {
+      //System.out.println(driver.getCurrentUrl());
+      return true;
+    } else {
+      return false;
+    }
   }
-
-  private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
-
-  public void selectLocation() throws InterruptedException {
-    scrollPage(250, 0);
-
-    WebElement locationSelectorOpen = driver.findElement(By.cssSelector("label.ng-tns-c0-8"));
-    locationSelectorOpen.click();
-
-    WebElement searchField = driver.findElement(By.cssSelector("ul.ui-dropdown-items"));
-    searchField.click();
-  }
-
-  public void enterAnswerContent(String answercontent) {
-    driver.findElement(By.cssSelector(".textarea")).sendKeys(Keys.RETURN);
-    driver.findElement(By.cssSelector(".textarea")).sendKeys(answercontent);
-  }
-
-  public void enterPostUrl(String posturl) {
-    long suffix = System.currentTimeMillis() / 1000L;
-    driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys(Keys.RETURN);
-    driver.findElement(By.cssSelector("input.ng-invalid")).sendKeys(posturl + suffix);
-
-  }
-
-
-  public void openCreationUserForm() {
-    WebElement settingsButton = driver.findElement(By.cssSelector("div.content__filtr_btn > button.btn.btn-left"));
-    Actions action = new Actions(driver);
-    action.moveToElement(settingsButton).click().perform();
-  }
-
-  public void newUserFormSubmission() {
-    UUID randomidraw = UUID.randomUUID();
-    String randomid = randomidraw.toString().substring(2, 6);
-    //Enter user first name
-    driver.findElement(By.cssSelector("input[name= 'firstName']")).sendKeys("Gomer" + randomid);
-    //Enter user last name
-    driver.findElement(By.cssSelector("input[name= 'lastName']")).sendKeys("Simpson" + randomid);
-    //Enter user email
-    driver.findElement(By.cssSelector("input[name= 'email']")).sendKeys("Gomer" + randomid + "@mail.ru");
-    //Enter user password, repeat password
-    driver.findElement(By.cssSelector("input[name = 'pass1']")).sendKeys("passwd" + randomid);
-    driver.findElement(By.cssSelector("input[name = 'pass2']")).sendKeys("passwd" + randomid);
-
-    rolesHelper.scrollPage(250, 0);
-    //select checkbox for role
-    driver.findElement(By.cssSelector("div:nth-child(4) > p-checkbox > label")).click();
-    driver.findElement(By.cssSelector("div.modal-footer > button.btn.btn-left.btn__blue")).click();
-  }
-
 
   public void stop() {
     driver.quit();
   }
 
-  public RolesHelper getRolesHelper() {
-    return rolesHelper;
-  }
 
-  public NavigationHelper getNavigationHelper() {
-    return navigationHelper;
-  }*/
 }

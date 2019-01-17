@@ -45,7 +45,7 @@ public class UsersPage extends Page {
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveUserButton;
 
-    public void addNewUser(){
+    public void initUserCreation(){
         addUserButton.click();
         wait.until(visibilityOf(userForm));
     }
@@ -66,6 +66,12 @@ public class UsersPage extends Page {
         saveUserButton.click();
     }
 
+    public void create(UserData userData){
+        initUserCreation();
+        fillUserForm(userData);
+        saveUser();
+    }
+
     public void scrollPage(){
 
         JavascriptExecutor js = ((JavascriptExecutor) driver);
@@ -73,7 +79,7 @@ public class UsersPage extends Page {
 
     }
 
-    public int usersCount() {
+    public int list() {
         scrollPage();
         return driver.findElements(By.cssSelector(".users-list-grid-contained .grid-im")).size();
     }
