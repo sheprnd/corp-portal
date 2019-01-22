@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.usetech.qa.model.ManIncData;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -23,28 +24,38 @@ public class ManualIncPage extends Page {
   private WebElement saveBtn;
 
   @FindBy(css = "input.ng-invalid")
-  private WebElement postUrlField;
+  private WebElement postUrl;
 
   @FindBy(css = ".textarea")
-  private WebElement textArea;
+  private WebElement postText;
 
-  @FindBy(css = "label.ng-tns-c0-8")
-  private WebElement locationSelector;
+  @FindBy(css = ".modal-dialog")
+  private WebElement modalDialog;
 
+  /*@FindBy(css = "label.ng-tns-c0-8")
+  private WebElement locationSelector;*/
 
-  public void CreateManInc() {
+  public void initManIncPage() {
     wait.until(ExpectedConditions.elementToBeClickable(createBtn));
     createBtn.click();
-    postUrlField.clear();
-    postUrlField.sendKeys("https://mlgext.usetech.ru/#/123");
-    textArea.clear();
-    textArea.sendKeys("Automatically generated answer#");
-    wait.until(visibilityOf(saveBtn));
-    saveBtn.click();
-
+    wait.until(visibilityOf(modalDialog));
 
   }
+
+  public void fillmanIncData(ManIncData manIncData) {
+
+    type(postUrl, manIncData.getPostUrlField());
+    type(postText, manIncData.getPostText());
+  }
+
+  public void clickSave() {
+    wait.until(visibilityOf(saveBtn));
+    saveBtn.click();
+  }
+
+
 }
+
 
 
 
