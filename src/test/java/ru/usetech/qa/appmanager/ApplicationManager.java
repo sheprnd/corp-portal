@@ -50,6 +50,7 @@ public class ApplicationManager {
     navigationMenu = new NavigationMenu(driver);
     settingsMenu = new SettingsMenu(driver);
     usersPage = new UsersPage (driver);
+    manualincPage = new ManualIncPage(driver);
 
     loginPage.open(getProperty("baseUrl"));
     loginPage.login(getProperty("login"), getProperty("password"));
@@ -62,6 +63,9 @@ public class ApplicationManager {
   public NavigationMenu goTo() { return navigationMenu; }
 
   public UsersPage users() { return usersPage; }
+
+  public ManualIncPage openManualincPage() { return manualincPage;
+  }
 
   public String getProperty(String key){
     return properties.getProperty(key);
