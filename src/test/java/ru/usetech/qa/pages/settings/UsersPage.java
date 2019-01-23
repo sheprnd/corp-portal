@@ -46,7 +46,7 @@ public class UsersPage extends Page {
     private WebElement saveUserButton;
 
     public void initUserCreation(){
-        addUserButton.click();
+        click(addUserButton);
         wait.until(visibilityOf(userForm));
     }
 
@@ -63,7 +63,7 @@ public class UsersPage extends Page {
 
     public void saveUser(){
         wait.until(elementToBeClickable(saveUserButton));
-        saveUserButton.click();
+        click(saveUserButton);
     }
 
     public void create(UserData userData){

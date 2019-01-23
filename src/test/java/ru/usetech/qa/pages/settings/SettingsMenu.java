@@ -31,7 +31,7 @@ public class SettingsMenu extends Page{
     private WebElement rolesList;
 
     public void goToUsers() {
-        usersListLink.click();
+        click(usersListLink);
         wait.until(visibilityOf(usersList));
     }
 

@@ -38,7 +38,7 @@ public class LoginPage extends Page {
 
     wait.until(visibilityOf(submit));
 
-    submit.click();
+    click(submit);
     wait.until(visibilityOf(logo));
 
   }

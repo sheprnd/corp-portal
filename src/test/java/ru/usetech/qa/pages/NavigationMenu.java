@@ -24,7 +24,8 @@ public class NavigationMenu extends Page {
     private WebElement settingsMenu;
 
     public void settings() {
-        settingsButton.click();
+      
+        click(settingsButton);
         wait.until(visibilityOf(settingsMenu));
     }
 }
