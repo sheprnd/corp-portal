@@ -38,7 +38,7 @@ public class ManualIncPage extends Page {
 
   public void initManIncPage() {
     wait.until(ExpectedConditions.elementToBeClickable(createBtn));
-    createBtn.click();
+    click(createBtn);
     wait.until(visibilityOf(modalDialog));
 
   }
@@ -51,7 +51,7 @@ public class ManualIncPage extends Page {
 
   public void clickSave() {
     wait.until(ExpectedConditions.elementToBeClickable(saveBtn));
-    saveBtn.click();
+    click(saveBtn);
   }
 
   public void isManIncPageClosed(){
