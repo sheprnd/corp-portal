@@ -25,6 +25,6 @@ public class UserCreationTests extends TestBase{
 
         int after = app.users().list();
 
-        assertEquals(before , after + 1);
+        assertEquals(after , before + 1);
     }
 }
