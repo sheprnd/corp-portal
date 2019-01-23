@@ -7,8 +7,10 @@ public class IncidentsTests extends TestBase {
 
     @Test public void createManualIncdent() {
         app.openManualincPage().initManIncPage();
-        app.openManualincPage().fillmanIncData(new ManIncData().postText("#Random text").postUrlField("#Random url text"));
+        app.openManualincPage().fillmanIncData(new ManIncData().postText("#Random text").postUrlField("https://www.google.com/search/1"));
         app.openManualincPage().clickSave();
+        app.openManualincPage().isManIncPageClosed(); //Needs to redo based on pass alert message
+
     }
 
 }
