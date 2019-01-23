@@ -61,7 +61,12 @@ public class ManualIncPage extends Page {
     }
 
     public void alertSuccess() {
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
+
+        try {
+            wait.until(ExpectedConditions.visibilityOf(alertSuccess));
+        } catch (Exception e) {
+            System.out.println("Incident was not created error");
+        }
     }
 
     public void alertNotSuccess() {
