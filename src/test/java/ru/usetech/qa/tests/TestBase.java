@@ -23,7 +23,7 @@ public class TestBase {
 
     }
 
-    @BeforeMethod
+    /*@BeforeMethod
     public void ensureLogin() {
 
         if (app.isLogOut()) {
@@ -31,7 +31,7 @@ public class TestBase {
 
         }
 
-    }
+    }*/
 
 
 

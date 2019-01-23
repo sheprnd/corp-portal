@@ -71,7 +71,7 @@ public class ApplicationManager {
     return properties.getProperty(key);
   }
 
-  public boolean isLogOut() {
+  /*public boolean isLogOut() {
 
     if (driver.getCurrentUrl().equals(getProperty("baseUrl"))) {
       //System.out.println(driver.getCurrentUrl());
@@ -79,7 +79,7 @@ public class ApplicationManager {
     } else {
       return false;
     }
-  }
+  }*/
 
   public void stop() {
     driver.quit();
