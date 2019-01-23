@@ -49,7 +49,7 @@ public class ManualIncPage extends Page {
   }
 
   public void clickSave() {
-    wait.until(visibilityOf(saveBtn));
+    wait.until(ExpectedConditions.elementToBeClickable(saveBtn));
     saveBtn.click();
   }
 

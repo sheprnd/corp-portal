@@ -37,7 +37,6 @@ public class LoginPage extends Page {
     type(password, pswd);
 
     wait.until(visibilityOf(submit));
-
     submit.click();
     wait.until(visibilityOf(logo));
 
