@@ -45,6 +45,9 @@ public class UsersPage extends Page {
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveUserButton;
 
+    @FindBy(css = ".post__avatar")
+    private WebElement avatar;
+
     public void initUserCreation(){
         click(addUserButton);
         wait.until(visibilityOf(userForm));
@@ -73,6 +76,8 @@ public class UsersPage extends Page {
     }
 
     public void scrollPage(){
+
+        wait.until(visibilityOf(avatar));
 
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("window.scrollTo(0,document.body.scrollHeight)");

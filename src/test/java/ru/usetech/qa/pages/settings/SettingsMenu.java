@@ -6,8 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.usetech.qa.pages.Page;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-
 // страница с меню разделов настроек (Пользователи, Отделы, Роли и т.д)
 
 public class SettingsMenu extends Page{
@@ -21,9 +19,6 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/users']")
     private WebElement usersListLink;
 
-    @FindBy(css = "users-list")
-    private WebElement usersList;
-
     @FindBy(css = "[href = '#/settings/groups']")
     private WebElement rolesListLink;
 
@@ -32,7 +27,6 @@ public class SettingsMenu extends Page{
 
     public void goToUsers() {
         click(usersListLink);
-        wait.until(visibilityOf(usersList));
     }
 
 

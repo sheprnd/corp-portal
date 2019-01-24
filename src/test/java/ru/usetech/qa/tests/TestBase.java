@@ -2,7 +2,6 @@ package ru.usetech.qa.tests;
 
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.usetech.qa.appmanager.ApplicationManager;
 
