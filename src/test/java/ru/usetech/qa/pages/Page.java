@@ -1,7 +1,6 @@
 package ru.usetech.qa.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,20 +21,10 @@ public class Page {
 
     public void click(WebElement element) {
 
-        boolean clickable=false;
+        WebDriverWait w = new WebDriverWait(driver, 15);
 
-        while (!clickable) {
-
-            try {
-
-                wait.until(ExpectedConditions.elementToBeClickable(element));
+                w.until(ExpectedConditions.elementToBeClickable(element));
                 element.click();
-                clickable = true;
-
-            } catch (Exception e) {
-                System.out.println("wait until element to be clickable");
-            }
-        }
 
     }
 
