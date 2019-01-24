@@ -18,58 +18,67 @@ import java.util.Properties;
 
 public class ApplicationManager {
 
-  WebDriver driver;
-  private final Properties properties;
+    WebDriver driver;
+    private final Properties properties;
 
-  private LoginPage loginPage;
-  private SettingsMenu settingsMenu;
-  private NavigationMenu navigationMenu;
-  private UsersPage usersPage;
-  private ManualIncPage manualincPage;
-  private String browser;
+    private LoginPage loginPage;
+    private SettingsMenu settingsMenu;
+    private NavigationMenu navigationMenu;
+    private UsersPage usersPage;
+    private ManualIncPage manualincPage;
+    private String browser;
 
-  public ApplicationManager(String browser) {
-    this.browser = browser;
-    properties = new Properties();
-  }
-
-  public void init() throws IOException {
-
-    properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
-
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("start-maximized");
-
-    if (browser.equals(BrowserType.CHROME)) {
-      driver = new ChromeDriver(options);
-    } else if (browser.equals(BrowserType.FIREFOX)) {
-      driver = new FirefoxDriver(); // погуглить как запускать с опциями
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+        properties = new Properties();
     }
 
-    loginPage = new LoginPage(driver);
-    navigationMenu = new NavigationMenu(driver);
-    settingsMenu = new SettingsMenu(driver);
-    usersPage = new UsersPage (driver);
-    manualincPage = new ManualIncPage(driver);
+    public void init() throws IOException {
 
-    loginPage.open(getProperty("baseUrl"));
-    loginPage.login(getProperty("login"), getProperty("password"));
-  }
+        properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
 
-  public LoginPage loginPage() { return loginPage; }
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
 
-  public SettingsMenu settings() { return settingsMenu; }
+        if (browser.equals(BrowserType.CHROME)) {
+            driver = new ChromeDriver(options);
+        } else if (browser.equals(BrowserType.FIREFOX)) {
+            driver = new FirefoxDriver(); // погуглить как запускать с опциями
+        }
 
-  public NavigationMenu goTo() { return navigationMenu; }
+        loginPage = new LoginPage(driver);
+        navigationMenu = new NavigationMenu(driver);
+        settingsMenu = new SettingsMenu(driver);
+        usersPage = new UsersPage(driver);
+        manualincPage = new ManualIncPage(driver);
 
-  public UsersPage users() { return usersPage; }
+        loginPage.open(getProperty("baseUrl"));
+        loginPage.login(getProperty("login"), getProperty("password"));
+    }
 
-  public ManualIncPage openManualincPage() { return manualincPage;
-  }
+    public LoginPage loginPage() {
+        return loginPage;
+    }
 
-  public String getProperty(String key){
-    return properties.getProperty(key);
-  }
+    public SettingsMenu settings() {
+        return settingsMenu;
+    }
+
+    public NavigationMenu goTo() {
+        return navigationMenu;
+    }
+
+    public UsersPage users() {
+        return usersPage;
+    }
+
+    public ManualIncPage manualInc() {
+        return manualincPage;
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
 
   /*public boolean isLogOut() {
 
@@ -81,9 +90,9 @@ public class ApplicationManager {
     }
   }*/
 
-  public void stop() {
-    driver.quit();
-  }
+    public void stop() {
+        driver.quit();
+    }
 
 
 }
