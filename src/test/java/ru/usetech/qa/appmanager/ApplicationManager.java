@@ -64,7 +64,7 @@ public class ApplicationManager {
 
   public UsersPage users() { return usersPage; }
 
-  public ManualIncPage manualInc() { return manualincPage;
+  public ManualIncPage openManualincPage() { return manualincPage;
   }
 
   public String getProperty(String key){

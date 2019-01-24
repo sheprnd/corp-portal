@@ -1,11 +1,8 @@
 package ru.usetech.qa.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class Page {
 
@@ -26,23 +23,9 @@ public class Page {
 
         WebDriverWait w = new WebDriverWait(driver, 15);
 
-                w.until(elementToBeClickable(element));
+                w.until(ExpectedConditions.elementToBeClickable(element));
                 element.click();
 
     }
 
-    public boolean isElementPresent(WebElement element){
-
-        try {
-
-            wait.until(visibilityOf(element));
-            return true;
-
-        } catch (Exception ex){
-
-            return false;
-
-        }
-
-    }
 }

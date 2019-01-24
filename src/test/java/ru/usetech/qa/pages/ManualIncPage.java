@@ -38,21 +38,21 @@ public class ManualIncPage extends Page {
     @FindBy(css = ".ng-star-inserted[text='Ошибка содания инцидента']")
     private WebElement alertNotSuccess;
 
-    public void add() {
-
+    public void initManIncPage() {
+        wait.until(ExpectedConditions.elementToBeClickable(createBtn));
         click(createBtn);
         wait.until(visibilityOf(modalDialog));
 
     }
 
-    public void fill(ManIncData manIncData) {
+    public void fillmanIncData(ManIncData manIncData) {
 
         type(postUrl, manIncData.getPostUrlField());
         type(postText, manIncData.getPostText());
     }
 
-    public void save() {
-
+    public void clickSave() {
+        wait.until(ExpectedConditions.elementToBeClickable(saveBtn));
         click(saveBtn);
     }
 
@@ -60,10 +60,13 @@ public class ManualIncPage extends Page {
         wait.until(ExpectedConditions.visibilityOf(modalDialog));
     }
 
-    public boolean alertSuccess() {
+    public void alertSuccess() {
 
-      return isElementPresent(alertSuccess);
-
+        try {
+            wait.until(ExpectedConditions.visibilityOf(alertSuccess));
+        } catch (Exception e) {
+            System.out.println("Incident was not created error");
+        }
     }
 
     public void alertNotSuccess() {
