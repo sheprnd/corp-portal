@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.BrowserType;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationMenu;
+import ru.usetech.qa.pages.settings.RolesPage;
 import ru.usetech.qa.pages.settings.SettingsMenu;
 import ru.usetech.qa.pages.settings.UsersPage;
 
@@ -27,6 +28,7 @@ public class ApplicationManager {
   private UsersPage usersPage;
   private ManualIncPage manualincPage;
   private String browser;
+  private RolesPage rolesPage;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -63,6 +65,8 @@ public class ApplicationManager {
   public NavigationMenu goTo() { return navigationMenu; }
 
   public UsersPage users() { return usersPage; }
+
+  public RolesPage roles() {return rolesPage; }
 
   public ManualIncPage manualInc() { return manualincPage;
   }
