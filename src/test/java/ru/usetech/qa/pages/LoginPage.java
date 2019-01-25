@@ -1,10 +1,12 @@
 package ru.usetech.qa.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class LoginPage extends Page {
@@ -24,9 +26,6 @@ public class LoginPage extends Page {
   @FindBy(css=".login-box .btn:not([disabled])")
   private WebElement submit;
 
-  @FindBy(css=".header__logo2_right-text")
-  private WebElement logo;
-
   public void open(String baseUrl){
     driver.get(baseUrl);
   }
@@ -39,7 +38,7 @@ public class LoginPage extends Page {
     wait.until(visibilityOf(submit));
 
     click(submit);
-    wait.until(visibilityOf(logo));
+    wait.until(stalenessOf(driver.findElement(By.cssSelector(".login-wrap"))));
 
   }
 

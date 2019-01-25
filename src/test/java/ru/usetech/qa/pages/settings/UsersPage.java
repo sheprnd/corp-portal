@@ -65,7 +65,6 @@ public class UsersPage extends Page {
     }
 
     public void saveUser(){
-        wait.until(elementToBeClickable(saveUserButton));
         click(saveUserButton);
     }
 

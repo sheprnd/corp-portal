@@ -1,5 +1,6 @@
 package ru.usetech.qa.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.model.ManIncData;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 
 public class ManualIncPage extends Page {
 
@@ -41,7 +42,8 @@ public class ManualIncPage extends Page {
     public void add() {
         wait.until(ExpectedConditions.elementToBeClickable(createBtn));
         click(createBtn);
-        wait.until(visibilityOf(modalDialog));
+        wait.until(stalenessOf(driver.findElement(By.cssSelector(".load__wrap"))));
+        //wait.until(visibilityOf(modalDialog));
 
     }
 
