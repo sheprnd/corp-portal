@@ -1,13 +1,11 @@
 package ru.usetech.qa.tests;
 
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.RoleData;
 import ru.usetech.qa.model.UserData;
 
 import java.util.Random;
-import java.util.UUID;
 
 import static org.testng.Assert.assertEquals;
 

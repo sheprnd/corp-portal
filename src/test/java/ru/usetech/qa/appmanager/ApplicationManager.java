@@ -66,7 +66,7 @@ public class ApplicationManager {
 
   public UsersPage users() { return usersPage; }
 
-  public RolesPage roles() {return rolesPage; }
+  public RolesPage roles() { return rolesPage; }
 
   public ManualIncPage manualInc() { return manualincPage;
   }

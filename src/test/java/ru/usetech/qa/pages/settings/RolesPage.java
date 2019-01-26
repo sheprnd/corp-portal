@@ -32,8 +32,8 @@ public class RolesPage extends Page {
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveRoleButton;
 
-    @FindBy(css = ".post__avatar")
-    private WebElement avatar;
+    @FindBy(css = "h3.content__title.mar-l-0[text='Роли']")
+    private WebElement roleTitle;
 
 
     public void initRoleCreation() {
@@ -61,7 +61,7 @@ public class RolesPage extends Page {
 
     public void scrollPage() {
 
-        wait.until(visibilityOf(avatar));
+        wait.until(visibilityOf(roleTitle));
 
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
@@ -70,7 +70,7 @@ public class RolesPage extends Page {
 
     public int list() {
         scrollPage();
-        return driver.findElements(By.cssSelector(".users-list-grid-contained .grid-im")).size();
+        return driver.findElements(By.cssSelector(".groups__line")).size();
     }
 
 
