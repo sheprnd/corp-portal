@@ -53,6 +53,7 @@ public class ApplicationManager {
     settingsMenu = new SettingsMenu(driver);
     usersPage = new UsersPage (driver);
     manualincPage = new ManualIncPage(driver);
+    rolesPage = new RolesPage(driver);
 
     loginPage.open(getProperty("baseUrl"));
     loginPage.login(getProperty("login"), getProperty("password"));

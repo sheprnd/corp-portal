@@ -26,13 +26,13 @@ public class RolesPage extends Page {
     @FindBy(css = ".modal-body")
     private WebElement roleForm;
 
-    @FindBy(css = "name=nameGroup")
+    @FindBy(css = "input[name=nameGroup]")
     private WebElement nameGroup;
 
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveRoleButton;
 
-    @FindBy(css = "h3.content__title.mar-l-0[text='Роли']")
+    @FindBy(css = "h3.content__title.mar-l-0")
     private WebElement roleTitle;
 
 
@@ -71,6 +71,7 @@ public class RolesPage extends Page {
     public int list() {
         scrollPage();
         return driver.findElements(By.cssSelector(".groups__line")).size();
+
     }
 
 
