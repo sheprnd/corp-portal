@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.model.ManIncData;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
+import static org.testng.Assert.assertTrue;
 
 public class ManualIncPage extends Page {
 
@@ -34,7 +35,7 @@ public class ManualIncPage extends Page {
     private WebElement modalDialog;
 
     @FindBy(css = ".alert-success ")
-    private WebElement alertSuccess;
+    public WebElement alertSuccess;
 
     @FindBy(css = ".ng-star-inserted[text='Ошибка содания инцидента']")
     private WebElement alertNotSuccess;
@@ -42,8 +43,9 @@ public class ManualIncPage extends Page {
     public void add() {
 
         click(createBtn);
-        wait.until(stalenessOf(driver.findElement(By.cssSelector(".load__wrap"))));
-        //wait.until(visibilityOf(modalDialog));
+
+        //assertTrue(wait.until(stalenessOf(driver.findElement(By.cssSelector(".load__wrap"))))){
+        wait.until(ExpectedConditions.visibilityOf(modalDialog));
 
     }
 
@@ -62,10 +64,8 @@ public class ManualIncPage extends Page {
         wait.until(ExpectedConditions.visibilityOf(modalDialog));
     }
 
-    public boolean alertSuccess() {
-
-      return isElementPresent(alertSuccess);
-
+    public void alertSuccess() {
+        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
     }
 
     public void alertNotSuccess() {

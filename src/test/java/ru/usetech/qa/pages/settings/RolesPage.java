@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.model.RoleData;
 import ru.usetech.qa.pages.Page;
 
@@ -34,6 +35,9 @@ public class RolesPage extends Page {
 
     @FindBy(css = "h3.content__title.mar-l-0")
     private WebElement roleTitle;
+
+    @FindBy(css = ".alert-success ")
+    private WebElement alertSuccess;
 
 
     public void initRoleCreation() {
@@ -72,6 +76,10 @@ public class RolesPage extends Page {
         scrollPage();
         return driver.findElements(By.cssSelector(".groups__line")).size();
 
+    }
+
+    public void alertSuccess() {
+        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
     }
 
 

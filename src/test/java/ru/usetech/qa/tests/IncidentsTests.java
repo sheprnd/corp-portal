@@ -13,7 +13,7 @@ public class IncidentsTests extends TestBase {
         app.manualInc().fill(new ManIncData().postText("#Random text").postUrlField("https://www.google.com/search/1"));
         app.manualInc().save();
 
-        assertTrue(app.manualInc().alertSuccess());
+        app.manualInc().alertSuccess();
 //        app.openManualincPage().isManIncPageClosed();
 
     }

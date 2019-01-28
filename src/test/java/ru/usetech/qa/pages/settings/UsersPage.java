@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.model.UserData;
 import ru.usetech.qa.pages.Page;
 
@@ -48,6 +49,9 @@ public class UsersPage extends Page {
     @FindBy(css = ".post__avatar")
     private WebElement avatar;
 
+    @FindBy(css = ".alert-success ")
+    public WebElement alertSuccess;
+
     public void initUserCreation(){
         click(addUserButton);
         wait.until(visibilityOf(userForm));
@@ -87,6 +91,11 @@ public class UsersPage extends Page {
         scrollPage();
         return driver.findElements(By.cssSelector(".users-list-grid-contained .grid-im")).size();
     }
+
+    public void alertSuccess() {
+        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
+    }
+
 
 
 }
