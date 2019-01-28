@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.BrowserType;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationMenu;
+import ru.usetech.qa.pages.settings.PostsPage;
 import ru.usetech.qa.pages.settings.RolesPage;
 import ru.usetech.qa.pages.settings.SettingsMenu;
 import ru.usetech.qa.pages.settings.UsersPage;
@@ -49,6 +50,7 @@ public class ApplicationManager {
     }
 
     loginPage = new LoginPage(driver);
+    posts = new PostsPage(driver);
     navigationMenu = new NavigationMenu(driver);
     settingsMenu = new SettingsMenu(driver);
     usersPage = new UsersPage (driver);
@@ -60,6 +62,8 @@ public class ApplicationManager {
   }
 
   public LoginPage loginPage() { return loginPage; }
+
+  public PostsPage posts{} { return posts; }
 
   public SettingsMenu settings() { return settingsMenu; }
 

@@ -23,6 +23,9 @@ public class NavigationMenu extends Page {
     @FindBy(css = "settings-menu")
     private WebElement settingsMenu;
 
+    @FindBy(css = "i.fa.fa-pencil-square-o")
+    private WebElement postsList;
+
     public void settings() {
 
         click(settingsButton);
