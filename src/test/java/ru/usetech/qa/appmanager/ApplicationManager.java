@@ -20,65 +20,79 @@ import java.util.Properties;
 
 public class ApplicationManager {
 
-  WebDriver driver;
-  private final Properties properties;
+    WebDriver driver;
+    private final Properties properties;
 
-  private LoginPage loginPage;
-  private SettingsMenu settingsMenu;
-  private NavigationMenu navigationMenu;
-  private UsersPage usersPage;
-  private ManualIncPage manualincPage;
-  private String browser;
-  private RolesPage rolesPage;
+    private LoginPage loginPage;
+    private SettingsMenu settingsMenu;
+    private PostsPage postsPage;
+    private NavigationMenu navigationMenu;
+    private UsersPage usersPage;
+    private ManualIncPage manualincPage;
+    private String browser;
+    private RolesPage rolesPage;
 
-  public ApplicationManager(String browser) {
-    this.browser = browser;
-    properties = new Properties();
-  }
-
-  public void init() throws IOException {
-
-    properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
-
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("start-maximized");
-
-    if (browser.equals(BrowserType.CHROME)) {
-      driver = new ChromeDriver(options);
-    } else if (browser.equals(BrowserType.FIREFOX)) {
-      driver = new FirefoxDriver(); // погуглить как запускать с опциями
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+        properties = new Properties();
     }
 
-    loginPage = new LoginPage(driver);
-    posts = new PostsPage(driver);
-    navigationMenu = new NavigationMenu(driver);
-    settingsMenu = new SettingsMenu(driver);
-    usersPage = new UsersPage (driver);
-    manualincPage = new ManualIncPage(driver);
-    rolesPage = new RolesPage(driver);
+    public void init() throws IOException {
 
-    loginPage.open(getProperty("baseUrl"));
-    loginPage.login(getProperty("login"), getProperty("password"));
-  }
+        properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
 
-  public LoginPage loginPage() { return loginPage; }
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
 
-  public PostsPage posts{} { return posts; }
+        if (browser.equals(BrowserType.CHROME)) {
+            driver = new ChromeDriver(options);
+        } else if (browser.equals(BrowserType.FIREFOX)) {
+            driver = new FirefoxDriver(); // погуглить как запускать с опциями
+        }
 
-  public SettingsMenu settings() { return settingsMenu; }
+        loginPage = new LoginPage(driver);
+        postsPage = new PostsPage(driver);
+        navigationMenu = new NavigationMenu(driver);
+        settingsMenu = new SettingsMenu(driver);
+        usersPage = new UsersPage(driver);
+        manualincPage = new ManualIncPage(driver);
+        rolesPage = new RolesPage(driver);
 
-  public NavigationMenu goTo() { return navigationMenu; }
+        loginPage.open(getProperty("baseUrl"));
+        loginPage.login(getProperty("login"), getProperty("password"));
+    }
 
-  public UsersPage users() { return usersPage; }
+    public LoginPage loginPage() {
+        return loginPage;
+    }
 
-  public RolesPage roles() { return rolesPage; }
+    public PostsPage postsPage() {
+        return postsPage;
+    }
 
-  public ManualIncPage manualInc() { return manualincPage;
-  }
+    public SettingsMenu settings() {
+        return settingsMenu;
+    }
 
-  public String getProperty(String key){
-    return properties.getProperty(key);
-  }
+    public NavigationMenu goTo() {
+        return navigationMenu;
+    }
+
+    public UsersPage users() {
+        return usersPage;
+    }
+
+    public RolesPage roles() {
+        return rolesPage;
+    }
+
+    public ManualIncPage manualInc() {
+        return manualincPage;
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
 
   /*public boolean isLogOut() {
 
@@ -90,9 +104,9 @@ public class ApplicationManager {
     }
   }*/
 
-  public void stop() {
-    driver.quit();
-  }
+    public void stop() {
+        driver.quit();
+    }
 
 
 }

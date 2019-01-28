@@ -8,21 +8,19 @@ import ru.usetech.qa.model.UserData;
 import java.util.Random;
 import java.util.UUID;
 
-import static org.testng.Assert.assertEquals;
-
 public class SettingsTests extends TestBase {
 
-    /*@BeforeTest
+    @BeforeTest
     public void ensurePreconditions() {
 
         app.goTo().settings();
 
-    }*/
+    }
 
     @Test
     public void testUserCreation() {
 
-        app.goTo().settings();
+
         app.settings().goToUsers();
 
         //int before = app.users().list();
@@ -39,7 +37,7 @@ public class SettingsTests extends TestBase {
     @Test
     public void testRoleCreation() {
 
-        app.goTo().settings();
+
         app.settings().goToRoles();
 
         //int before = app.roles().list();

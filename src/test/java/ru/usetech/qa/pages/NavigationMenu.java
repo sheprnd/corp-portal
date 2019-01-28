@@ -14,7 +14,7 @@ public class NavigationMenu extends Page {
     public NavigationMenu(WebDriver driver) {
 
         super(driver);
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(css = "[href = '#/settings']")
@@ -24,11 +24,22 @@ public class NavigationMenu extends Page {
     private WebElement settingsMenu;
 
     @FindBy(css = "i.fa.fa-pencil-square-o")
-    private WebElement postsList;
+    private WebElement postsPage;
+
+    @FindBy(css = ".post__right-block")
+    private WebElement postRow;
 
     public void settings() {
 
         click(settingsButton);
         wait.until(visibilityOf(settingsMenu));
     }
+
+    public void posts() {
+
+        click(postsPage);
+        wait.until(visibilityOf(postRow));
+    }
+
+
 }

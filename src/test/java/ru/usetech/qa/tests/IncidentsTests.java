@@ -4,14 +4,12 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.ManIncData;
 
-import static org.junit.Assert.assertTrue;
-
 public class IncidentsTests extends TestBase {
 
     @BeforeTest
     public void ensurePreconditions() {
 
-        //app.goTo().;
+        app.goTo().posts();
 
     }
 
