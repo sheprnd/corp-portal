@@ -12,9 +12,9 @@ public class Page {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public Page(WebDriver driver){
+    public Page(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver,10);
+        wait = new WebDriverWait(driver, 10);
     }
 
     public void type(WebElement field, String text) {
@@ -22,23 +22,34 @@ public class Page {
         field.sendKeys(text);
     }
 
-    public void click(WebElement element) {
+    public boolean click(WebElement element) {
+        try {
 
-        WebDriverWait w = new WebDriverWait(driver, 15);
+            Thread.sleep(2000);
 
-                w.until(elementToBeClickable(element));
-                element.click();
+            WebDriverWait w = new WebDriverWait(driver, 15);
+            w.until(elementToBeClickable(element));
+            element.click();
+                
+            return true;
+
+        } catch (Exception ex) {
+
+            return false;
+
+        }
+
 
     }
 
-    public boolean isElementPresent(WebElement element){
+    public boolean isElementPresent(WebElement element) {
 
         try {
 
             wait.until(visibilityOf(element));
             return true;
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
 
             return false;
 
