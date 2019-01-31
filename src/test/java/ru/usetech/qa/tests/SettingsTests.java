@@ -22,15 +22,8 @@ public class SettingsTests extends TestBase {
 
 
         app.settings().goToUsers();
-
-        //int before = app.users().list();
         app.users().create(new UserData().withLastName("#auto LastName").withFirstName("#auto FirstName")
                 .withEmail(new Random().nextInt(10000) + "@yandex.ru").withPassword("1")); //доделать рандомное получение данных юзера
-
-        /*int after = app.users().list();
-
-
-        assertEquals(after, before + 1);*/
         app.users().alertSuccess();
     }
 
@@ -39,13 +32,7 @@ public class SettingsTests extends TestBase {
 
 
         app.settings().goToRoles();
-
-        //int before = app.roles().list();
         app.roles().create(new RoleData().withRoleName("#auto Role" + UUID.randomUUID().toString()));
-
-        /*int after = app.roles().list();
-        assertEquals(after, before + 1);*/
-
         app.roles().alertSuccess();
     }
 }
