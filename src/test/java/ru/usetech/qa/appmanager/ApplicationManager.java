@@ -8,10 +8,7 @@ import org.openqa.selenium.remote.BrowserType;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationMenu;
-import ru.usetech.qa.pages.settings.PostsPage;
-import ru.usetech.qa.pages.settings.RolesPage;
-import ru.usetech.qa.pages.settings.SettingsMenu;
-import ru.usetech.qa.pages.settings.UsersPage;
+import ru.usetech.qa.pages.settings.*;
 
 import java.io.File;
 import java.io.FileReader;
@@ -31,6 +28,7 @@ public class ApplicationManager {
     private ManualIncPage manualincPage;
     private String browser;
     private RolesPage rolesPage;
+    private DepartmentsPage departmentsPage;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -57,6 +55,7 @@ public class ApplicationManager {
         usersPage = new UsersPage(driver);
         manualincPage = new ManualIncPage(driver);
         rolesPage = new RolesPage(driver);
+        departmentsPage = new DepartmentsPage(driver);
 
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
@@ -85,6 +84,8 @@ public class ApplicationManager {
     public RolesPage roles() {
         return rolesPage;
     }
+
+    public DepartmentsPage departmentsPage() {return departmentsPage;}
 
     public ManualIncPage manualInc() {
         return manualincPage;

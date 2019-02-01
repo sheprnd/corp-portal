@@ -20,7 +20,6 @@ public class IncidentsTests extends TestBase {
         app.manualInc().save();
 
         app.manualInc().alertSuccess();
-//        app.openManualincPage().isManIncPageClosed();
 
     }
 
