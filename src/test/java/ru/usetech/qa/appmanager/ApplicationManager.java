@@ -8,6 +8,8 @@ import org.openqa.selenium.remote.BrowserType;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationMenu;
+import ru.usetech.qa.pages.settings.PostsPage;
+import ru.usetech.qa.pages.settings.RolesPage;
 import ru.usetech.qa.pages.settings.SettingsMenu;
 import ru.usetech.qa.pages.settings.UsersPage;
 
@@ -23,10 +25,12 @@ public class ApplicationManager {
 
     private LoginPage loginPage;
     private SettingsMenu settingsMenu;
+    private PostsPage postsPage;
     private NavigationMenu navigationMenu;
     private UsersPage usersPage;
     private ManualIncPage manualincPage;
     private String browser;
+    private RolesPage rolesPage;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -47,17 +51,22 @@ public class ApplicationManager {
         }
 
         loginPage = new LoginPage(driver);
+        postsPage = new PostsPage(driver);
         navigationMenu = new NavigationMenu(driver);
         settingsMenu = new SettingsMenu(driver);
         usersPage = new UsersPage(driver);
         manualincPage = new ManualIncPage(driver);
-
+        rolesPage = new RolesPage(driver);
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
     }
 
     public LoginPage loginPage() {
         return loginPage;
+    }
+
+    public PostsPage postsPage() {
+        return postsPage;
     }
 
     public SettingsMenu settings() {
@@ -70,6 +79,10 @@ public class ApplicationManager {
 
     public UsersPage users() {
         return usersPage;
+    }
+
+    public RolesPage roles() {
+        return rolesPage;
     }
 
     public ManualIncPage manualInc() {

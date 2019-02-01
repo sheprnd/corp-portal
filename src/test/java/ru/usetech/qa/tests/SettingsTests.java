@@ -1,18 +1,17 @@
 package ru.usetech.qa.tests;
 
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import ru.usetech.qa.model.RoleData;
 import ru.usetech.qa.model.UserData;
 
 import java.util.Random;
+import java.util.UUID;
 
-import static org.testng.Assert.assertEquals;
+public class SettingsTests extends TestBase {
 
-public class SettingsTests extends TestBase{
-
-    @BeforeClass
-    public void ensurePreconditions(){
+    @BeforeTest
+    public void ensurePreconditions() {
 
         app.goTo().settings();
 
@@ -21,14 +20,19 @@ public class SettingsTests extends TestBase{
     @Test
     public void testUserCreation() {
 
+
         app.settings().goToUsers();
-        
-        int before = app.users().list();
         app.users().create(new UserData().withLastName("#auto LastName").withFirstName("#auto FirstName")
                 .withEmail(new Random().nextInt(10000) + "@yandex.ru").withPassword("1")); //доделать рандомное получение данных юзера
+        app.users().alertSuccess();
+    }
 
-        int after = app.users().list();
+    @Test
+    public void testRoleCreation() {
 
-        assertEquals(after , before + 1);
+
+        app.settings().goToRoles();
+        app.roles().create(new RoleData().withRoleName("#auto Role" + UUID.randomUUID().toString()));
+        app.roles().alertSuccess();
     }
 }

@@ -2,17 +2,19 @@ package ru.usetech.qa.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class Page {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public Page(WebDriver driver){
+    public Page(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver,10);
+        wait = new WebDriverWait(driver, 10);
     }
 
     public void type(WebElement field, String text) {
@@ -20,23 +22,39 @@ public class Page {
         field.sendKeys(text);
     }
 
-    public void click(WebElement element) {
+    public boolean click(WebElement element) {
+        try {
 
-        boolean clickable=false;
+            Thread.sleep(2000);
 
-        while (!clickable) {
+            WebDriverWait w = new WebDriverWait(driver, 15);
+            w.until(elementToBeClickable(element));
+            element.click();
 
-            try {
+            return true;
 
-                wait.until(ExpectedConditions.elementToBeClickable(element));
-                element.click();
-                clickable = true;
+        } catch (Exception ex) {
 
-            } catch (Exception e) {
-                System.out.println("wait until element to be clickable");
-            }
+            return false;
+
         }
 
+
     }
+
+    public boolean isElementPresent(WebElement element) {
+
+        try {
+
+            wait.until(visibilityOf(element));
+            return true;
+
+        } catch (Exception ex) {
+
+            return false;
+
+    }
+
+}
 
 }

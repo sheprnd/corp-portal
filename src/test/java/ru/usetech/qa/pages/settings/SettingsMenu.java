@@ -22,11 +22,12 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/groups']")
     private WebElement rolesListLink;
 
-    @FindBy(css = "settings-groups-list")
-    private WebElement rolesList;
-
     public void goToUsers() {
         click(usersListLink);
+    }
+
+    public void goToRoles() {
+        click(rolesListLink);
     }
 
 
