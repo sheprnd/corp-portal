@@ -28,7 +28,7 @@ public class DepartmentsPage extends Page {
     @FindBy(css = ".modal-body")
     private WebElement modalForm;
 
-    @FindBy(css = "input[formcontrolname=name]")
+    @FindBy(css = "input[formcontrolname='name']")
     private WebElement nameGroup;
 
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")

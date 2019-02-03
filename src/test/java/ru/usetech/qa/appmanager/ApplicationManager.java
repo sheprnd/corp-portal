@@ -29,6 +29,8 @@ public class ApplicationManager {
     private String browser;
     private RolesPage rolesPage;
     private DepartmentsPage departmentsPage;
+    private FeedbackTemplatePage feedbackTemplatePage;
+
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -56,6 +58,7 @@ public class ApplicationManager {
         manualincPage = new ManualIncPage(driver);
         rolesPage = new RolesPage(driver);
         departmentsPage = new DepartmentsPage(driver);
+        feedbackTemplatePage = new FeedbackTemplatePage(driver);
 
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
@@ -85,7 +88,9 @@ public class ApplicationManager {
         return rolesPage;
     }
 
-    public DepartmentsPage departmentsPage() {return departmentsPage;}
+    public DepartmentsPage departmentsPage() { return departmentsPage; }
+
+    public FeedbackTemplatePage feedbackTemplatePage() { return feedbackTemplatePage; }
 
     public ManualIncPage manualInc() {
         return manualincPage;

@@ -10,7 +10,7 @@ import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-//Incidents list page
+//Posts list page
 
 public class PostsPage extends Page {
 
