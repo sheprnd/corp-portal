@@ -1,56 +1,44 @@
-package ru.usetech.qa.pages;
+package ru.usetech.qa.pages.stages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 // левое меню с разделами системы (Главный экран, Авторы, Отчеты, Настройки)
 
-public class NavigationMenu extends Page {
+public class PipelineMenu extends Page {
 
-    public NavigationMenu(WebDriver driver) {
+    public PipelineMenu(WebDriver driver) {
 
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = "[href = '#/settings']")
-    private WebElement settingsButton;
-
-    @FindBy(css = "settings-menu")
-    private WebElement settingsMenu;
-
     @FindBy(css = "i.fa.fa-pencil-square-o")
     private WebElement postsPage;
 
     @FindBy(css = ".post__right-block")
-    private WebElement postRow;
+    private WebElement postspage;
 
     @FindBy(css = "[href = '#/incidents/stage/3']")
-    private WebElement stageIncident;
+    private WebElement incidentsPage;
 
 
 
-    public void settings() {
-
-        click(settingsButton);
-        wait.until(visibilityOf(settingsMenu));
-    }
-
-    public void posts() {
+    public void goToPosts() {
 
         click(postsPage);
-        wait.until(visibilityOf(postRow));
+        wait.until(visibilityOf(postspage));
     }
 
-    public void incidents() {
+    public void goToIncidents() {
 
-        click(stageIncident);
-        wait.until(visibilityOf(postRow));
+        click(incidentsPage);
+        wait.until(visibilityOf(incidentsPage));
     }
-
 
 }

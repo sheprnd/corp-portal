@@ -1,4 +1,4 @@
-package ru.usetech.qa.pages.settings;
+package ru.usetech.qa.pages.stages;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,9 +12,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 //Posts list page
 
-public class PostsPage extends Page {
+public class PostsListPage extends Page {
 
-    public PostsPage(WebDriver driver) {
+    public PostsListPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -22,15 +22,27 @@ public class PostsPage extends Page {
     @FindBy(css = ".content__header .btn")
     private WebElement addRoleButton;
 
-    @FindBy(css = ".post__right-block")
-    private WebElement postRow;
+    @FindBy(css = "div.post")
+    private WebElement postAtPostsLists;
 
     @FindBy(css = ".alert-success ")
     private WebElement alertSuccess;
 
+    @FindBy(xpath = "//post[1]/div/div/div[3]/div[2]/div/button[3]")
+    private WebElement deleteButton;
+
+    @FindBy(xpath = "//post[1]/div/div/div[3]/div[2]/div/button[1]")
+    private WebElement moveToSelected;
+
+    @FindBy(xpath = "//add-remove-reason-modal/div[4]/button[1]")
+    private WebElement saveDeleteReason;
+
+
+
+
     public void scrollPage() {
 
-        wait.until(visibilityOf(postRow));
+        wait.until(visibilityOf(postAtPostsLists));
 
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
@@ -42,4 +54,17 @@ public class PostsPage extends Page {
     }
 
 
+    public void moveToSelected() {
+
+        click(moveToSelected);
+        alertSuccess();
+
+    }
+
+    public void moveToDeleted() {
+
+        click(deleteButton);
+        click(saveDeleteReason);
+        alertSuccess();
+    }
 }
