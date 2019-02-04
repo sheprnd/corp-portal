@@ -3,16 +3,12 @@ package ru.usetech.qa.pages.settings;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import ru.usetech.qa.model.FeedbackTemplateData;
 import ru.usetech.qa.pages.Page;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -46,10 +42,10 @@ public class FeedbackTemplatePage extends Page {
     @FindBy(css = ".alert-success ")
     private WebElement alertSuccess;
 
-    @FindBy(css = ".ui-dropdown-label")
+    @FindBy(css = ".modal-settings__closeblock-select")
     private WebElement dropdown;
 
-    @FindBy(css = "div.select__item-custom.select__item-custom_single-child.ng-star-inserted")
+    @FindBy(css = "li:contains('Доволен')")
     private WebElement dropdownElement;
 
     @FindBy(css = ".modal-settings__closeblock-btn")
@@ -58,12 +54,14 @@ public class FeedbackTemplatePage extends Page {
     @FindBy(css = "input[formcontrolname='close_reason_text']")
     private WebElement reasonText;
 
-    /*@FindAll({@FindBy(css = ".select__item-custom_single-child")})
-    private List<WebElement> dropdownElements;*/
+    public void create(FeedbackTemplateData feedbackTemplateData) {
 
+        initFeedbackTemplateCreation();
+        fillForm(feedbackTemplateData);
+        save();
+        alertSuccess();
 
-
-
+    }
 
     public void initFeedbackTemplateCreation() {
         click(addButton);
@@ -72,16 +70,24 @@ public class FeedbackTemplatePage extends Page {
 
 
     public void fillForm(FeedbackTemplateData feedbackTemplateData) {
-
+        type(reasonText, feedbackTemplateData.getReasonText());
         type(templateName,feedbackTemplateData.getTemplateName());
         type(templateText,feedbackTemplateData.getTemplateText());
         click(dropdown);
-        Select delement = new Select(driver.findElement(By.cssSelector("li.ng-tns-c0-28")));
-        delement.selectByIndex(1);
-        type(reasonText, feedbackTemplateData.getReasonText());
+        Select(".ui-dropdown-item", 1);
+        //click(dropdownElement);
+
 
     }
 
+    public void Select(String cssSelector, int index){
+        WebElement delement=driver.findElement(By.cssSelector(cssSelector));
+        //WebElement delement=driver.findElement(By.cssSelector("li:contains('Доволен')"));
+        System.out.println("Select = " + delement.toString());
+        Select sel=new Select(delement);
+        sel.selectByIndex(index);
+
+    }
     public void selectDropdown(WebElement element){
 
         Select dropdown = new Select(element);
@@ -93,14 +99,7 @@ public class FeedbackTemplatePage extends Page {
         click(saveButton);
     }
 
-    public void create(FeedbackTemplateData feedbackTemplateData) {
 
-        initFeedbackTemplateCreation();
-        fillForm(feedbackTemplateData);
-        save();
-        alertSuccess();
-
-    }
 
 
     public void alertSuccess() {

@@ -19,7 +19,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test
+    @Test(priority=1)
     public void testUserCreation() {
 
 
@@ -29,7 +29,7 @@ public class SettingsTests extends TestBase {
         app.users().alertSuccess();
     }
 
-    @Test
+    @Test(priority=2)
     public void testRoleCreation() {
 
 
@@ -37,14 +37,14 @@ public class SettingsTests extends TestBase {
         app.roles().create(new RoleData().withRoleName("#auto Role" + UUID.randomUUID().toString()));
     }
 
-    @Test
+    @Test(priority=3)
     public void testDepartmentCreation() {
 
         app.settings().goToDepartments();
         app.departmentsPage().create(new DepartmentData().withDepartmentName("#auto Department " + UUID.randomUUID().toString()));
     }
 
-    @Test
+    @Test(priority=4)
     public void testFeedbackTemplateCreation() {
 
         app.settings().goToFeedbacktemplates();

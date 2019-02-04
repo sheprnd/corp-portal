@@ -27,14 +27,15 @@ public class Page {
 
             Thread.sleep(1000);
 
-            WebDriverWait w = new WebDriverWait(driver, 15);
+            WebDriverWait w = new WebDriverWait(driver, 5);
             w.until(elementToBeClickable(element));
             element.click();
+            System.out.println("Clicked " + element);
                 
             return true;
 
         } catch (Exception ex) {
-
+            System.out.println("Нифига не кликнулся " + element.toString());
             return false;
 
         }
