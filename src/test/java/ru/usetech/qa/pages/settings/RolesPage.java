@@ -61,6 +61,7 @@ public class RolesPage extends Page {
         initRoleCreation();
         fillRoleForm(roleData);
         saveRole();
+        alertSuccess();
     }
 
     public void scrollPage() {

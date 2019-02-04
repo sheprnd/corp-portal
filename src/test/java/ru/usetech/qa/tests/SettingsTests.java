@@ -3,6 +3,7 @@ package ru.usetech.qa.tests;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.DepartmentData;
+import ru.usetech.qa.model.FeedbackTemplateData;
 import ru.usetech.qa.model.RoleData;
 import ru.usetech.qa.model.UserData;
 
@@ -18,7 +19,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test
+    @Test(priority=1)
     public void testUserCreation() {
 
 
@@ -28,18 +29,29 @@ public class SettingsTests extends TestBase {
         app.users().alertSuccess();
     }
 
-    @Test
+    @Test(priority=2)
     public void testRoleCreation() {
 
 
         app.settings().goToRoles();
         app.roles().create(new RoleData().withRoleName("#auto Role" + UUID.randomUUID().toString()));
-        app.roles().alertSuccess();
     }
 
-    @Test
+    @Test(priority=3)
     public void testDepartmentCreation() {
+
         app.settings().goToDepartments();
-        app.departmentsPage().create(new DepartmentData().withDepartmentName("#auto Department name " + UUID.randomUUID().toString()));
+        app.departmentsPage().create(new DepartmentData().withDepartmentName("#auto Department " + UUID.randomUUID().toString()));
+    }
+
+    @Test(priority=4)
+    public void testFeedbackTemplateCreation() {
+
+        app.settings().goToFeedbacktemplates();
+        app.feedbackTemplatePage().create(new FeedbackTemplateData()
+                .withFeedbackTemplateName("#auto Feedback " + UUID.randomUUID().toString())
+                .withFeedbackTemplateText("Прошу оценить результат:\n" + "{close_reasons}")
+                .withReasonText("Отлично"));
+
     }
 }

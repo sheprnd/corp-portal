@@ -25,6 +25,9 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/departments']")
     private WebElement departmentsListLink;
 
+    @FindBy(css = "[href = '#/settings/satisfaction-templates']")
+    private WebElement feedbackTemplateListLink;
+
 
     public void goToUsers() {
         click(usersListLink);
@@ -35,6 +38,8 @@ public class SettingsMenu extends Page{
     }
 
     public void goToDepartments() { click(departmentsListLink); }
+
+    public void goToFeedbacktemplates() { click(feedbackTemplateListLink); }
 
 
 }
