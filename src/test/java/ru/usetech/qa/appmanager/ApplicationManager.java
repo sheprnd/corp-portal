@@ -5,11 +5,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
-import ru.usetech.qa.pages.LoginPage;
-import ru.usetech.qa.pages.ManualIncPage;
-import ru.usetech.qa.pages.NavigationMenu;
-import ru.usetech.qa.pages.PostsPage;
+import ru.usetech.qa.pages.*;
 import ru.usetech.qa.pages.settings.*;
+import ru.usetech.qa.pages.stages.IncidentsListPage;
+import ru.usetech.qa.pages.stages.PipelineMenu;
+import ru.usetech.qa.pages.stages.PostsListPage;
 
 import java.io.File;
 import java.io.FileReader;
@@ -23,7 +23,7 @@ public class ApplicationManager {
 
     private LoginPage loginPage;
     private SettingsMenu settingsMenu;
-    private PostsPage postsPage;
+    private PostsListPage postsListPage;
     private NavigationMenu navigationMenu;
     private UsersPage usersPage;
     private ManualIncPage manualincPage;
@@ -31,6 +31,8 @@ public class ApplicationManager {
     private RolesPage rolesPage;
     private DepartmentsPage departmentsPage;
     private FeedbackTemplatePage feedbackTemplatePage;
+    private IncidentsListPage incidentsListPage;
+    private PipelineMenu pipelineMenu;
 
 
     public ApplicationManager(String browser) {
@@ -52,7 +54,7 @@ public class ApplicationManager {
         }
 
         loginPage = new LoginPage(driver);
-        postsPage = new PostsPage(driver);
+        postsListPage = new PostsListPage(driver);
         navigationMenu = new NavigationMenu(driver);
         settingsMenu = new SettingsMenu(driver);
         usersPage = new UsersPage(driver);
@@ -60,6 +62,8 @@ public class ApplicationManager {
         rolesPage = new RolesPage(driver);
         departmentsPage = new DepartmentsPage(driver);
         feedbackTemplatePage = new FeedbackTemplatePage(driver);
+        incidentsListPage = new IncidentsListPage(driver);
+        pipelineMenu = new PipelineMenu(driver);
 
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
@@ -69,8 +73,8 @@ public class ApplicationManager {
         return loginPage;
     }
 
-    public PostsPage postsPage() {
-        return postsPage;
+    public PostsListPage postsPage() {
+        return postsListPage;
     }
 
     public SettingsMenu settings() {
@@ -79,6 +83,10 @@ public class ApplicationManager {
 
     public NavigationMenu goTo() {
         return navigationMenu;
+    }
+
+    public PipelineMenu goToStage() {
+        return pipelineMenu;
     }
 
     public UsersPage users() {
@@ -95,6 +103,10 @@ public class ApplicationManager {
 
     public ManualIncPage manualInc() {
         return manualincPage;
+    }
+
+    public PostsListPage postsListPage() {
+        return postsListPage;
     }
 
     public String getProperty(String key) {

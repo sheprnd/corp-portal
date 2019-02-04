@@ -1,4 +1,4 @@
-package ru.usetech.qa.pages;
+package ru.usetech.qa.pages.stages;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,9 +12,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 //Posts list page
 
-public class PostsPage extends Page {
+public class PostsListPage extends Page {
 
-    public PostsPage(WebDriver driver) {
+    public PostsListPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
