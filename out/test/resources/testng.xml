@@ -6,6 +6,11 @@
             <class name="ru.usetech.qa.tests.IncidentsTests"/>
         </classes>
     </test>
+    <test name="Posts">
+        <classes>
+            <class name="ru.usetech.qa.tests.PostsTests"/>
+        </classes>
+    </test>
     <test name="Settings" >
         <classes>
             <class name="ru.usetech.qa.tests.SettingsTests" />

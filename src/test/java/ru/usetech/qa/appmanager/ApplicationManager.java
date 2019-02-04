@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.BrowserType;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationMenu;
+import ru.usetech.qa.pages.PostsPage;
 import ru.usetech.qa.pages.settings.*;
 
 import java.io.File;

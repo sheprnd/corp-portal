@@ -23,4 +23,11 @@ public class IncidentsTests extends TestBase {
 
     }
 
+    @Test(priority = 2)
+    public void moveIncToOtherStage(){
+
+
+
+    }
+
 }

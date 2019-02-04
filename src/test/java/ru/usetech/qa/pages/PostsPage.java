@@ -1,4 +1,4 @@
-package ru.usetech.qa.pages.settings;
+package ru.usetech.qa.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

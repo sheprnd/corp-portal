@@ -22,7 +22,7 @@ public class PostsTests extends TestBase {
     }
 
     @Test(priority = 2)
-    public void movePostToDeleter() {
+    public void movePostToDeleted() {
 
         app.postsPage().moveToDeleted();
         app.postsPage().alertSuccess();
