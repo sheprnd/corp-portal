@@ -37,9 +37,6 @@ public class DepartmentsPage extends Page {
     @FindBy(css = "h3.content__title.mar-l-0")
     private WebElement pageTitle;
 
-    @FindBy(css = ".alert-success ")
-    private WebElement alertSuccess;
-
 
     public void initDepartmentCreation() {
         click(addButton);
@@ -72,11 +69,5 @@ public class DepartmentsPage extends Page {
         js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
 
     }
-
-
-    public void alertSuccess() {
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-    }
-
 
 }

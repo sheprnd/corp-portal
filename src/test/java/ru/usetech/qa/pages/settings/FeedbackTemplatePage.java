@@ -37,9 +37,6 @@ public class FeedbackTemplatePage extends Page {
     @FindBy(css = "h3.content__title.mar-l-0")
     private WebElement pageTitle;
 
-    @FindBy(css = ".alert-success ")
-    private WebElement alertSuccess;
-
     @FindBy(xpath = "//references-dropdown/p-dropdown/div/label")
     private WebElement dropdown;
 
@@ -82,11 +79,5 @@ public class FeedbackTemplatePage extends Page {
     public void save() {
         click(saveButton);
     }
-
-
-    public void alertSuccess() {
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-    }
-
 
 }

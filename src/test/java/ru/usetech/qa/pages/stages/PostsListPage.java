@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
@@ -25,17 +24,17 @@ public class PostsListPage extends Page {
     @FindBy(css = "div.post")
     private WebElement postAtPostsLists;
 
-    @FindBy(css = ".alert-success ")
-    private WebElement alertSuccess;
-
     @FindBy(xpath = "//post[1]/div/div/div[3]/div[2]/div/button[3]")
     private WebElement deleteButton;
 
     @FindBy(xpath = "//post[1]/div/div/div[3]/div[2]/div/button[1]")
     private WebElement moveToSelected;
 
-    @FindBy(xpath = "//add-remove-reason-modal/div[4]/button[1]")
+    @FindBy(xpath = "//button[contains(text(), 'Сохранить')]")
     private WebElement saveDeleteReason;
+
+    @FindBy(xpath = "//button[contains(text(), 'Удалить текущий')]")
+    private WebElement deleteCurrent;
 
 
 
@@ -49,10 +48,6 @@ public class PostsListPage extends Page {
 
     }
 
-    public void alertSuccess() {
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-    }
-
 
     public void moveToSelected() {
 
@@ -63,8 +58,10 @@ public class PostsListPage extends Page {
 
     public void moveToDeleted() {
 
+        wait.until(visibilityOf(deleteButton));
         click(deleteButton);
         click(saveDeleteReason);
         alertSuccess();
+
     }
 }
