@@ -38,7 +38,7 @@ public class IncidentsTests extends TestBase {
 
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void moveIncToOtherStage(){
 
         app.incListPage().moveToOtherStage();
