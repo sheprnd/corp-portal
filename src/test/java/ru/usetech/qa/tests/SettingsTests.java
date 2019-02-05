@@ -2,10 +2,7 @@ package ru.usetech.qa.tests;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import ru.usetech.qa.model.DepartmentData;
-import ru.usetech.qa.model.FeedbackTemplateData;
-import ru.usetech.qa.model.RoleData;
-import ru.usetech.qa.model.UserData;
+import ru.usetech.qa.model.*;
 
 import java.util.Random;
 import java.util.UUID;
@@ -54,4 +51,14 @@ public class SettingsTests extends TestBase {
                 .withReasonText("Отлично"));
 
     }
+
+    @Test(priority=5)
+    public void testClientReferenceCreationAndDeletion() {
+
+        app.settings();
+        app.clientReferencePage().createAndDelete(new ClientReferenceData()
+        .withReferenceName("Тестовый справочник Selenium"));
+
+    }
+
 }

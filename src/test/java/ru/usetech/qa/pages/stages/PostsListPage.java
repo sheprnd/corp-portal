@@ -36,6 +36,10 @@ public class PostsListPage extends Page {
     @FindBy(xpath = "//button[contains(text(), 'Удалить текущий')]")
     private WebElement deleteCurrent;
 
+    @FindBy(css = "div.filtr__value:contains('Тестовый справочник')")
+    private WebElement createdReferenceLink;
+
+
 
 
 

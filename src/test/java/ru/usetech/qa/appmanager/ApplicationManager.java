@@ -33,6 +33,7 @@ public class ApplicationManager {
     private FeedbackTemplatePage feedbackTemplatePage;
     private IncidentsListPage incidentsListPage;
     private PipelineMenu pipelineMenu;
+    private ClientReferencePage clientReferencePage;
 
 
     public ApplicationManager(String browser) {
@@ -64,6 +65,7 @@ public class ApplicationManager {
         feedbackTemplatePage = new FeedbackTemplatePage(driver);
         incidentsListPage = new IncidentsListPage(driver);
         pipelineMenu = new PipelineMenu(driver);
+        clientReferencePage = new ClientReferencePage(driver);
 
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
@@ -92,6 +94,8 @@ public class ApplicationManager {
     public ManualIncPage manualInc() { return manualincPage; }
 
     public PostsListPage postsListPage() { return postsListPage; }
+
+    public ClientReferencePage clientReferencePage() { return clientReferencePage; }
 
     public String getProperty(String key) {
         return properties.getProperty(key);
