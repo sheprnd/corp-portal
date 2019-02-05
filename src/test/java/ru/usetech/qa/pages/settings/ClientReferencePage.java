@@ -67,14 +67,13 @@ public class ClientReferencePage extends Page {
 
         alertSuccess();
 
-        /*Actions action = new Actions(webdriver);
-        WebElement we = webdriver.findElement(By.xpath("html/body/div[13]/ul/li[4]/a"));
-        action.moveToElement(we).moveToElement(webdriver.findElement(By.xpath("/expression-here"))).click().build().perform();*/
         Actions action = new Actions(driver);
         WebElement we = driver.findElement(By.cssSelector("div.filtr__value:contains('Тестовый справочник Selenium')"));
-        action.moveToElement(we).build().perform();
-        wait.until(ExpectedConditions.visibilityOf(pencil));
+        action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector("div.filtr__value:contains('Тестовый справочник Selenium')"))).build().perform();
+
+        //wait.until(ExpectedConditions.visibilityOf(pencil));
         click(pencil);
+
         wait.until(ExpectedConditions.visibilityOf(modalForm));
         click(deleteBtn);
 
