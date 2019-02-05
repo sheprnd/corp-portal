@@ -27,13 +27,16 @@ public class IncidentsListPage extends Page {
     private WebElement alertSuccess;
 
     @FindBy(xpath = "//workflow-view-incidents/div/div[2]/incident[1]/div/div/div[3]/div[2]/div/button[3]")
-    private WebElement deleteButton;
+    private WebElement deleteIncFromListBtn;
 
     @FindBy(xpath = "//add-remove-reason-modal/div[4]/button[1]")
     private WebElement saveDeleteReason;
 
     @FindBy(xpath = "//confirm-modal/div[4]/button[1]")
     private WebElement confirmIncDeletionBtn;
+
+    @FindBy(xpath = "//bs-modal-container/div/div/incidents-form-modal/div/div/div[3]/button[3]")
+    private WebElement deleteIncModal;
 
 
 
@@ -54,9 +57,18 @@ public class IncidentsListPage extends Page {
 
     public void deleteIncFromList() {
 
-        click(deleteButton);
+        click(deleteIncFromListBtn);
         click(confirmIncDeletionBtn);
         click(saveDeleteReason);
         alertSuccess();
     }
+
+    public void deleteIncFromModal() {
+        click(incidentAtIncidentsLists);
+        click(deleteIncModal);
+        click(confirmIncDeletionBtn);
+        click(saveDeleteReason);
+        alertSuccess();
+    }
+
 }

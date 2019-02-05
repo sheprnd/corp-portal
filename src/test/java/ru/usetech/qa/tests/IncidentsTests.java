@@ -31,4 +31,11 @@ public class IncidentsTests extends TestBase {
 
     }
 
+    @Test(priority = 3)
+    public void deleteIncFromModal(){
+        app.goToStage().goToIncidents();
+        app.incListPage().deleteIncFromModal();
+
+    }
+
 }
