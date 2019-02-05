@@ -36,9 +36,6 @@ public class RolesPage extends Page {
     @FindBy(css = "h3.content__title.mar-l-0")
     private WebElement roleTitle;
 
-    @FindBy(css = ".alert-success ")
-    private WebElement alertSuccess;
-
 
     public void initRoleCreation() {
         click(addRoleButton);
@@ -78,10 +75,5 @@ public class RolesPage extends Page {
         return driver.findElements(By.cssSelector(".groups__line")).size();
 
     }
-
-    public void alertSuccess() {
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-    }
-
 
 }

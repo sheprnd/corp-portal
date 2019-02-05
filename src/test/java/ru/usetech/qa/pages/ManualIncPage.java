@@ -34,9 +34,6 @@ public class ManualIncPage extends Page {
     @FindBy(css = ".modal-dialog")
     private WebElement modalDialog;
 
-    @FindBy(css = ".alert-success ")
-    public WebElement alertSuccess;
-
     @FindBy(css = ".ng-star-inserted[text='Ошибка содания инцидента']")
     private WebElement alertNotSuccess;
 
@@ -66,11 +63,6 @@ public class ManualIncPage extends Page {
 
     }
 
-    public void alertSuccess() {
-
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-
-    }
 
     /*public void alertNotSuccess() {
         wait.until(ExpectedConditions.visibilityOf(alertNotSuccess));

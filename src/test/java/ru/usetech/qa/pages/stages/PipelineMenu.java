@@ -29,16 +29,8 @@ public class PipelineMenu extends Page {
 
 
 
-    public void goToPosts() {
+    public void goToPosts() { click(postsPage);}
 
-        click(postsPage);
-        wait.until(visibilityOf(postspage));
-    }
-
-    public void goToIncidents() {
-
-        click(incidentsPage);
-        wait.until(visibilityOf(incidentsPage));
-    }
+    public void goToIncidents() { click(incidentsPage); }
 
 }

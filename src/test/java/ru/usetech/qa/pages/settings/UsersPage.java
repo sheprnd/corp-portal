@@ -49,9 +49,6 @@ public class UsersPage extends Page {
     @FindBy(css = ".post__avatar")
     private WebElement avatar;
 
-    @FindBy(css = ".alert-success ")
-    public WebElement alertSuccess;
-
     public void initUserCreation(){
         click(addUserButton);
         wait.until(visibilityOf(userForm));
@@ -91,11 +88,5 @@ public class UsersPage extends Page {
         scrollPage();
         return driver.findElements(By.cssSelector(".users-list-grid-contained .grid-im")).size();
     }
-
-    public void alertSuccess() {
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-    }
-
-
 
 }
