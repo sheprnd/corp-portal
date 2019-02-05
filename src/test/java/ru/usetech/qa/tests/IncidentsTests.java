@@ -14,7 +14,7 @@ public class IncidentsTests extends TestBase {
 
     }
 
-    @Test(priority = 1/*, invocationCount = 5*/)
+    @Test(priority = 1, invocationCount = 5)
     public void createManualIncdent() {
 
         app.manualInc().add();

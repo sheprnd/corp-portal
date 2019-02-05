@@ -52,12 +52,15 @@ public class SettingsTests extends TestBase {
 
     }
 
+    /*Нужно допилить получение именно появившегося значка карандаша,
+    * Сейчас берется только если справочник первый*/
+
     @Test(priority=5)
-    public void testClientReferenceCreationAndDeletion() {
+    public void testClientReferenceCreationAndDeletionTest() throws InterruptedException {
 
         app.settings();
         app.clientReferencePage().createAndDelete(new ClientReferenceData()
-        .withReferenceName("Тестовый справочник Selenium"));
+        .withReferenceName("01_Тестовый справочник Selenium"));
 
     }
 

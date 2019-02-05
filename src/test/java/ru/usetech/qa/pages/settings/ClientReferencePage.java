@@ -37,11 +37,17 @@ public class ClientReferencePage extends Page {
     @FindBy(xpath = "//app-incidents-settings-list/settings-users-references-list/div/ul/li[1]/a/div/i")
     private WebElement pencil;
 
-    @FindBy(css = "div.filtr__value:contains('Тестовый справочник Selenium')")
+    @FindBy(xpath = "//settings-users-references-list/div//span[contains(text(), '01_Тестовый справочник Selenium')]")
     private WebElement readyReferenceLink;
 
     @FindBy(xpath = "//button[contains(text(), 'Удалить')]")
     private WebElement deleteBtn;
+
+    @FindBy(xpath = "//confirm-modal/div[contains(text(), 'Вы действительно хотите удалить справочник?')]")
+    private WebElement confirmationModal;
+
+    @FindBy(xpath = "//confirm-modal//button[contains(text(), 'Удалить')]")
+    private WebElement confirmDeletionBtn;
 
 
     public void initDepartmentCreation() {
@@ -59,7 +65,7 @@ public class ClientReferencePage extends Page {
         click(saveButton);
     }
 
-    public void createAndDelete(ClientReferenceData clientReferenceData) {
+    public void createAndDelete(ClientReferenceData clientReferenceData) throws InterruptedException {
 
         initDepartmentCreation();
         fillForm(clientReferenceData);
@@ -67,9 +73,20 @@ public class ClientReferencePage extends Page {
 
         alertSuccess();
 
+        scrollPage();
+        click(readyReferenceLink);
+
         Actions action = new Actions(driver);
-        WebElement we = driver.findElement(By.cssSelector("div.filtr__value:contains('Тестовый справочник Selenium')"));
-        action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector("div.filtr__value:contains('Тестовый справочник Selenium')"))).build().perform();
+        WebElement we = driver.findElement(By.
+                xpath("//settings-users-references-list/div//span[contains(text(), " +
+                        "'01_Тестовый справочник Selenium')]"));
+
+        action.moveToElement(we).moveToElement(driver.
+                findElement(By.xpath("//settings-users-references-list/div//span[contains(text()," +
+                        " '01_Тестовый справочник Selenium')]")))
+                .build().perform();
+        Thread.sleep(2000);
+
 
         //wait.until(ExpectedConditions.visibilityOf(pencil));
         click(pencil);
@@ -77,13 +94,16 @@ public class ClientReferencePage extends Page {
         wait.until(ExpectedConditions.visibilityOf(modalForm));
         click(deleteBtn);
 
+        wait.until(ExpectedConditions.visibilityOf(confirmationModal));
+        click(confirmDeletionBtn);
+
         alertSuccess();
 
     }
 
     public void scrollPage() {
 
-        wait.until(visibilityOf(modalForm));
+        wait.until(visibilityOf(addButton));
 
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
