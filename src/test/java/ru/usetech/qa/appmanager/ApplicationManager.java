@@ -69,45 +69,29 @@ public class ApplicationManager {
         loginPage.login(getProperty("login"), getProperty("password"));
     }
 
-    public LoginPage loginPage() {
-        return loginPage;
-    }
+    public LoginPage loginPage() { return loginPage; }
 
-    public PostsListPage postsPage() {
-        return postsListPage;
-    }
+    public PostsListPage postsPage() { return postsListPage; }
 
-    public SettingsMenu settings() {
-        return settingsMenu;
-    }
+    public SettingsMenu settings() { return settingsMenu; }
 
-    public NavigationMenu goTo() {
-        return navigationMenu;
-    }
+    public NavigationMenu goTo() { return navigationMenu; }
 
-    public PipelineMenu goToStage() {
-        return pipelineMenu;
-    }
+    public PipelineMenu goToStage() { return pipelineMenu; }
 
-    public UsersPage users() {
-        return usersPage;
-    }
+    public IncidentsListPage incListPage() { return incidentsListPage; }
 
-    public RolesPage roles() {
-        return rolesPage;
-    }
+    public UsersPage users() { return usersPage; }
+
+    public RolesPage roles() { return rolesPage; }
 
     public DepartmentsPage departmentsPage() { return departmentsPage; }
 
     public FeedbackTemplatePage feedbackTemplatePage() { return feedbackTemplatePage; }
 
-    public ManualIncPage manualInc() {
-        return manualincPage;
-    }
+    public ManualIncPage manualInc() { return manualincPage; }
 
-    public PostsListPage postsListPage() {
-        return postsListPage;
-    }
+    public PostsListPage postsListPage() { return postsListPage; }
 
     public String getProperty(String key) {
         return properties.getProperty(key);
