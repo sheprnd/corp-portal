@@ -54,7 +54,6 @@ public class FeedbackTemplatePage extends Page {
         initFeedbackTemplateCreation();
         fillForm(feedbackTemplateData);
         save();
-        alertSuccess();
 
     }
 
