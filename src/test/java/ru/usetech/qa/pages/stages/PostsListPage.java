@@ -56,7 +56,6 @@ public class PostsListPage extends Page {
     public void moveToSelected() {
 
         click(moveToSelected);
-        alertSuccess();
 
     }
 
@@ -65,7 +64,6 @@ public class PostsListPage extends Page {
         wait.until(visibilityOf(deleteButton));
         click(deleteButton);
         click(saveDeleteReason);
-        alertSuccess();
 
     }
 }

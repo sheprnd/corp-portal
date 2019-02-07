@@ -34,7 +34,7 @@ public class ApplicationManager {
     private IncidentsListPage incidentsListPage;
     private PipelineMenu pipelineMenu;
     private ClientReferencePage clientReferencePage;
-
+    private WorkflowPage workflowPage;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -66,20 +66,20 @@ public class ApplicationManager {
         incidentsListPage = new IncidentsListPage(driver);
         pipelineMenu = new PipelineMenu(driver);
         clientReferencePage = new ClientReferencePage(driver);
-
+        workflowPage = new WorkflowPage(driver);
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
     }
 
     public LoginPage loginPage() { return loginPage; }
 
-    public PostsListPage postsPage() { return postsListPage; }
+    public PostsListPage posts() { return postsListPage; }
 
     public SettingsMenu settings() { return settingsMenu; }
 
     public NavigationMenu goTo() { return navigationMenu; }
 
-    public PipelineMenu goToStage() { return pipelineMenu; }
+    public PipelineMenu pipeline() { return pipelineMenu; }
 
     public IncidentsListPage incListPage() { return incidentsListPage; }
 
@@ -90,6 +90,8 @@ public class ApplicationManager {
     public DepartmentsPage departments() { return departmentsPage; }
 
     public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
+
+    public WorkflowPage workflow() { return workflowPage; }
 
     public ManualIncPage manualInc() { return manualincPage; }
 

@@ -6,8 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.usetech.qa.pages.Page;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-
 // левое меню с разделами системы (Главный экран, Авторы, Отчеты, Настройки)
 
 public class PipelineMenu extends Page {
@@ -25,12 +23,19 @@ public class PipelineMenu extends Page {
     private WebElement postspage;
 
     @FindBy(css = "[href = '#/incidents/stage/3']")
-    private WebElement incidentsPage;
+    private WebElement stageIncidents;
 
+    @FindBy(css = "[href = '#/incidents/stage/2']")
+    private WebElement stageSelected;
 
 
     public void goToPosts() { click(postsPage);}
 
-    public void goToIncidents() { click(incidentsPage); }
+    public void goToIncidents() { click(stageIncidents); }
 
+    public boolean isStageSelectedActive(){
+
+        return isElementPresent(stageSelected);
+
+    }
 }

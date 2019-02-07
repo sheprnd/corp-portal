@@ -23,8 +23,8 @@ public class NavigationMenu extends Page {
     @FindBy(css = "settings-menu")
     private WebElement settingsMenu;
 
-    @FindBy(css = "i.fa.fa-pencil-square-o")
-    private WebElement postsPage;
+    @FindBy(css = "[href = '#/incidents']")
+    private WebElement pipelineButton;
 
     @FindBy(css = ".post__right-block")
     private WebElement postRow;
@@ -40,17 +40,12 @@ public class NavigationMenu extends Page {
         wait.until(visibilityOf(settingsMenu));
     }
 
-    public void posts() {
+    public void pipeline() {
 
-        click(postsPage);
+        click(pipelineButton);
         wait.until(visibilityOf(postRow));
     }
 
-    public void incidents() {
-
-        click(stageIncident);
-        wait.until(visibilityOf(postRow));
-    }
 
 
 }

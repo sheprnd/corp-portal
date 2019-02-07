@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.pages.Page;
 
 // страница с меню разделов настроек (Пользователи, Отделы, Роли и т.д)
@@ -28,6 +29,11 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/satisfaction-templates']")
     private WebElement feedbackTemplateListLink;
 
+    @FindBy(css = "[href = '#/settings/workflow']")
+    private WebElement workflowLink;
+
+    @FindBy(css = ".settings-pipe")
+    private WebElement stage;
 
     public void goToUsers() {
         click(usersListLink);
@@ -41,5 +47,8 @@ public class SettingsMenu extends Page{
 
     public void goToFeedbacktemplates() { click(feedbackTemplateListLink); }
 
-
+    public void goToWorkflow() {
+        click(workflowLink);
+        wait.until(ExpectedConditions.visibilityOf(stage));
+    }
 }

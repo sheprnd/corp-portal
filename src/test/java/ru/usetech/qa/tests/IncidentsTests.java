@@ -1,7 +1,6 @@
 package ru.usetech.qa.tests;
 
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.ManIncData;
 
@@ -9,8 +8,8 @@ public class IncidentsTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().posts();
-        app.goToStage().goToIncidents();
+        app.goTo().pipeline();
+        app.pipeline().goToIncidents();
 
     }
 
