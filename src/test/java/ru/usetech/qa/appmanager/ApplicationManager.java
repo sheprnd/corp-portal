@@ -87,15 +87,15 @@ public class ApplicationManager {
 
     public RolesPage roles() { return rolesPage; }
 
-    public DepartmentsPage departmentsPage() { return departmentsPage; }
+    public DepartmentsPage departments() { return departmentsPage; }
 
-    public FeedbackTemplatePage feedbackTemplatePage() { return feedbackTemplatePage; }
+    public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
 
     public ManualIncPage manualInc() { return manualincPage; }
 
     public PostsListPage postsListPage() { return postsListPage; }
 
-    public ClientReferencePage clientReferencePage() { return clientReferencePage; }
+    public ClientReferencePage clientReferences() { return clientReferencePage; }
 
     public String getProperty(String key) {
         return properties.getProperty(key);

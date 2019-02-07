@@ -10,7 +10,7 @@ public class RoleData {
     }
 
 
-    public RoleData withRoleName(String roleName) {
+    public RoleData withName(String roleName) {
         this.roleName = roleName;
         return this;
     }

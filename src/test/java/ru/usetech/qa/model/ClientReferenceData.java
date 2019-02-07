@@ -10,7 +10,7 @@ public class ClientReferenceData {
     }
 
 
-    public ClientReferenceData withReferenceName(String referenceName) {
+    public ClientReferenceData withName(String referenceName) {
 
         this.referenceName = referenceName;
         return this;

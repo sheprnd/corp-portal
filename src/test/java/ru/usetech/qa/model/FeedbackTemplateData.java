@@ -26,14 +26,14 @@ public class FeedbackTemplateData {
 
 
 
-    public FeedbackTemplateData withFeedbackTemplateName(String feedbackTemplateName) {
+    public FeedbackTemplateData withName(String feedbackTemplateName) {
 
         this.templateName = feedbackTemplateName;
         return this;
 
     }
 
-    public FeedbackTemplateData withFeedbackTemplateText (String feedbackTemplateText){
+    public FeedbackTemplateData withText(String feedbackTemplateText){
 
         this.templateText = feedbackTemplateText;
         return this;

@@ -1,5 +1,6 @@
 package ru.usetech.qa.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,7 @@ public class Page {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
-    @FindBy(css = ".alert-success ")
+    @FindBy(css = ".alert-success")
     protected WebElement alertSuccess;
 
     public Page(WebDriver driver) {
@@ -62,9 +63,9 @@ public class Page {
 
     public boolean alertSuccess() {
         try {
+
             wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-            Thread.sleep(2000);
-            wait.until(ExpectedConditions.stalenessOf(alertSuccess));
+            wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector(".alert-success"))));
 
             return true;
 

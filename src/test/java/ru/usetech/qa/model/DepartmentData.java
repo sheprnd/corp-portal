@@ -10,7 +10,7 @@ public class DepartmentData {
     }
 
 
-    public DepartmentData withDepartmentName(String departmentName) {
+    public DepartmentData withName(String departmentName) {
 
         this.departmentName = departmentName;
         return this;

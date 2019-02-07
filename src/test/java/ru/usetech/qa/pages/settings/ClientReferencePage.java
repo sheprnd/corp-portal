@@ -65,13 +65,16 @@ public class ClientReferencePage extends Page {
         click(saveButton);
     }
 
-    public void createAndDelete(ClientReferenceData clientReferenceData) throws InterruptedException {
+    public void create(ClientReferenceData clientReferenceData) throws InterruptedException {
 
         initDepartmentCreation();
         fillForm(clientReferenceData);
         save();
 
-        alertSuccess();
+    }
+
+    public void delete(ClientReferenceData clientReferenceData) throws InterruptedException {
+
 
         scrollPage();
         click(readyReferenceLink);
@@ -97,8 +100,7 @@ public class ClientReferencePage extends Page {
         wait.until(ExpectedConditions.visibilityOf(confirmationModal));
         click(confirmDeletionBtn);
 
-        alertSuccess();
-
+ 
     }
 
     public void scrollPage() {
