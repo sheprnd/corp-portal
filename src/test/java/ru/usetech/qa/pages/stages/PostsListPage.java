@@ -27,17 +27,11 @@ public class PostsListPage extends Page {
     @FindBy(css = ".wokflow-grid-1 > post:first-child .post__buttons > button:first-child")
     private WebElement moveToSelected;
 
-    @FindBy(xpath = "//button[contains(text(), 'Сохранить')]")
+    @FindBy(css = "add-remove-reason-modal button:first-child")
     private WebElement saveDeleteReason;
 
     @FindBy(xpath = "//button[contains(text(), 'Удалить текущий')]")
     private WebElement deleteCurrent;
-
-    @FindBy(css = "div.filtr__value:contains('Тестовый справочник')")
-    private WebElement createdReferenceLink;
-
-
-
 
 
     public void scrollPage() {
@@ -60,7 +54,15 @@ public class PostsListPage extends Page {
 
         wait.until(visibilityOf(deleteButton));
         click(deleteButton);
-        click(saveDeleteReason);
-
+        // добавить проверку на количество причин удаления через апи
+        // чтобы понять, выйдет ли окно для сохранения причины удаления
+        setupDeleteReason();
     }
+
+
+    public void setupDeleteReason() {
+        click(saveDeleteReason);
+    }
+
+
 }
