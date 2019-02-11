@@ -28,7 +28,6 @@ public class WorkflowPage extends Page {
 
         List<WebElement> stages = driver.findElements(By.cssSelector(".settings-pipe"));
         WebElement stage = stages.get(index);
-        System.out.println("2");
         stage.findElement(By.cssSelector(".switch__slider")).click();
         save();
 
@@ -36,6 +35,8 @@ public class WorkflowPage extends Page {
 
     public void save() {
         click(saveWorkflowButton);
+        closeAlert();
         wait.until(visibilityOf(generalSettings));
+
     }
 }

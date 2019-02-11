@@ -4,18 +4,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class Page {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
+
     @FindBy(css = ".alert-success")
     protected WebElement alertSuccess;
+
+    @FindBy(css =(".alert-messages .remove"))
+    protected WebElement alertCloseBtn;
 
     public Page(WebDriver driver) {
         this.driver = driver;
@@ -64,8 +66,8 @@ public class Page {
     public boolean alertSuccess() {
         try {
 
-            wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-            wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector(".alert-success"))));
+            wait.until(visibilityOf(alertSuccess));
+            wait.until(stalenessOf(driver.findElement(By.cssSelector(".alert-success"))));
 
             return true;
 
@@ -74,6 +76,11 @@ public class Page {
             return false;
 
         }
+    }
+
+    public void closeAlert(){
+        wait.until(visibilityOf(alertCloseBtn));
+        alertCloseBtn.click();
     }
 }
 
