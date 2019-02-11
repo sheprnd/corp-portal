@@ -18,16 +18,13 @@ public class PostsListPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = ".content__header .btn")
-    private WebElement addRoleButton;
-
-    @FindBy(css = "div.post")
+    @FindBy(css = ".post")
     private WebElement postAtPostsLists;
 
-    @FindBy(xpath = "//post[1]/div/div/div[3]/div[2]/div/button[3]")
+    @FindBy(css = ".wokflow-grid-1 > post:first-child .post__buttons > button:last-child")
     private WebElement deleteButton;
 
-    @FindBy(xpath = "//post[1]/div/div/div[3]/div[2]/div/button[1]")
+    @FindBy(css = ".wokflow-grid-1 > post:first-child .post__buttons > button:first-child")
     private WebElement moveToSelected;
 
     @FindBy(xpath = "//button[contains(text(), 'Сохранить')]")
