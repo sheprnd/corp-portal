@@ -3,9 +3,6 @@ package ru.usetech.qa.tests;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 import static org.testng.Assert.assertTrue;
 
 public class PostsTests extends TestBase {
@@ -33,9 +30,13 @@ public class PostsTests extends TestBase {
     }
 
     @Test(priority = 2)
-    public void movePostToDeleted() throws IOException, URISyntaxException {
+    public void movePostToDeleted() throws Exception {
 
         app.posts().moveToDeleted();
+
+        if (app.session().areSimilarPostsExists(app.posts().getId())) {
+            app.posts().deleteCurrent();
+        }
 
         if (app.session().getActiveDeleteReasons() > 2) {
             app.posts().setupDeleteReason();

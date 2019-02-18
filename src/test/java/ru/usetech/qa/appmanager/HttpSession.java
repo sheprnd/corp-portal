@@ -14,7 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,33 @@ public class HttpSession {
 
     }
 
-    public String getToken() throws IOException {
+    private String post(String url, List params) throws IOException {
+
+        HttpPost request = new HttpPost(app.getProperty("baseUrlAPI") + url);
+        request.setEntity(new UrlEncodedFormEntity(params));
+        CloseableHttpResponse response = httpClient.execute(request);
+        String result = EntityUtils.toString(response.getEntity());
+
+        return result;
+    }
+
+    private String get(String url, String token, List params) throws Exception {
+
+        URIBuilder builder = new URIBuilder(app.getProperty("baseUrlAPI") + url);
+
+        if (params!=null) {
+            builder.setParameters(params);
+        }
+
+        HttpGet request = new HttpGet(builder.build());
+        request.addHeader("Authorization", "Token " + token);
+        CloseableHttpResponse response = httpClient.execute(request);
+        String result = EntityUtils.toString(response.getEntity());
+
+        return result;
+    }
+
+    private String getToken() throws IOException {
 
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -43,20 +68,20 @@ public class HttpSession {
 
     }
 
-    public JSONArray getDeleteReasons(String token) throws URISyntaxException, IOException {
+    private JSONArray getDeleteReasons() throws Exception {
 
-        String result = get("api/reference/post_delete_reason/" , token);
+        String result = get("api/reference/post_delete_reason/" , getToken(), null);
         return new JSONArray(result);
 
     }
 
 
-    public int getActiveDeleteReasons () throws IOException, URISyntaxException {
+    public int getActiveDeleteReasons () throws Exception {
 
         int count = 0;
         boolean deleted = false;
 
-        JSONArray arr = getDeleteReasons(getToken());
+        JSONArray arr = getDeleteReasons();
 
         for (int  i = 0; i < arr.length();i++) {
 
@@ -71,28 +96,65 @@ public class HttpSession {
         return count;
     }
 
-    private String post( String url, List params) throws IOException {
+    public boolean areSimilarPostsExists(String id) throws Exception {
 
-        HttpPost request = new HttpPost(app.getProperty("baseUrlAPI") + url);
-        request.setEntity(new UrlEncodedFormEntity(params));
-        CloseableHttpResponse response = httpClient.execute(request);
-        String result = EntityUtils.toString(response.getEntity());
+        JSONArray arr = getPost(id);
 
-        return result;
+        if (arr.length() > 0) {
+
+            JSONObject obj = (JSONObject) arr.get(0);
+
+            if (!obj.isNull("hash")) {
+
+                String hash = obj.getString("hash");
+                int count = getSimilarPosts(id, hash);
+
+                if (count > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else {
+
+                 return false;
+            }
+
+        } else {
+
+            return false;
+        }
+
     }
 
-    private String get (String url, String token) throws URISyntaxException, IOException {
+    private int getSimilarPosts(String id, String hash) throws Exception {
 
-        URIBuilder builder = new URIBuilder(app.getProperty("baseUrlAPI") + url);
-        HttpGet request = new HttpGet(builder.build());
-        request.addHeader("Authorization", "Token " + token);
-        CloseableHttpResponse response = httpClient.execute(request);
-        String result = EntityUtils.toString(response.getEntity());
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("page","1"));
+        params.add(new BasicNameValuePair("page_size", "1"));
+        params.add(new BasicNameValuePair("state","1"));
+        params.add(new BasicNameValuePair("hash", hash));
+        params.add(new BasicNameValuePair("id__ne", id));
 
-        return result;
+        String result = get("api/posts/" , getToken(), params);
+        JSONObject jsonObj =  new JSONObject(result);
+
+        return jsonObj.getInt("count");
+
     }
 
+    private JSONArray getPost(String id) throws Exception {
 
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("limit","1000"));
+        params.add(new BasicNameValuePair("ids", id));
+
+        String result = get("api/posts/" , getToken(), params);
+        JSONObject jsonObj =  new JSONObject(result);
+
+        return jsonObj.getJSONArray("results");
+
+    }
 }
 
 
