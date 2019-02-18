@@ -54,9 +54,7 @@ public class PostsListPage extends Page {
 
         wait.until(visibilityOf(deleteButton));
         click(deleteButton);
-        // добавить проверку на количество причин удаления через апи
-        // чтобы понять, выйдет ли окно для сохранения причины удаления
-        setupDeleteReason();
+  
     }
 
 

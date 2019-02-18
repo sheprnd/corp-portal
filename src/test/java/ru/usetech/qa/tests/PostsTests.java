@@ -3,7 +3,10 @@ package ru.usetech.qa.tests;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import static org.testng.Assert.assertTrue;
 
 public class PostsTests extends TestBase {
 
@@ -30,11 +33,18 @@ public class PostsTests extends TestBase {
     }
 
     @Test(priority = 2)
-    public void movePostToDeleted() {
+    public void movePostToDeleted() throws IOException, URISyntaxException {
 
         app.posts().moveToDeleted();
+
+        if (app.session().getActiveDeleteReasons() > 2) {
+            app.posts().setupDeleteReason();
+         }
+
         assertTrue(app.posts().alertSuccess());
 
     }
+
+
 
 }

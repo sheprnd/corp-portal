@@ -5,7 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
-import ru.usetech.qa.pages.*;
+import ru.usetech.qa.pages.LoginPage;
+import ru.usetech.qa.pages.ManualIncPage;
+import ru.usetech.qa.pages.NavigationMenu;
 import ru.usetech.qa.pages.settings.*;
 import ru.usetech.qa.pages.stages.IncidentsListPage;
 import ru.usetech.qa.pages.stages.PipelineMenu;
@@ -35,6 +37,7 @@ public class ApplicationManager {
     private PipelineMenu pipelineMenu;
     private ClientReferencePage clientReferencePage;
     private WorkflowPage workflowPage;
+    private HttpSession session;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -67,6 +70,7 @@ public class ApplicationManager {
         pipelineMenu = new PipelineMenu(driver);
         clientReferencePage = new ClientReferencePage(driver);
         workflowPage = new WorkflowPage(driver);
+        session = new HttpSession(this);
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
     }
@@ -103,6 +107,9 @@ public class ApplicationManager {
         return properties.getProperty(key);
     }
 
+    public HttpSession session(){
+        return session;
+    }
   /*public boolean isLogOut() {
 
     if (driver.getCurrentUrl().equals(getProperty("baseUrl"))) {

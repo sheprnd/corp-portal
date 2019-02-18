@@ -17,5 +17,7 @@ dependencies {
     compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
     compile 'junit:junit:4.12'
     compile 'org.openqa.selenium:selenium-rc:1.0-20081010.060147'
+    compile 'org.apache.httpcomponents:httpclient:4.5.6'
+    compile 'org.json:json:20160810'
 
 }
