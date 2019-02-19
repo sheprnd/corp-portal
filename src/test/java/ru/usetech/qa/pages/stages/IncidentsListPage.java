@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.pages.Page;
 
+import java.util.Random;
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 //Incidents list page
@@ -43,6 +45,31 @@ public class IncidentsListPage extends Page {
 
     @FindBy(xpath = "//dropdown-button/div/ul/li[2]")
     private WebElement stageAtDropdownMenu;
+
+    @FindBy(css = "input.header__search-field")
+    private WebElement searchField;
+
+    @FindBy(css = "button.header__search-btn > .fa-search")
+    private WebElement searchBtn;
+
+    @FindBy(css = "[formcontrolname='responseText']")
+    private WebElement answerText;
+
+    @FindBy(css = "li.dd-btn-item:last-child")
+    private WebElement withoutMovementStage;
+
+    @FindBy(css = "div.modal-footer > button.btn.btn-left.btn__blue:first-child")
+    private WebElement confirmButton;
+
+    @FindBy(xpath = "//select-acc-for-publish-modal//p-dropdown/div/label")
+    private WebElement selectAccountDrpDown;
+
+    @FindBy(xpath = "//span[contains(text(), 'Usetech Test 2')]")
+    private WebElement okAccPreSelected;
+
+    @FindBy(css = "div.modal-header__close.ng-star-inserted > i")
+    private WebElement closeModalBtn;
+
 
 
 
@@ -86,5 +113,27 @@ public class IncidentsListPage extends Page {
         click(stageAtDropdownMenu);
         alertSuccess();
     }
+
+    public void publishToOk() {
+
+        click(searchField);
+        type(searchField, "Пост для проверки таймаута");
+        wait.until(ExpectedConditions.visibilityOf(searchBtn));
+        click(searchBtn);
+        click(incidentAtIncidentsLists);
+        click(answerText);
+        type(answerText, "Ответ " + new Random().nextInt(10000));
+        wait.until(ExpectedConditions.visibilityOf(moveDropdownButton));
+        click(moveDropdownButton);
+        click(withoutMovementStage);
+        click(confirmButton);
+        click(selectAccountDrpDown);
+        click(okAccPreSelected);
+        click(confirmButton);
+        alertSuccess();
+        click(closeModalBtn);
+    }
+
+
 
 }
