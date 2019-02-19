@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.model.FeedbackTemplateData;
 import ru.usetech.qa.pages.Page;
 
@@ -34,13 +33,10 @@ public class FeedbackTemplatePage extends Page {
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveButton;
 
-    @FindBy(css = "h3.content__title.mar-l-0")
-    private WebElement pageTitle;
-
-    @FindBy(xpath = "//references-dropdown/p-dropdown/div/label")
+    @FindBy(css = "label.ui-dropdown-label")
     private WebElement dropdown;
 
-    @FindBy(xpath = "/html/body/div/div[2]/ul/li[2]/div")
+    @FindBy(css = ".ui-dropdown-items > li:nth-child(2)")
     private WebElement dropdownElement;
 
     @FindBy(css = ".modal-settings__closeblock-btn")
@@ -70,7 +66,6 @@ public class FeedbackTemplatePage extends Page {
         click(dropdownElement);
         type(reasonText, feedbackTemplateData.getReasonText());
         click(addReasonBtn);
-
 
     }
 
