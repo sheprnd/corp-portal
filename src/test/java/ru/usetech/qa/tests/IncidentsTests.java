@@ -44,4 +44,15 @@ public class IncidentsTests extends TestBase {
 
     }
 
+/*
+    @Test(priority = 5, invocationCount = 500 )
+    public void publicationToOk(){
+
+        app.incListPage().publishToOk();
+
+
+
+    }
+*/
+
 }
