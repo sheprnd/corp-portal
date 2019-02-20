@@ -37,7 +37,8 @@ public class ApplicationManager {
     private PipelineMenu pipelineMenu;
     private ClientReferencePage clientReferencePage;
     private WorkflowPage workflowPage;
-    private HttpSession session;
+    private PostsHelper postsHelper;
+    private SettingsHelper settingsHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -70,7 +71,8 @@ public class ApplicationManager {
         pipelineMenu = new PipelineMenu(driver);
         clientReferencePage = new ClientReferencePage(driver);
         workflowPage = new WorkflowPage(driver);
-        session = new HttpSession(this);
+        postsHelper = new PostsHelper (this);
+        settingsHelper = new SettingsHelper (this);
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
     }
@@ -103,13 +105,18 @@ public class ApplicationManager {
 
     public ClientReferencePage clientReferences() { return clientReferencePage; }
 
+    public PostsHelper postsHelper(){
+        return postsHelper;
+    }
+
+    public SettingsHelper settingsHelper(){
+        return settingsHelper;
+    }
+
     public String getProperty(String key) {
         return properties.getProperty(key);
     }
 
-    public HttpSession session(){
-        return session;
-    }
   /*public boolean isLogOut() {
 
     if (driver.getCurrentUrl().equals(getProperty("baseUrl"))) {

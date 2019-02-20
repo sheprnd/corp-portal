@@ -34,11 +34,11 @@ public class PostsTests extends TestBase {
 
         app.posts().moveToDeleted();
 
-        if (app.session().areSimilarPostsExists(app.posts().getId())) {
+        if (app.postsHelper().areSimilarPostsExists(app.posts().getId())) {
             app.posts().deleteCurrent();
         }
 
-        if (app.session().getActiveDeleteReasons() > 2) {
+        if (app.settingsHelper().getActiveDeleteReasons() > 2) {
             app.posts().setupDeleteReason();
          }
 
