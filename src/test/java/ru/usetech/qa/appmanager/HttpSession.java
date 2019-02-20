@@ -35,6 +35,7 @@ public class HttpSession {
         request.addHeader("Authorization", "Token " + token);
         CloseableHttpResponse response = httpClient.execute(request);
         int code = response.getStatusLine().getStatusCode();
+        response.close();
 
         return code;
     }
@@ -50,9 +51,8 @@ public class HttpSession {
         HttpGet request = new HttpGet(builder.build());
         request.addHeader("Authorization", "Token " + token);
         CloseableHttpResponse response = httpClient.execute(request);
-        String result = EntityUtils.toString(response.getEntity());
 
-        return result;
+        return getTextFrom(response);
     }
 
     public String getToken() throws IOException {
@@ -63,10 +63,19 @@ public class HttpSession {
         params.add(new BasicNameValuePair("password", app.getProperty("passwordAPI")));
         request.setEntity(new UrlEncodedFormEntity(params));
         CloseableHttpResponse response = httpClient.execute(request);
-        String result = EntityUtils.toString(response.getEntity());
+        String result = getTextFrom(response);
         JSONObject jsonObj = new JSONObject(result);
+
         return jsonObj.getJSONObject("access").getString("token");
 
+    }
+
+    private String getTextFrom (CloseableHttpResponse response) throws IOException {
+        try {
+            return EntityUtils.toString(response.getEntity());
+        } finally {
+            response.close();
+        }
     }
 
 
