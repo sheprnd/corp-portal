@@ -59,20 +59,24 @@ public class SettingsTests extends TestBase {
 
     }
 
-    /*Нужно допилить получение именно появившегося значка карандаша,
-    * Сейчас берется только если справочник первый*/
 
     @Test(priority=5)
-    public void testClientReferenceCreationAndDeletionTest() throws InterruptedException {
+    public void testClientReferenceCreationAndDeletionTest() throws Exception {
 
-        app.settings();
+        String name = "#auto ClientReference " + new Random().nextInt(10000);
+
         app.clientReferences().create(new ClientReferenceData()
-        .withName("01_Тестовый справочник Selenium"));
+        .withName(name));
         assertTrue(app.clientReferences().alertSuccess());
 
-        app.clientReferences().delete(new ClientReferenceData()
-                .withName("01_Тестовый справочник Selenium"));
-        assertTrue(app.clientReferences().alertSuccess());
+        // определям индекс созданного справочника
+        int index = app.settingsHelper().getClientReferenceIndex(name);
+
+        if (index >= 0) {
+            app.clientReferences().delete(index);
+            assertTrue(app.clientReferences().alertSuccess());
+        }
+
 
 
     }

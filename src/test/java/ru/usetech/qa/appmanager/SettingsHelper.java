@@ -1,7 +1,12 @@
 package ru.usetech.qa.appmanager;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SettingsHelper extends HttpSession{
 
@@ -38,5 +43,35 @@ public class SettingsHelper extends HttpSession{
         }
 
         return count;
+    }
+
+    //================= пользовательские справочники инцидента =======================//
+
+    private JSONArray getActiveClientReference() throws Exception {
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("ref_type","1"));
+
+        String result = get("api/reference/client_reference_title/" , getToken(), params);
+        return new JSONArray(result);
+
+    }
+
+    public int getClientReferenceIndex(String name) throws Exception {
+
+        JSONArray arr = getActiveClientReference();
+
+        for (int  i = 0; i < arr.length();i++) {
+
+            JSONObject obj = (JSONObject) arr.get(i);
+            String title = obj.getString("title");
+
+            if (title.equals(name)) {
+                return i;
+            }
+        }
+
+        return -1;
+
     }
 }

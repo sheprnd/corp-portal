@@ -22,7 +22,7 @@ public class ClientReferencePage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//app-incidents-settings-list/div/div/div")
+    @FindBy(css = "app-incidents-settings-list .fa-plus")
     private WebElement addButton;
 
     @FindBy(css = ".modal")
@@ -34,21 +34,20 @@ public class ClientReferencePage extends Page {
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveButton;
 
-    @FindBy(xpath = "//app-incidents-settings-list/settings-users-references-list/div/ul/li[1]/a/div/i")
-    private WebElement pencil;
+//    @FindBy(xpath = "//app-incidents-settings-list/settings-users-references-list/div/ul/li[1]/a/div/i")
+//    private WebElement pencil;
 
-    @FindBy(xpath = "//settings-users-references-list/div//span[contains(text(), '01_Тестовый справочник Selenium')]")
-    private WebElement readyReferenceLink;
+//    @FindBy(css = "//settings-users-references-list/div//span[contains(text(), '01_Тестовый справочник Selenium')]")
+//    private WebElement readyReferenceLink;
 
-    @FindBy(xpath = "//button[contains(text(), 'Удалить')]")
+    @FindBy(css = "settings-users-references-modal button:nth-child(2)")
     private WebElement deleteBtn;
 
-    @FindBy(xpath = "//confirm-modal/div[contains(text(), 'Вы действительно хотите удалить справочник?')]")
+    @FindBy(css = "confirm-modal")
     private WebElement confirmationModal;
 
-    @FindBy(xpath = "//confirm-modal//button[contains(text(), 'Удалить')]")
+    @FindBy(css = "confirm-modal button:first-child")
     private WebElement confirmDeletionBtn;
-
 
     public void initDepartmentCreation() {
         click(addButton);
@@ -73,34 +72,28 @@ public class ClientReferencePage extends Page {
 
     }
 
-    public void delete(ClientReferenceData clientReferenceData) throws InterruptedException {
+    public void delete(int index) throws InterruptedException {
 
+        String linkLocator = "settings-users-references-list li:nth-child(" + (index + 1) +")";
+        String pencilLocator = "settings-users-references-list li:nth-child(" + (index + 1) +") .fa-pencil";
 
         scrollPage();
-        click(readyReferenceLink);
+        WebElement referenceLink = driver.findElement(By.cssSelector(linkLocator));
 
         Actions action = new Actions(driver);
-        WebElement we = driver.findElement(By.
-                xpath("//settings-users-references-list/div//span[contains(text(), " +
-                        "'01_Тестовый справочник Selenium')]"));
+        action.moveToElement(referenceLink).build().perform();
 
-        action.moveToElement(we).moveToElement(driver.
-                findElement(By.xpath("//settings-users-references-list/div//span[contains(text()," +
-                        " '01_Тестовый справочник Selenium')]")))
-                .build().perform();
-        Thread.sleep(2000);
+        WebElement pencil = driver.findElement(By.cssSelector(pencilLocator));
+        wait.until(ExpectedConditions.visibilityOf(pencil));
 
-
-        //wait.until(ExpectedConditions.visibilityOf(pencil));
         click(pencil);
-
         wait.until(ExpectedConditions.visibilityOf(modalForm));
-        click(deleteBtn);
 
+        click(deleteBtn);
         wait.until(ExpectedConditions.visibilityOf(confirmationModal));
+
         click(confirmDeletionBtn);
 
- 
     }
 
     public void scrollPage() {
