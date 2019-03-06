@@ -4,6 +4,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.ManIncData;
 
+import java.util.Random;
+
 public class IncidentsTests extends TestBase {
 
     @BeforeMethod
@@ -13,9 +15,8 @@ public class IncidentsTests extends TestBase {
 
     }
 
-    @Test(priority = 1, invocationCount = 5)
+    @Test(priority = 1, invocationCount = 1)
     public void createManualIncdent() {
-
         app.manualInc().add();
         app.manualInc().fill(new ManIncData().postText("#Random text").postUrlField("https://www.google.com/search/1"));
         app.manualInc().save();
@@ -44,15 +45,18 @@ public class IncidentsTests extends TestBase {
 
     }
 
-/*
-    @Test(priority = 5, invocationCount = 500 )
+    @Test(priority = 5 )
     public void publicationToOk(){
-
-        app.incListPage().publishToOk();
+        String randomText = "Value #" + String.valueOf(new Random().nextInt(10000));
+        String searchText = randomText;
+        app.manualInc().add();
+        app.manualInc().fill(new ManIncData().postText(randomText).postUrlField("https://ok.ru/group/55033089556552/topic/69412813955144"));
+        app.manualInc().save();
+        app.manualInc().alertSuccess();
+        app.incListPage().publishToOk(searchText);
 
 
 
     }
-*/
 
 }

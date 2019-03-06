@@ -46,7 +46,7 @@ public class IncidentsListPage extends Page {
     @FindBy(xpath = "//dropdown-button/div/ul/li[2]")
     private WebElement stageAtDropdownMenu;
 
-/*    @FindBy(css = "input.header__search-field")
+    @FindBy(css = "input.header__search-field")
     private WebElement searchField;
 
     @FindBy(css = "button.header__search-btn > .fa-search")
@@ -68,7 +68,7 @@ public class IncidentsListPage extends Page {
     private WebElement okAccPreSelected;
 
     @FindBy(css = "div.modal-header__close.ng-star-inserted > i")
-    private WebElement closeModalBtn;*/
+    private WebElement closeModalBtn;
 
 
 
@@ -114,11 +114,10 @@ public class IncidentsListPage extends Page {
         alertSuccess();
     }
 
-/*
-    public void publishToOk() {
+    public void publishToOk(String searchText) {
 
         click(searchField);
-        type(searchField, "Пост для проверки таймаута");
+        type(searchField, searchText);
         wait.until(ExpectedConditions.visibilityOf(searchBtn));
         click(searchBtn);
         click(incidentAtIncidentsLists);
@@ -134,7 +133,6 @@ public class IncidentsListPage extends Page {
         alertSuccess();
         click(closeModalBtn);
     }
-*/
 
 
 
