@@ -1,6 +1,5 @@
 package ru.usetech.qa.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.model.ManIncData;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 import static org.testng.Assert.assertTrue;
 
 public class ManualIncPage extends Page {
@@ -26,6 +24,9 @@ public class ManualIncPage extends Page {
     private WebElement saveBtn;
 
     @FindBy(css = "[formcontrolname=newPostBlogUrl]")
+    private WebElement blogUrl;
+
+    @FindBy(css = "[formcontrolname=newPostUrl]")
     private WebElement postUrl;
 
     @FindBy(css = "[formcontrolname=newPostText]")
@@ -48,8 +49,9 @@ public class ManualIncPage extends Page {
 
     public void fill(ManIncData manIncData) {
 
-        type(postUrl, manIncData.getPostUrlField());
-        type(postText, manIncData.getPostText());
+        type(blogUrl, manIncData.getBlogField());
+        type(postText, manIncData.gettText());
+        type(postUrl, manIncData.getUrlField());
     }
 
     public void save() {
