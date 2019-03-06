@@ -46,16 +46,21 @@ public class IncidentsTests extends TestBase {
     }
 
     @Test(priority = 5 )
-    public void publicationToOk(){
+    public void publication(){
         String randomText = "Value #" + String.valueOf(new Random().nextInt(10000));
         String searchText = randomText;
         app.manualInc().add();
         app.manualInc()
-                .fill(new ManIncData().text(randomText).blog("https://ok.ru/group/55033089556552")
-                .url("https://ok.ru/group/55033089556552/topic/69412813955144"));
+                .fill(new ManIncData().text(randomText).blog("https://vk.com/wall423822898")
+                .url("https://vk.com/wall423822898_530"));
         app.manualInc().save();
         app.manualInc().alertSuccess();
-        app.incListPage().publishToOk(searchText);
+        app.incListPage().publish(searchText);
+
+        app.pipeline().goToPosts();
+        app.pipeline().goToIncidents();
+
+        app.incListPage().isPubSuccess(searchText);
 
 
 

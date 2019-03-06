@@ -64,11 +64,14 @@ public class IncidentsListPage extends Page {
     @FindBy(xpath = "//select-acc-for-publish-modal//p-dropdown/div/label")
     private WebElement selectAccountDrpDown;
 
-    @FindBy(xpath = "//span[contains(text(), 'Usetech Test 2')]")
-    private WebElement okAccPreSelected;
+    @FindBy(xpath = "//span[contains(text(), 'Anna Test')]")
+    private WebElement accountSelected;
 
     @FindBy(css = "div.modal-header__close.ng-star-inserted > i")
     private WebElement closeModalBtn;
+
+    @FindBy(css = ".post__content-answer-success")
+    private WebElement successTriangle;
 
 
 
@@ -114,26 +117,35 @@ public class IncidentsListPage extends Page {
         alertSuccess();
     }
 
-    public void publishToOk(String searchText) {
+    public void publish(String searchText) {
 
+        searchIncByText(searchText, searchField, searchBtn);
+        click(incidentAtIncidentsLists);
+
+        searchIncByText("Ответ " + new Random().nextInt(10000), answerText, moveDropdownButton);
+        click(withoutMovementStage);
+        click(confirmButton);
+        click(selectAccountDrpDown);
+        click(accountSelected);
+        click(confirmButton);
+        alertSuccess();
+        click(closeModalBtn);
+
+        isPubSuccess(searchText);
+
+    }
+
+    public void isPubSuccess(String searchText) {
+        searchIncByText(searchText, searchField, searchBtn);
+        wait.until(ExpectedConditions.visibilityOf(successTriangle));
+    }
+
+    private void searchIncByText(String searchText, WebElement searchField, WebElement searchBtn) {
         click(searchField);
         type(searchField, searchText);
         wait.until(ExpectedConditions.visibilityOf(searchBtn));
         click(searchBtn);
-        click(incidentAtIncidentsLists);
-        click(answerText);
-        type(answerText, "Ответ " + new Random().nextInt(10000));
-        wait.until(ExpectedConditions.visibilityOf(moveDropdownButton));
-        click(moveDropdownButton);
-        click(withoutMovementStage);
-        click(confirmButton);
-        click(selectAccountDrpDown);
-        click(okAccPreSelected);
-        click(confirmButton);
-        alertSuccess();
-        click(closeModalBtn);
     }
-
 
 
 }
