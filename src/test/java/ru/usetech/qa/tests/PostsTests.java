@@ -11,7 +11,7 @@ public class PostsTests extends TestBase {
     public void ensurePreconditions() {
 
         app.goTo().pipeline();
-
+        
     }
 
     @Test(priority = 1)
@@ -39,7 +39,7 @@ public class PostsTests extends TestBase {
         }
 
         if (app.settingsHelper().getActiveDeleteReasons() > 2) {
-            app.posts().setupDeleteReason();
+            app.deleteReasonDialog().setupReason();
          }
 
         assertTrue(app.posts().alertSuccess());

@@ -1,7 +1,6 @@
 package ru.usetech.qa.tests;
 
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.ManIncData;
 
@@ -9,7 +8,7 @@ import static org.testng.Assert.assertTrue;
 
 public class IncidentsTests extends TestBase {
 
-    @BeforeClass
+    @BeforeTest
     public void ensurePreconditions() {
         app.goTo().pipeline();
         app.pipeline().goToIncidents();
@@ -32,7 +31,7 @@ public class IncidentsTests extends TestBase {
         app.incidents().deleteIncident(true);
 
         if (app.settingsHelper().getActiveDeleteReasons() > 2) {
-            app.incidents().setupDeleteReason();
+            app.deleteReasonDialog().setupReason();
         }
 
         assertTrue(app.incidents().alertSuccess());
@@ -45,7 +44,7 @@ public class IncidentsTests extends TestBase {
         app.incidents().deleteIncident(false);
 
         if (app.settingsHelper().getActiveDeleteReasons() > 2) {
-            app.incidents().setupDeleteReason();
+            app.deleteReasonDialog().setupReason();
         }
 
         assertTrue(app.incidents().alertSuccess());

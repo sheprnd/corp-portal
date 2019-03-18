@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.usetech.qa.pages.Page;
 
-import java.sql.SQLOutput;
-
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 //Posts list page
@@ -32,8 +30,8 @@ public class PostsListPage extends Page {
     @FindBy(css = ".wokflow-grid-1 > post:first-child .post__buttons > button:first-child")
     private WebElement moveToSelectedButton;
 
-    @FindBy(css = "add-remove-reason-modal button:first-child")
-    private WebElement saveDeleteReasonButton;
+   /* @FindBy(css = "add-remove-reason-modal button:first-child")
+    private WebElement saveDeleteReasonButton;*/
 
     @FindBy(css = "confirm-modal button.btn__blue")
     private WebElement deleteCurrentButton;
@@ -66,9 +64,9 @@ public class PostsListPage extends Page {
         click(deleteCurrentButton);
     }
 
-    public void setupDeleteReason() {
+    /*public void setupDeleteReason() {
         click(saveDeleteReasonButton);
-    }
+    }*/
 
     public String getId(){
 

@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.BrowserType;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationMenu;
+import ru.usetech.qa.pages.modalDialogs.AddDeleteReasonDialog;
 import ru.usetech.qa.pages.settings.*;
 import ru.usetech.qa.pages.stages.IncidentsListPage;
 import ru.usetech.qa.pages.stages.PipelineMenu;
@@ -39,6 +40,7 @@ public class ApplicationManager {
     private WorkflowPage workflowPage;
     private PostsHelper postsHelper;
     private SettingsHelper settingsHelper;
+    private AddDeleteReasonDialog addDeleteReasonDialog;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -73,6 +75,7 @@ public class ApplicationManager {
         workflowPage = new WorkflowPage(driver);
         postsHelper = new PostsHelper (this);
         settingsHelper = new SettingsHelper (this);
+        addDeleteReasonDialog = new AddDeleteReasonDialog(driver);
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
     }
@@ -109,6 +112,10 @@ public class ApplicationManager {
 
     public SettingsHelper settingsHelper(){
         return settingsHelper;
+    }
+
+    public AddDeleteReasonDialog deleteReasonDialog(){
+        return addDeleteReasonDialog;
     }
 
     public String getProperty(String key) {

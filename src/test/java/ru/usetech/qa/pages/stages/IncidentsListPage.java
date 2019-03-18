@@ -1,6 +1,5 @@
 package ru.usetech.qa.pages.stages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,9 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.pages.Page;
 
-import java.util.Random;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 //Incidents list page
@@ -30,8 +26,8 @@ public class IncidentsListPage extends Page {
     @FindBy(css = ".wokflow-grid-3 > incident:first-child .post__buttons > button:last-child")
     private WebElement deleteIncFromListBtn;
 
-    @FindBy(css = "add-remove-reason-modal button:first-child")
-    private WebElement saveDeleteReason;
+    /*@FindBy(css = "add-remove-reason-modal button:first-child")
+    private WebElement saveDeleteReason;*/
 
     @FindBy(css = "confirm-modal button.btn__blue")
     private WebElement confirmIncDeletionBtn;
@@ -116,9 +112,9 @@ public class IncidentsListPage extends Page {
 
     }
 
-    public void setupDeleteReason() {
+    /*public void setupDeleteReason() {
         click(saveDeleteReason);
-    }
+    }*/
 
 /*
     public void publishToOk() {
