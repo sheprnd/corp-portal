@@ -87,7 +87,7 @@ public class ApplicationManager {
 
     public PipelineMenu pipeline() { return pipelineMenu; }
 
-    public IncidentsListPage incListPage() { return incidentsListPage; }
+    public IncidentsListPage incidents() { return incidentsListPage; }
 
     public UsersPage users() { return usersPage; }
 
@@ -100,8 +100,6 @@ public class ApplicationManager {
     public WorkflowPage workflow() { return workflowPage; }
 
     public ManualIncPage manualInc() { return manualincPage; }
-
-    public PostsListPage postsListPage() { return postsListPage; }
 
     public ClientReferencePage clientReferences() { return clientReferencePage; }
 
