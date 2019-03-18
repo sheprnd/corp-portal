@@ -4,6 +4,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.ManIncData;
 
+import static org.testng.Assert.assertTrue;
+
 public class IncidentsTests extends TestBase {
 
     @BeforeMethod
@@ -13,13 +15,13 @@ public class IncidentsTests extends TestBase {
 
     }
 
-    @Test(priority = 1, invocationCount = 5)
+    @Test(priority = 1)
     public void createManualIncdent() {
 
         app.manualInc().add();
         app.manualInc().fill(new ManIncData().postText("#Random text").postUrlField("https://www.google.com/search/1"));
         app.manualInc().save();
-        app.manualInc().alertSuccess();
+        assertTrue(app.posts().alertSuccess());
 
     }
 
