@@ -49,9 +49,9 @@ public class ManualIncPage extends Page {
 
     public void fill(ManIncData manIncData) {
 
-        type(blogUrl, manIncData.getBlogField());
-        type(postText, manIncData.gettText());
-        type(postUrl, manIncData.getUrlField());
+        type(blogUrl, manIncData.getPostUrlField());
+        type(postText, manIncData.getPostText());
+        type(postUrl, manIncData.getPostUrlField());
     }
 
     public void save() {

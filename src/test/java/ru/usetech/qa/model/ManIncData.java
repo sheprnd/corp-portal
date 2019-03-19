@@ -2,27 +2,32 @@ package ru.usetech.qa.model;
 
 public class ManIncData {
 
-    private String blog;
-    private String text;
-    private String url;
+    private String postUrlField;
+    private String postText;
+    private String postBlog;
 
-    public String gettText() {
-        return text;
+
+    public String getPostUrlField() {
+        return postUrlField;
     }
-    public String getBlogField() { return blog; }
-    public String getUrlField() { return url; }
+
+    public String getPostText() { return postText; }
+
+    public String getPostBlog() { return postBlog; }
 
 
-    public ManIncData blog(String blog) {
-        this.blog = blog;
+    public ManIncData postUrlField(String postUrl) {
+        this.postUrlField = postUrl;
         return this;
     }
-    public ManIncData text(String text) {
-        this.text = text;
+
+    public ManIncData postText(String postText) {
+        this.postText = postText;
         return this;
     }
-    public ManIncData url(String url) {
-        this.url = url;
+
+    public ManIncData postBlog(String postBlog) {
+        this.postText = postBlog;
         return this;
     }
 
