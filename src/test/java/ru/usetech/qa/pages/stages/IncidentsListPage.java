@@ -74,7 +74,7 @@ public class IncidentsListPage extends Page {
     @FindBy(css = "div.modal-header__close.ng-star-inserted > i")
     private WebElement closeModalBtn;
 
-    @FindBy(css = ".post__content-answer-success")
+    @FindBy(css = "div.post__content-answer-success")
     private WebElement successTriangle;
 
 
@@ -137,17 +137,18 @@ public class IncidentsListPage extends Page {
     }
 
     public void isPubSuccess(String searchText) {
+        searchIncByText("ok", searchField,searchBtn);
         searchIncByText(searchText, searchField, searchBtn);
         wait.until(ExpectedConditions.visibilityOf(successTriangle));
     }
 
     private void searchIncByText(String searchText, WebElement searchField, WebElement searchBtn) {
         click(searchField);
-        type(searchField, "ок");
         type(searchField, searchText);
         wait.until(ExpectedConditions.visibilityOf(searchBtn));
-        //click(searchBtn);
-        searchField.sendKeys(Keys.ENTER);
+        click(searchBtn);
+
+        //searchField.sendKeys(Keys.ENTER);
     }
 
 

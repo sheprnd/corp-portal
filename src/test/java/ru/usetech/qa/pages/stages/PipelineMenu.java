@@ -16,10 +16,10 @@ public class PipelineMenu extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = "i.fa.fa-pencil-square-o")
+    @FindBy(css = "[href = '#/incidents']")
     private WebElement postsPage;
 
-    @FindBy(css = ".post__right-block")
+    @FindBy(css = "[href = '#/incidents/stage/0']")
     private WebElement postspage;
 
     @FindBy(css = "[href = '#/incidents/stage/3']")

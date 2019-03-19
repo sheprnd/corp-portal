@@ -73,7 +73,7 @@ public class IncidentsTests extends TestBase {
 
     @Test(priority = 5)
     public void publication() {
-        String randomText = "Value #" + String.valueOf(new Random().nextInt(10000));
+        String randomText = String.valueOf(new Random().nextInt(100000)+"Valued" + String.valueOf(new Random().nextInt(10000)));
         String searchText = randomText;
         app.manualInc().add();
         app.manualInc()
