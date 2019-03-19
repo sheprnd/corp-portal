@@ -25,10 +25,12 @@ public class SettingsTests extends TestBase {
 
 
         app.settings().goToUsers();
-        app.users().create(new UserData().withLastName("#auto LastName").withFirstName("#auto FirstName")
+        int count = app.users().count();
+        app.user().create(new UserData().withLastName("#auto LastName").withFirstName("#auto FirstName")
                 .withEmail(new Random().nextInt(10000) + "@yandex.ru").withPassword("1")); //доделать рандомное получение данных юзера
-        assertTrue(app.users().alertSuccess());
-
+        assertTrue(app.user().alertSuccess());
+        int actualCount = app.users().count();
+        assertTrue(actualCount == count + 1, "-");
     }
 
     @Test(priority=2)

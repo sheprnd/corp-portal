@@ -42,6 +42,7 @@ public class ApplicationManager {
     private ClientReferencePage clientReferencePage;
 
     private DepartmentsList departmentsList;
+    private UsersList usersList;
 
     private AddDeleteReasonDialog addDeleteReasonDialog;
 
@@ -86,6 +87,7 @@ public class ApplicationManager {
         settingsHelper = new SettingsHelper (this);
 
         departmentsList = new DepartmentsList(driver);
+        usersList = new UsersList(driver);
 
         addDeleteReasonDialog = new AddDeleteReasonDialog(driver);
 
@@ -102,7 +104,7 @@ public class ApplicationManager {
     public PostsListPage posts() { return postsListPage; }
     public IncidentsListPage incidents() { return incidentsListPage; }
 
-    public UsersPage users() { return usersPage; }
+    public UsersPage user() { return usersPage; }
     public DepartmentsPage department() { return departmentsPage; }
     public RolesPage roles() { return rolesPage; }
     public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
@@ -112,6 +114,7 @@ public class ApplicationManager {
     public DepartmentsList departments(){
         return departmentsList;
     }
+    public UsersList users(){return usersList;}
 
     public AddDeleteReasonDialog deleteReasonDialog(){
         return addDeleteReasonDialog;
