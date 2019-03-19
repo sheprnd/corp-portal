@@ -1,6 +1,7 @@
 package ru.usetech.qa.tests;
 
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.ManIncData;
 
@@ -15,11 +16,19 @@ public class IncidentsTests extends TestBase {
 
     }
 
-    @Test(priority = 1)
-    public void createManualIncident() {
+    @DataProvider (name = "incidentData")
+    public static Object[][] incidentDataProvider() {
+        return new Object[][]{
+                {"#Random text 1","https://www.google.com/search/1"},
+                {"#Random text 2","https://www.google.com/search/2"}
+        };
+    }
+
+    @Test(priority = 1, dataProvider = "incidentData")
+    public void createManualIncident(String text, String url) {
 
         app.manualInc().add();
-        app.manualInc().fill(new ManIncData().postText("#Random text").postUrlField("https://www.google.com/search/1"));
+        app.manualInc().fill(new ManIncData().postText(text).postUrlField(url));
         app.manualInc().save();
         assertTrue(app.manualInc().alertSuccess());
 
