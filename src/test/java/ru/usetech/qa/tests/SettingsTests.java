@@ -49,11 +49,11 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToDepartments();
         //исходное количество
-        int count = app.departments().count();
+        int count = app.list().elementsCount();
         app.department().create(new DepartmentData().withName("#auto Department " + UUID.randomUUID().toString()));
         assertTrue(app.department().alertSuccess());
         //новое количество
-        int actualCount = app.departments().count();
+        int actualCount = app.list().elementsCount();
         assertTrue(actualCount == count + 1, "-");
     }
 
@@ -61,11 +61,14 @@ public class SettingsTests extends TestBase {
     public void testFeedbackTemplateCreation() {
 
         app.settings().goToFeedbacktemplates();
+        int count = app.list().elementsCount();
         app.feedbackTemplates().create(new FeedbackTemplateData()
                 .withName("#auto Feedback " + UUID.randomUUID().toString())
                 .withText("Прошу оценить результат:\n" + "{close_reasons}")
                 .withReasonText("Отлично"));
         assertTrue(app.feedbackTemplates().alertSuccess());
+        int actualCount = app.list().elementsCount();
+        assertTrue(actualCount == count + 1, "-");
 
     }
 

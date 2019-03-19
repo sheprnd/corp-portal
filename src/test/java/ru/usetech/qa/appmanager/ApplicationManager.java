@@ -41,7 +41,7 @@ public class ApplicationManager {
     private WorkflowPage workflowPage;
     private ClientReferencePage clientReferencePage;
 
-    private DepartmentsList departmentsList;
+    private GeneralList generalList;
     private UsersList usersList;
     private RolesList rolesList;
 
@@ -87,7 +87,7 @@ public class ApplicationManager {
         postsHelper = new PostsHelper (this);
         settingsHelper = new SettingsHelper (this);
 
-        departmentsList = new DepartmentsList(driver);
+        generalList = new GeneralList(driver);
         usersList = new UsersList(driver);
         rolesList = new RolesList(driver);
 
@@ -113,8 +113,8 @@ public class ApplicationManager {
     public WorkflowPage workflow() { return workflowPage; }
     public ClientReferencePage clientReferences() { return clientReferencePage; }
 
-    public DepartmentsList departments(){
-        return departmentsList;
+    public GeneralList list(){
+        return generalList;
     }
     public UsersList users(){return usersList;}
     public RolesList roles(){return rolesList;}

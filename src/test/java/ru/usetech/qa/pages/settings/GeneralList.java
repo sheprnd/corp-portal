@@ -9,9 +9,9 @@ import ru.usetech.qa.pages.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class DepartmentsList extends List {
+public class GeneralList extends List {
 
-    public DepartmentsList(WebDriver driver) {
+    public GeneralList(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -19,7 +19,7 @@ public class DepartmentsList extends List {
     @FindBy(css = ".categories > div.table__line:nth-child(2)")
     private WebElement firstRow;
 
-    public int count() {
+    public int elementsCount() {
 
         wait.until(visibilityOf(firstRow));
         scrollList();
