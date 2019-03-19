@@ -26,9 +26,6 @@ public class IncidentsListPage extends Page {
     @FindBy(css = ".wokflow-grid-3 > incident:first-child .post__buttons > button:last-child")
     private WebElement deleteIncFromListBtn;
 
-    /*@FindBy(css = "add-remove-reason-modal button:first-child")
-    private WebElement saveDeleteReason;*/
-
     @FindBy(css = "confirm-modal button.btn__blue")
     private WebElement confirmIncDeletionBtn;
 
@@ -112,9 +109,6 @@ public class IncidentsListPage extends Page {
 
     }
 
-    /*public void setupDeleteReason() {
-        click(saveDeleteReason);
-    }*/
 
 /*
     public void publishToOk() {
