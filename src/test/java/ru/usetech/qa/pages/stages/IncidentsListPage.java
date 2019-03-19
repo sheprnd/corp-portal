@@ -26,25 +26,28 @@ public class IncidentsListPage extends Page {
     @FindBy(css = ".post-incident-table")
     private WebElement incidentAtIncidentsLists;
 
-    @FindBy(xpath = "//workflow-view-incidents/div/div[2]/incident[1]/div/div/div[3]/div[2]/div/button[3]")
+    @FindBy(css = ".wokflow-grid-3 > incident:first-child .post__buttons > button:last-child")
     private WebElement deleteIncFromListBtn;
 
-    @FindBy(xpath = "//add-remove-reason-modal/div[4]/button[1]")
-    private WebElement saveDeleteReason;
+    /*@FindBy(css = "add-remove-reason-modal button:first-child")
+    private WebElement saveDeleteReason;*/
 
-    @FindBy(xpath = "//confirm-modal/div[4]/button[1]")
+    @FindBy(css = "confirm-modal button.btn__blue")
     private WebElement confirmIncDeletionBtn;
 
-    @FindBy(xpath = "//bs-modal-container/div/div/incidents-form-modal/div/div/div[3]/button[3]")
+    @FindBy(css = ".incident-form-modal__authors-item-img")
+    private WebElement authorsImg;
+
+    @FindBy(css = ".modal-footer > button:nth-child(4)")
     private WebElement deleteIncModal;
 
-    @FindBy(css = "a#send.nav-link")
+    @FindBy(css ="#send")
     private WebElement moveToOtherStageTab;
 
-    @FindBy(xpath = "//dropdown-button")
+    @FindBy(css = "dropdown-button")
     private WebElement moveDropdownButton;
 
-    @FindBy(xpath = "//dropdown-button/div/ul/li[2]")
+    @FindBy(css = "dropdown-button .dd-btn-list > li:first-child")
     private WebElement stageAtDropdownMenu;
 
     @FindBy(css = "input.header__search-field")
@@ -87,35 +90,32 @@ public class IncidentsListPage extends Page {
 
     }
 
+    public void deleteIncident(boolean fromList) {
 
+        if (fromList) {
+            click(deleteIncFromListBtn);
+        }
+        else {
+            click(deleteIncModal);
+        }
 
-    public void deleteIncFromList() {
-
-        click(deleteIncFromListBtn);
-        click(confirmIncDeletionBtn);
-        click(saveDeleteReason);
-        alertSuccess();
+       click(confirmIncDeletionBtn);
     }
 
-    public void deleteIncFromModal() {
+    public void openIncident() {
 
         click(incidentAtIncidentsLists);
-        click(deleteIncModal);
-        click(confirmIncDeletionBtn);
-        click(saveDeleteReason);
-        alertSuccess();
+        wait.until(ExpectedConditions.visibilityOf(authorsImg));
+     }
 
-    }
 
-    public void moveToOtherStage() {
+    public void moveIncident() {
 
-        click(incidentAtIncidentsLists);
-        wait.until(ExpectedConditions.visibilityOf(moveDropdownButton));
         click(moveToOtherStageTab);
         wait.until(ExpectedConditions.visibilityOf(moveDropdownButton));
         click(moveDropdownButton);
         click(stageAtDropdownMenu);
-        alertSuccess();
+
     }
 
     public void publish(String searchText) {
@@ -137,7 +137,6 @@ public class IncidentsListPage extends Page {
     }
 
     public void isPubSuccess(String searchText) {
-        click()
         searchIncByText(searchText, searchField, searchBtn);
         wait.until(ExpectedConditions.visibilityOf(successTriangle));
     }

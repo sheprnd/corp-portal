@@ -43,8 +43,13 @@ public class SettingsTests extends TestBase {
     public void testDepartmentCreation() {
 
         app.settings().goToDepartments();
-        app.departments().create(new DepartmentData().withName("#auto Department " + UUID.randomUUID().toString()));
-        assertTrue(app.departments().alertSuccess());
+        //исходное количество
+        int count = app.departments().count();
+        app.department().create(new DepartmentData().withName("#auto Department " + UUID.randomUUID().toString()));
+        assertTrue(app.department().alertSuccess());
+        //новое количество
+        int actualCount = app.departments().count();
+        assertTrue(actualCount == count + 1, "-");
     }
 
     @Test(priority=4)
