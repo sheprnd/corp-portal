@@ -37,8 +37,11 @@ public class SettingsTests extends TestBase {
     public void testRoleCreation() {
 
         app.settings().goToRoles();
-        app.roles().create(new RoleData().withName("#auto Role" + UUID.randomUUID().toString()));
-        assertTrue(app.roles().alertSuccess());
+        int count = app.roles().count();
+        app.role().create(new RoleData().withName("#auto Role" + UUID.randomUUID().toString()));
+        assertTrue(app.role().alertSuccess());
+        int actualCount = app.roles().count();
+        assertTrue(actualCount == count + 1, "-");
     }
 
     @Test(priority=3)

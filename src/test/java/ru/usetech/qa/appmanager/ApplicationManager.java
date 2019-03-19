@@ -43,6 +43,7 @@ public class ApplicationManager {
 
     private DepartmentsList departmentsList;
     private UsersList usersList;
+    private RolesList rolesList;
 
     private AddDeleteReasonDialog addDeleteReasonDialog;
 
@@ -88,6 +89,7 @@ public class ApplicationManager {
 
         departmentsList = new DepartmentsList(driver);
         usersList = new UsersList(driver);
+        rolesList = new RolesList(driver);
 
         addDeleteReasonDialog = new AddDeleteReasonDialog(driver);
 
@@ -106,7 +108,7 @@ public class ApplicationManager {
 
     public UsersPage user() { return usersPage; }
     public DepartmentsPage department() { return departmentsPage; }
-    public RolesPage roles() { return rolesPage; }
+    public RolesPage role() { return rolesPage; }
     public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
     public WorkflowPage workflow() { return workflowPage; }
     public ClientReferencePage clientReferences() { return clientReferencePage; }
@@ -115,6 +117,7 @@ public class ApplicationManager {
         return departmentsList;
     }
     public UsersList users(){return usersList;}
+    public RolesList roles(){return rolesList;}
 
     public AddDeleteReasonDialog deleteReasonDialog(){
         return addDeleteReasonDialog;
