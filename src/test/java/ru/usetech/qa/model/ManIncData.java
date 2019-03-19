@@ -27,7 +27,7 @@ public class ManIncData {
     }
 
     public ManIncData postBlog(String postBlog) {
-        this.postText = postBlog;
+        this.postBlog = postBlog;
         return this;
     }
 

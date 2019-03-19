@@ -49,7 +49,7 @@ public class ManualIncPage extends Page {
 
     public void fill(ManIncData manIncData) {
 
-        type(blogUrl, manIncData.getPostUrlField());
+        type(blogUrl, manIncData.getPostBlog());
         type(postText, manIncData.getPostText());
         type(postUrl, manIncData.getPostUrlField());
     }
