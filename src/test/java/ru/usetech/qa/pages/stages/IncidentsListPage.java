@@ -1,6 +1,7 @@
 package ru.usetech.qa.pages.stages;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -136,15 +137,18 @@ public class IncidentsListPage extends Page {
     }
 
     public void isPubSuccess(String searchText) {
+        click()
         searchIncByText(searchText, searchField, searchBtn);
         wait.until(ExpectedConditions.visibilityOf(successTriangle));
     }
 
     private void searchIncByText(String searchText, WebElement searchField, WebElement searchBtn) {
         click(searchField);
+        type(searchField, "ок");
         type(searchField, searchText);
         wait.until(ExpectedConditions.visibilityOf(searchBtn));
-        click(searchBtn);
+        //click(searchBtn);
+        searchField.sendKeys(Keys.ENTER);
     }
 
 
