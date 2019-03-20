@@ -24,3 +24,4 @@ chromedriver.exe
 *.java___jb_tmp___
 src/test/resources/local.properties
 out/test/resources/local.properties
+src/test/resources/local_beta.properties
