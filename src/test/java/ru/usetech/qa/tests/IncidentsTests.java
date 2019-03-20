@@ -83,10 +83,6 @@ public class IncidentsTests extends TestBase {
         app.manualInc().alertSuccess();
         app.incidents().publish(searchText);
 
-        app.pipeline().goToPosts();
-        app.pipeline().goToIncidents();
-
-        app.incidents().isPubSuccess(searchText);
 
 
     }

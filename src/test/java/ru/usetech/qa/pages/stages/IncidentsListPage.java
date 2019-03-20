@@ -77,6 +77,9 @@ public class IncidentsListPage extends Page {
     @FindBy(css = "div.post__content-answer-success")
     private WebElement successTriangle;
 
+    @FindBy(css = "div.timeline__shared-item-left-status_done")
+    private WebElement successRectangle;
+
 
 
 
@@ -121,8 +124,7 @@ public class IncidentsListPage extends Page {
     public void publish(String searchText) {
 
         searchIncByText(searchText, searchField, searchBtn);
-        click(incidentAtIncidentsLists);
-
+        openIncident();
         searchIncByText("Ответ " + new Random().nextInt(10000), answerText, moveDropdownButton);
         click(withoutMovementStage);
         click(confirmButton);
@@ -130,16 +132,19 @@ public class IncidentsListPage extends Page {
         click(accountSelected);
         click(confirmButton);
         alertSuccess();
-        click(closeModalBtn);
-
-        isPubSuccess(searchText);
+        isPubSuccess();
+        closeIncModal();
 
     }
 
-    public void isPubSuccess(String searchText) {
-        searchIncByText("ok", searchField,searchBtn);
-        searchIncByText(searchText, searchField, searchBtn);
-        wait.until(ExpectedConditions.visibilityOf(successTriangle));
+    public boolean closeIncModal() {
+
+        return click(closeModalBtn);
+
+    }
+
+    public void isPubSuccess() {
+        wait.until(ExpectedConditions.visibilityOf(successRectangle));
     }
 
     private void searchIncByText(String searchText, WebElement searchField, WebElement searchBtn) {
@@ -147,8 +152,6 @@ public class IncidentsListPage extends Page {
         type(searchField, searchText);
         wait.until(ExpectedConditions.visibilityOf(searchBtn));
         click(searchBtn);
-
-        //searchField.sendKeys(Keys.ENTER);
     }
 
 
