@@ -148,6 +148,7 @@ public class ApplicationManager {
     public void stop() {
         driver.quit();
     }
+    public void refresh() { driver.navigate().refresh(); }
 
 
 }

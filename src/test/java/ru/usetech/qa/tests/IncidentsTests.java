@@ -5,6 +5,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.ManIncData;
 
+import java.util.Random;
+
 import static org.testng.Assert.assertTrue;
 
 public class IncidentsTests extends TestBase {
@@ -16,19 +18,19 @@ public class IncidentsTests extends TestBase {
 
     }
 
-    @DataProvider (name = "incidentData")
+    @DataProvider(name = "incidentData")
     public static Object[][] incidentDataProvider() {
         return new Object[][]{
-                {"#Random text 1","https://www.google.com/search/1"},
-                {"#Random text 2","https://www.google.com/search/2"}
+                {"#Random text 1", "https://www.google.com/search/1/123", "https://www.google.com/search/1"},
+                {"#Random text 2", "https://www.google.com/search/2/123", "https://www.google.com/search/2"}
         };
     }
 
     @Test(priority = 1, dataProvider = "incidentData")
-    public void createManualIncident(String text, String url) {
+    public void createManualIncident(String text, String blog, String url) {
 
         app.manualInc().add();
-        app.manualInc().fill(new ManIncData().postText(text).postUrlField(url));
+        app.manualInc().fill(new ManIncData().postText(text).postBlog(blog).postUrlField(url));
         app.manualInc().save();
         assertTrue(app.manualInc().alertSuccess());
 
@@ -61,7 +63,7 @@ public class IncidentsTests extends TestBase {
     }
 
     @Test(priority = 4)
-    public void moveIncToOtherStage(){
+    public void moveIncToOtherStage() {
 
         app.incidents().openIncident();
         app.incidents().moveIncident();
@@ -69,15 +71,19 @@ public class IncidentsTests extends TestBase {
 
     }
 
-/*
-    @Test(priority = 5, invocationCount = 500 )
-    public void publicationToOk(){
-
-        app.incListPage().publishToOk();
-
+    @Test(priority = 5)
+    public void publication() {
+        String randomText = String.valueOf(new Random().nextInt(100000) + "Valued" + String.valueOf(new Random().nextInt(10000)));
+        String searchText = randomText;
+        app.manualInc().add();
+        app.manualInc()
+                .fill(new ManIncData().postText(randomText).postBlog("https://vk.com/wall423822898")
+                        .postUrlField("https://vk.com/wall423822898_530"));
+        app.manualInc().save();
+        app.manualInc().alertSuccess();
+        app.incidents().publish(searchText);
 
 
     }
-*/
 
 }

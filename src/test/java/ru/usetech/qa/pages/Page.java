@@ -36,6 +36,7 @@ public class Page {
 
             WebDriverWait w = new WebDriverWait(driver, 5);
             w.until(elementToBeClickable(element));
+
             element.click();
 
             return true;

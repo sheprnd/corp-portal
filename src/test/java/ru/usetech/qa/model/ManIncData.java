@@ -4,15 +4,16 @@ public class ManIncData {
 
     private String postUrlField;
     private String postText;
+    private String postBlog;
 
 
     public String getPostUrlField() {
         return postUrlField;
     }
 
-    public String getPostText() {
-        return postText;
-    }
+    public String getPostText() { return postText; }
+
+    public String getPostBlog() { return postBlog; }
 
 
     public ManIncData postUrlField(String postUrl) {
@@ -22,6 +23,11 @@ public class ManIncData {
 
     public ManIncData postText(String postText) {
         this.postText = postText;
+        return this;
+    }
+
+    public ManIncData postBlog(String postBlog) {
+        this.postBlog = postBlog;
         return this;
     }
 
