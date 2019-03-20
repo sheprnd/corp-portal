@@ -41,7 +41,7 @@ public class IncidentsListPage extends Page {
     @FindBy(css = ".modal-footer > button:nth-child(4)")
     private WebElement deleteIncModal;
 
-    @FindBy(css ="#send")
+    @FindBy(css = "#send")
     private WebElement moveToOtherStageTab;
 
     @FindBy(css = "dropdown-button")
@@ -81,9 +81,6 @@ public class IncidentsListPage extends Page {
     private WebElement successRectangle;
 
 
-
-
-
     public void scrollPage() {
 
         wait.until(visibilityOf(incidentAtIncidentsLists));
@@ -97,19 +94,18 @@ public class IncidentsListPage extends Page {
 
         if (fromList) {
             click(deleteIncFromListBtn);
-        }
-        else {
+        } else {
             click(deleteIncModal);
         }
 
-       click(confirmIncDeletionBtn);
+        click(confirmIncDeletionBtn);
     }
 
     public void openIncident() {
 
         click(incidentAtIncidentsLists);
         wait.until(ExpectedConditions.visibilityOf(authorsImg));
-     }
+    }
 
 
     public void moveIncident() {
