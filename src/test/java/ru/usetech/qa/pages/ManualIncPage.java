@@ -38,7 +38,7 @@ public class ManualIncPage extends Page {
     @FindBy(css = ".ng-star-inserted[text='Ошибка содания инцидента']")
     private WebElement alertNotSuccess;
 
-    public boolean add(ManIncData manIncData) {
+    public void add(ManIncData manIncData) {
         //wait.until(ExpectedConditions.elementToBeClickable(createBtn));
         click(createBtn);
 
@@ -48,9 +48,7 @@ public class ManualIncPage extends Page {
         type(postText, manIncData.getPostText());
         type(postUrl, manIncData.getPostUrlField());
         save();
-        return alertSuccess();
-
-
+   
     }
 
 

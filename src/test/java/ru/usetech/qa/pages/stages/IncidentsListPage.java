@@ -1,15 +1,12 @@
 package ru.usetech.qa.pages.stages;
 
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.pages.Page;
-
-import java.util.Random;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -77,6 +74,8 @@ public class IncidentsListPage extends Page {
     @FindBy(css = "div.timeline__shared-item-left-status_done")
     private WebElement successRectangle;
 
+    @FindBy(css = "dropdown-button")
+    private WebElement publishAndMoveBtn;
 
     public void scrollPage() {
 
@@ -104,6 +103,9 @@ public class IncidentsListPage extends Page {
         wait.until(ExpectedConditions.visibilityOf(authorsImg));
     }
 
+    public void closeIncident() {
+        click(closeModalBtn);
+    }
 
     public void moveIncident() {
 
@@ -114,41 +116,28 @@ public class IncidentsListPage extends Page {
 
     }
 
-    public boolean publish(String searchText) {
-        try {
-            searchIncByText(searchText, searchField, searchBtn);
-            openIncident();
-            searchIncByText("Ответ " + new Random().nextInt(10000), answerText, moveDropdownButton);
-            click(withoutMovementStage);
-            click(confirmButton);
-            click(selectAccountDrpDown);
-            click(accountSelected);
-            click(confirmButton);
-            alertSuccess();
-            isPubSuccess();
-            closeIncModal();
+    public void publish(String responce) {
 
-            return true;
-
-        } catch (Exception ex) {
-
-            return false;
-
-        }
+        // ответ
+        type(answerText, responce);
+        // выбираем в меню публиковать
+        click(publishAndMoveBtn);
+        click(withoutMovementStage);
+        click(confirmButton);
+        //выбираем учетку
+        click(selectAccountDrpDown);
+        click(accountSelected);
+        click(confirmButton);
 
     }
 
-    public boolean closeIncModal() {
 
-        return click(closeModalBtn);
+    public boolean isPublicationSuccess() {
 
+        return isElementPresent(successRectangle);
     }
 
-    public void isPubSuccess() {
-        wait.until(ExpectedConditions.visibilityOf(successRectangle));
-    }
-
-    private void searchIncByText(String searchText, WebElement searchField, WebElement searchBtn) {
+    public void searchIncident(String searchText) {
         click(searchField);
         type(searchField, searchText);
         wait.until(ExpectedConditions.visibilityOf(searchBtn));

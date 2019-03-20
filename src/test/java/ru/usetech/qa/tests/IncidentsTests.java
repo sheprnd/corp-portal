@@ -30,7 +30,8 @@ public class IncidentsTests extends TestBase {
     @Test(priority = 1, dataProvider = "incidentData")
     public void createManualIncident(String text, String blog, String url) {
 
-        assertTrue(app.manualInc().add(new ManIncData().postText(text).postBlog(blog).postUrlField(url)));
+        app.manualInc().add(new ManIncData().postText(text).postBlog(blog).postUrlField(url));
+        assertTrue(app.manualInc().alertSuccess());
 
 
     }
@@ -88,7 +89,12 @@ public class IncidentsTests extends TestBase {
                 .postBlog(blog)
                 .postUrlField(url));
 
-        assertTrue(app.incidents().publish(String.valueOf(text)));
+        app.incidents().searchIncident(text);
+        app.incidents().openIncident();
+        app.incidents().publish("Ответ " + new Random().nextInt(10000));
+        assertTrue(app.incidents().isPublicationSuccess(), "Неуспешная публикация");
+        app.incidents().closeIncident();
+
 
 
     }
