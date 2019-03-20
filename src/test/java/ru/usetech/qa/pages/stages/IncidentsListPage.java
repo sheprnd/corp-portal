@@ -114,19 +114,27 @@ public class IncidentsListPage extends Page {
 
     }
 
-    public void publish(String searchText) {
+    public boolean publish(String searchText) {
+        try {
+            searchIncByText(searchText, searchField, searchBtn);
+            openIncident();
+            searchIncByText("Ответ " + new Random().nextInt(10000), answerText, moveDropdownButton);
+            click(withoutMovementStage);
+            click(confirmButton);
+            click(selectAccountDrpDown);
+            click(accountSelected);
+            click(confirmButton);
+            alertSuccess();
+            isPubSuccess();
+            closeIncModal();
 
-        searchIncByText(searchText, searchField, searchBtn);
-        openIncident();
-        searchIncByText("Ответ " + new Random().nextInt(10000), answerText, moveDropdownButton);
-        click(withoutMovementStage);
-        click(confirmButton);
-        click(selectAccountDrpDown);
-        click(accountSelected);
-        click(confirmButton);
-        alertSuccess();
-        isPubSuccess();
-        closeIncModal();
+            return true;
+
+        } catch (Exception ex) {
+
+            return false;
+
+        }
 
     }
 

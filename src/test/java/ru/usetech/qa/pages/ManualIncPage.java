@@ -38,24 +38,24 @@ public class ManualIncPage extends Page {
     @FindBy(css = ".ng-star-inserted[text='Ошибка содания инцидента']")
     private WebElement alertNotSuccess;
 
-    public void add() {
-        wait.until(ExpectedConditions.elementToBeClickable(createBtn));
+    public boolean add(ManIncData manIncData) {
+        //wait.until(ExpectedConditions.elementToBeClickable(createBtn));
         click(createBtn);
 
         //assertTrue(wait.until(stalenessOf(driver.findElement(By.cssSelector(".load__wrap"))))){
         wait.until(ExpectedConditions.visibilityOf(modalDialog));
-
-    }
-
-    public void fill(ManIncData manIncData) {
-
         type(blogUrl, manIncData.getPostBlog());
         type(postText, manIncData.getPostText());
         type(postUrl, manIncData.getPostUrlField());
+        save();
+        return alertSuccess();
+
+
     }
 
+
     public void save() {
-        wait.until(ExpectedConditions.elementToBeClickable(saveBtn));
+        //wait.until(ExpectedConditions.elementToBeClickable(saveBtn));
         click(saveBtn);
     }
 

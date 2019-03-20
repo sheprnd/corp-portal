@@ -26,13 +26,12 @@ public class IncidentsTests extends TestBase {
         };
     }
 
+
     @Test(priority = 1, dataProvider = "incidentData")
     public void createManualIncident(String text, String blog, String url) {
 
-        app.manualInc().add();
-        app.manualInc().fill(new ManIncData().postText(text).postBlog(blog).postUrlField(url));
-        app.manualInc().save();
-        assertTrue(app.manualInc().alertSuccess());
+        assertTrue(app.manualInc().add(new ManIncData().postText(text).postBlog(blog).postUrlField(url)));
+
 
     }
 
@@ -71,17 +70,25 @@ public class IncidentsTests extends TestBase {
 
     }
 
-    @Test(priority = 5)
-    public void publication() {
-        String randomText = String.valueOf(new Random().nextInt(100000) + "Valued" + String.valueOf(new Random().nextInt(10000)));
-        String searchText = randomText;
-        app.manualInc().add();
-        app.manualInc()
-                .fill(new ManIncData().postText(randomText).postBlog("https://vk.com/wall423822898")
-                        .postUrlField("https://vk.com/wall423822898_530"));
-        app.manualInc().save();
-        app.manualInc().alertSuccess();
-        app.incidents().publish(searchText);
+    @DataProvider(name = "pubIncData")
+    public static Object[][] pubIncDataProvider() {
+        return new Object[][]{
+                {new Random()
+                        .nextInt(100000) + "Valued" + String.valueOf(new Random().nextInt(10000)),
+                        "https://vk.com/wall423822898",
+                        "https://vk.com/wall423822898_530"}};
+    }
+
+    @Test(priority = 5, dataProvider = "pubIncData")
+    public void publication(String text, String blog, String url) {
+
+
+        app.manualInc().add(new ManIncData()
+                .postText(String.valueOf(text))
+                .postBlog(blog)
+                .postUrlField(url));
+
+        assertTrue(app.incidents().publish(String.valueOf(text)));
 
 
     }
