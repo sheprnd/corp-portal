@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import ru.usetech.qa.pages.List;
+import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class GeneralList extends List {
+public class GeneralList extends Page {
 
     public GeneralList(WebDriver driver) {
         super(driver);
@@ -22,8 +22,7 @@ public class GeneralList extends List {
     public int elementsCount() {
 
         wait.until(visibilityOf(firstRow));
-        scrollList();
-        return driver.findElements(By.cssSelector(".categories > div.table__line")).size();
+        return getElementsCount(".categories > div.table__line");
 
     }
 

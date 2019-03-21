@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import ru.usetech.qa.pages.List;
+import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class RolesList extends List {
+public class RolesList extends Page {
 
     public RolesList(WebDriver driver) {
         super(driver);
@@ -22,8 +22,7 @@ public class RolesList extends List {
     public int count() {
 
         wait.until(visibilityOf(firstRow));
-        scrollList();
-        return driver.findElements(By.cssSelector(".groups .groups__line")).size();
+        return getElementsCount(".groups .groups__line");
 
     }
 }

@@ -1,6 +1,7 @@
 package ru.usetech.qa.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,7 +47,18 @@ public class Page {
 
         }
 
+    }
 
+    public void scrollPage() {
+
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+
+    }
+
+    public int getElementsCount(String locator) {
+        scrollPage();
+        return driver.findElements(By.cssSelector(locator)).size();
     }
 
     public boolean isElementPresent(WebElement element) {
@@ -83,6 +95,8 @@ public class Page {
         wait.until(visibilityOf(alertCloseBtn));
         alertCloseBtn.click();
     }
+
+
 }
 
 
