@@ -34,12 +34,6 @@ public class ClientReferencePage extends Page {
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveButton;
 
-//    @FindBy(xpath = "//app-incidents-settings-list/settings-users-references-list/div/ul/li[1]/a/div/i")
-//    private WebElement pencil;
-
-//    @FindBy(css = "//settings-users-references-list/div//span[contains(text(), '01_Тестовый справочник Selenium')]")
-//    private WebElement readyReferenceLink;
-
     @FindBy(css = "settings-users-references-modal button:nth-child(2)")
     private WebElement deleteBtn;
 

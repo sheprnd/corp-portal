@@ -1,16 +1,12 @@
 package ru.usetech.qa.pages.settings;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.model.UserData;
 import ru.usetech.qa.pages.Page;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 // страница списка пользователей и форма пользователя
@@ -75,18 +71,6 @@ public class UsersPage extends Page {
         saveUser();
     }
 
-    public void scrollPage(){
 
-        wait.until(visibilityOf(avatar));
-
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
-
-    }
-
-    public int list() {
-        scrollPage();
-        return driver.findElements(By.cssSelector(".users-list-grid-contained .grid-im")).size();
-    }
 
 }

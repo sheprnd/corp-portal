@@ -1,12 +1,9 @@
 package ru.usetech.qa.pages.settings;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.usetech.qa.model.RoleData;
 import ru.usetech.qa.pages.Page;
 
@@ -58,21 +55,6 @@ public class RolesPage extends Page {
         initRoleCreation();
         fillRoleForm(roleData);
         saveRole();
-    }
-
-    public void scrollPage() {
-
-        wait.until(visibilityOf(roleTitle));
-
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
-
-    }
-
-    public int list() {
-        scrollPage();
-        return driver.findElements(By.cssSelector(".groups__line")).size();
-
     }
 
 }
