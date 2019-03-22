@@ -43,6 +43,7 @@ public class ApplicationManager {
     private WorkflowPage workflowPage;
     private ClientReferencePage clientReferencePage;
     private PriorityPage priorityPage;
+    private CategoryPage categoryPage;
 
     private GeneralList generalList;
     private UsersList usersList;
@@ -87,6 +88,7 @@ public class ApplicationManager {
         workflowPage = new WorkflowPage(driver);
         clientReferencePage = new ClientReferencePage(driver);
         priorityPage = new PriorityPage(driver);
+        categoryPage = new CategoryPage(driver);
 
         generalList = new GeneralList(driver);
         usersList = new UsersList(driver);
@@ -117,6 +119,7 @@ public class ApplicationManager {
     public WorkflowPage workflow() { return workflowPage; }
     public ClientReferencePage clientReferences() { return clientReferencePage; }
     public PriorityPage priority() { return priorityPage; }
+    public CategoryPage category() { return categoryPage; }
 
     public GeneralList list(){
         return generalList;

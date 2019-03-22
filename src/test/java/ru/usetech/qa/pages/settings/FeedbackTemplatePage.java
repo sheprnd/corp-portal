@@ -53,13 +53,13 @@ public class FeedbackTemplatePage extends Page {
 
     }
 
-    public void initFeedbackTemplateCreation() {
+    private void initFeedbackTemplateCreation() {
         click(addButton);
         wait.until(visibilityOf(modalForm));
     }
 
 
-    public void fillForm(FeedbackTemplateData feedbackTemplateData) {
+    private void fillForm(FeedbackTemplateData feedbackTemplateData) {
         type(templateName, feedbackTemplateData.getTemplateName());
         type(templateText, feedbackTemplateData.getTemplateText());
         click(dropdown);
@@ -70,7 +70,7 @@ public class FeedbackTemplatePage extends Page {
     }
 
 
-    public void save() {
+    private void save() {
         click(saveButton);
     }
 

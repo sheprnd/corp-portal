@@ -4,14 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import ru.usetech.qa.model.PriorityData;
+import ru.usetech.qa.model.CategoryData;
 import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class PriorityPage extends Page {
+public class CategoryPage extends Page {
 
-    public PriorityPage(WebDriver driver){
+    public CategoryPage(WebDriver driver){
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -28,24 +28,24 @@ public class PriorityPage extends Page {
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveButton;
 
-    private void initPriorityCreation() {
+    private void initCategoryCreation() {
         click(addButton);
         wait.until(visibilityOf(modalForm));
     }
 
-    private void fillPriorityForm(PriorityData priorityData) {
+    private void fillCategoryForm(CategoryData categoryData) {
 
-        type(name, priorityData.getPriorityName());
+        type(name, categoryData.getCategoryName());
     }
 
-    private void savePriority() {
+    private void saveCategory() {
         click(saveButton);
     }
 
-    public void create(PriorityData priorityData) {
-        initPriorityCreation();
-        fillPriorityForm(priorityData);
-        savePriority();
+    public void create(CategoryData categoryData) {
+        initCategoryCreation();
+        fillCategoryForm(categoryData);
+        saveCategory();
 
     }
 }

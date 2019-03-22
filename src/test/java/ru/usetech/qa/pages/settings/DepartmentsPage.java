@@ -34,18 +34,18 @@ public class DepartmentsPage extends Page {
     private WebElement pageTitle;
 
 
-    public void initDepartmentCreation() {
+    private void initDepartmentCreation() {
         click(addButton);
         wait.until(visibilityOf(modalForm));
     }
 
 
-    public void fillForm(DepartmentData departmentData) {
+    private void fillForm(DepartmentData departmentData) {
 
         type(nameGroup, departmentData.getDepartmentName());
     }
 
-    public void save() {
+    private void save() {
         click(saveButton);
     }
 

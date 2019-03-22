@@ -8,6 +8,7 @@ import ru.usetech.qa.model.*;
 import java.util.Random;
 import java.util.UUID;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 
@@ -30,7 +31,7 @@ public class SettingsTests extends TestBase {
                 .withEmail(new Random().nextInt(10000) + "@yandex.ru").withPassword("1")); //доделать рандомное получение данных юзера
         assertTrue(app.user().alertSuccess());
         int actualCount = app.users().count();
-        assertTrue(actualCount == count + 1, "-");
+        assertEquals(actualCount, count+1);
     }
 
     @Test(priority=2)
@@ -41,7 +42,7 @@ public class SettingsTests extends TestBase {
         app.role().create(new RoleData().withName("#auto Role" + UUID.randomUUID().toString()));
         assertTrue(app.role().alertSuccess());
         int actualCount = app.roles().count();
-        assertTrue(actualCount == count + 1, "-");
+        assertEquals(actualCount, count+1);
     }
 
     @Test(priority=3)
@@ -54,7 +55,7 @@ public class SettingsTests extends TestBase {
         assertTrue(app.department().alertSuccess());
         //новое количество
         int actualCount = app.list().elementsCount();
-        assertTrue(actualCount == count + 1, "-");
+        assertEquals(actualCount, count+1);
     }
 
     @Test(priority=4)
@@ -68,7 +69,7 @@ public class SettingsTests extends TestBase {
                 .withReasonText("Отлично"));
         assertTrue(app.feedbackTemplates().alertSuccess());
         int actualCount = app.list().elementsCount();
-        assertTrue(actualCount == count + 1, "-");
+        assertEquals(actualCount, count+1);
 
     }
 
@@ -80,10 +81,21 @@ public class SettingsTests extends TestBase {
         app.priority().create(new PriorityData().withName("#auto Priority " + UUID.randomUUID().toString()));
         assertTrue(app.priority().alertSuccess());
         int actualCount = app.list().elementsCount();
-        assertTrue(actualCount == count + 1, "-");
+        assertEquals(actualCount, count+1);
     }
 
     @Test(priority=6)
+    public void testCategoryCreation() {
+
+        app.settings().goToCategories();
+        int count = app.list().elementsCount();
+        app.priority().create(new PriorityData().withName("#auto Priority " + UUID.randomUUID().toString()));
+        assertTrue(app.priority().alertSuccess());
+        int actualCount = app.list().elementsCount();
+        assertEquals(actualCount, count+1);
+    }
+
+    @Test(priority=7)
     public void testClientReferenceCreationAndDeletionTest() throws Exception {
 
         String name = "#auto ClientReference " + new Random().nextInt(10000);
