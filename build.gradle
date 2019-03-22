@@ -3,6 +3,7 @@
 }*/
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'ru.d10xa.allure'
 group 'ru.usetech.test'
 version '1.0-SNAPSHOT'
 
@@ -12,6 +13,10 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    agent
+}
+
 dependencies {
     compile 'org.testng:testng:6.14.3'
     compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
@@ -19,5 +24,50 @@ dependencies {
     compile 'org.openqa.selenium:selenium-rc:1.0-20081010.060147'
     compile 'org.apache.httpcomponents:httpclient:4.5.6'
     compile 'org.json:json:20160810'
+    agent "org.aspectj:aspectjweaver:1.8.0"
+    testCompile "ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4"
 
 }
+
+
+
+
+test.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+test {
+    useTestNG()
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "ru.d10xa:gradle-allure-plugin:0.5.5"
+    }
+}
+
+
+
+allure {
+    aspectjweaver = true
+
+    junit = false
+    testNG = true
+    spock = false
+
+    geb = false
+
+    allureResultsDir = "$buildDir/allure-results"
+    allureReportDir = "$buildDir/allure-report"
+
+    allureVersion = "1.4.24.RC3"
+    aspectjVersion = "1.8.9"
+    allureSpockGebExtensionVersion = "0.2.1"
+    allureJunitAspectjAdaptorVersion = "0.1.1"
+
+    clean = true
+}
+
