@@ -89,13 +89,26 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToCategories();
         int count = app.list().elementsCount();
-        app.priority().create(new PriorityData().withName("#auto Priority " + UUID.randomUUID().toString()));
-        assertTrue(app.priority().alertSuccess());
+        app.category().create(new CategoryData().withName("#auto Category " + UUID.randomUUID().toString()));
+        assertTrue(app.category().alertSuccess());
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
 
     @Test(priority=7)
+    public void testReportCreation() {
+
+        app.settings().goToReports();
+        int count = app.list().elementsCount();
+        app.report().create(new ReportData().
+                withName("#auto Report " + UUID.randomUUID().toString()).
+                withExternalId(new Random().nextInt(10000)));
+        assertTrue(app.report().alertSuccess());
+        int actualCount = app.list().elementsCount();
+        assertEquals(actualCount, count+1);
+    }
+
+    @Test(priority=8)
     public void testClientReferenceCreationAndDeletionTest() throws Exception {
 
         String name = "#auto ClientReference " + new Random().nextInt(10000);

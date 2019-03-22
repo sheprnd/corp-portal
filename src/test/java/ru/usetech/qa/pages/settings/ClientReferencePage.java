@@ -50,7 +50,7 @@ public class ClientReferencePage extends Page {
 
     private void fillForm(ClientReferenceData clientReferenceData) {
 
-        type(title, clientReferenceData.getreferenceName());
+        type(title, clientReferenceData.getReferenceName());
     }
 
     private void save() {

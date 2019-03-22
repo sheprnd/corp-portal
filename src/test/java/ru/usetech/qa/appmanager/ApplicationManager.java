@@ -44,6 +44,7 @@ public class ApplicationManager {
     private ClientReferencePage clientReferencePage;
     private PriorityPage priorityPage;
     private CategoryPage categoryPage;
+    private ReportPage reportPage;
 
     private GeneralList generalList;
     private UsersList usersList;
@@ -89,6 +90,7 @@ public class ApplicationManager {
         clientReferencePage = new ClientReferencePage(driver);
         priorityPage = new PriorityPage(driver);
         categoryPage = new CategoryPage(driver);
+        reportPage = new ReportPage(driver);
 
         generalList = new GeneralList(driver);
         usersList = new UsersList(driver);
@@ -120,6 +122,7 @@ public class ApplicationManager {
     public ClientReferencePage clientReferences() { return clientReferencePage; }
     public PriorityPage priority() { return priorityPage; }
     public CategoryPage category() { return categoryPage; }
+    public ReportPage report() { return reportPage; }
 
     public GeneralList list(){
         return generalList;

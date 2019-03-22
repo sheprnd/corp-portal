@@ -5,7 +5,7 @@ public class ClientReferenceData {
     private String referenceName;
 
 
-    public String getreferenceName() {
+    public String getReferenceName() {
         return referenceName;
     }
 
