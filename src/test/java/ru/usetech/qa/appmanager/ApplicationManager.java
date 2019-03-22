@@ -42,6 +42,7 @@ public class ApplicationManager {
     private FeedbackTemplatePage feedbackTemplatePage;
     private WorkflowPage workflowPage;
     private ClientReferencePage clientReferencePage;
+    private PriorityPage priorityPage;
 
     private GeneralList generalList;
     private UsersList usersList;
@@ -85,15 +86,16 @@ public class ApplicationManager {
         feedbackTemplatePage = new FeedbackTemplatePage(driver);
         workflowPage = new WorkflowPage(driver);
         clientReferencePage = new ClientReferencePage(driver);
-
-        postsHelper = new PostsHelper (this);
-        settingsHelper = new SettingsHelper (this);
+        priorityPage = new PriorityPage(driver);
 
         generalList = new GeneralList(driver);
         usersList = new UsersList(driver);
         rolesList = new RolesList(driver);
 
         addDeleteReasonDialog = new AddDeleteReasonDialog(driver);
+
+        postsHelper = new PostsHelper (this);
+        settingsHelper = new SettingsHelper (this);
 
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
@@ -114,6 +116,7 @@ public class ApplicationManager {
     public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
     public WorkflowPage workflow() { return workflowPage; }
     public ClientReferencePage clientReferences() { return clientReferencePage; }
+    public PriorityPage priority() { return priorityPage; }
 
     public GeneralList list(){
         return generalList;
@@ -150,7 +153,6 @@ public class ApplicationManager {
     public void stop() {
         driver.quit();
     }
-    public void refresh() { driver.navigate().refresh(); }
 
     public byte[] takeScreenshot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);

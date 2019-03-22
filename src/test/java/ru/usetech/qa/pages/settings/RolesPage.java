@@ -34,20 +34,19 @@ public class RolesPage extends Page {
     private WebElement roleTitle;
 
 
-    public void initRoleCreation() {
+    private void initRoleCreation() {
         click(addRoleButton);
         wait.until(visibilityOf(roleForm));
     }
 
 
-    public void fillRoleForm(RoleData roleData) {
+    private void fillRoleForm(RoleData roleData) {
 
         type(nameGroup, roleData.getRoleName());
 
-
     }
 
-    public void saveRole() {
+    private void saveRole() {
         click(saveRoleButton);
     }
 

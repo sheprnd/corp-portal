@@ -1,7 +1,6 @@
 package ru.usetech.qa.pages.settings;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -43,18 +42,18 @@ public class ClientReferencePage extends Page {
     @FindBy(css = "confirm-modal button:first-child")
     private WebElement confirmDeletionBtn;
 
-    public void initDepartmentCreation() {
+    private void initDepartmentCreation() {
         click(addButton);
         wait.until(visibilityOf(modalForm));
     }
 
 
-    public void fillForm(ClientReferenceData clientReferenceData) {
+    private void fillForm(ClientReferenceData clientReferenceData) {
 
         type(title, clientReferenceData.getreferenceName());
     }
 
-    public void save() {
+    private void save() {
         click(saveButton);
     }
 
@@ -71,6 +70,7 @@ public class ClientReferencePage extends Page {
         String linkLocator = "settings-users-references-list li:nth-child(" + (index + 1) +")";
         String pencilLocator = "settings-users-references-list li:nth-child(" + (index + 1) +") .fa-pencil";
 
+        wait.until(visibilityOf(addButton));
         scrollPage();
         WebElement referenceLink = driver.findElement(By.cssSelector(linkLocator));
 
@@ -90,13 +90,6 @@ public class ClientReferencePage extends Page {
 
     }
 
-    public void scrollPage() {
 
-        wait.until(visibilityOf(addButton));
-
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
-
-    }
 
 }

@@ -45,13 +45,13 @@ public class UsersPage extends Page {
     @FindBy(css = ".post__avatar")
     private WebElement avatar;
 
-    public void initUserCreation(){
+    private void initUserCreation(){
         click(addUserButton);
         wait.until(visibilityOf(userForm));
     }
 
 
-    public void fillUserForm(UserData userData) {
+    private void fillUserForm(UserData userData) {
 
         type(lastName, userData.getLastName());
         type(firstName, userData.getFirstName());
@@ -61,7 +61,7 @@ public class UsersPage extends Page {
 
     }
 
-    public void saveUser(){
+    private void saveUser(){
         click(saveUserButton);
     }
 

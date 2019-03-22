@@ -15,13 +15,13 @@ public class GeneralList extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = ".categories > div.table__line:nth-child(2)")
+    @FindBy(css = ".categories div.table__line")
     private WebElement firstRow;
 
     public int elementsCount() {
 
         wait.until(visibilityOf(firstRow));
-        return getElementsCount(".categories > div.table__line");
+        return getElementsCount(".categories div.table__line");
 
     }
 

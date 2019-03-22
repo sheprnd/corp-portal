@@ -72,8 +72,18 @@ public class SettingsTests extends TestBase {
 
     }
 
-
     @Test(priority=5)
+    public void testPriorityCreation() {
+
+        app.settings().goToPriorities();
+        int count = app.list().elementsCount();
+        app.priority().create(new PriorityData().withName("#auto Priority " + UUID.randomUUID().toString()));
+        assertTrue(app.priority().alertSuccess());
+        int actualCount = app.list().elementsCount();
+        assertTrue(actualCount == count + 1, "-");
+    }
+
+    @Test(priority=6)
     public void testClientReferenceCreationAndDeletionTest() throws Exception {
 
         String name = "#auto ClientReference " + new Random().nextInt(10000);

@@ -29,6 +29,9 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/satisfaction-templates']")
     private WebElement feedbackTemplateListLink;
 
+    @FindBy(css = "[href = '#/settings/priority']")
+    private WebElement prioritiesListLink;
+
     @FindBy(css = "[href = '#/settings/workflow']")
     private WebElement workflowLink;
 
@@ -50,5 +53,9 @@ public class SettingsMenu extends Page{
     public void goToWorkflow() {
         click(workflowLink);
         wait.until(ExpectedConditions.visibilityOf(stage));
+    }
+
+    public void goToPriorities(){
+        click(prioritiesListLink);
     }
 }
