@@ -21,8 +21,8 @@ public class IncidentsTests extends TestBase {
     @DataProvider(name = "incidentData")
     public static Object[][] incidentDataProvider() {
         return new Object[][]{
-                {"#Random text 1", "https://www.google.com/search/1/123", "https://www.google.com/search/1"},
-                {"#Random text 2", "https://www.google.com/search/2/123", "https://www.google.com/search/2"}
+                {"#Random text 1", "https://vk.com/wall423822898", "https://vk.com/wall423822898_532"},
+                {"#Random text 2", "https://vk.com/wall423822898", "https://vk.com/wall423822898_530"}
         };
     }
 

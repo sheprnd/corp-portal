@@ -1,5 +1,7 @@
 package ru.usetech.qa.appmanager;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -150,5 +152,8 @@ public class ApplicationManager {
     }
     public void refresh() { driver.navigate().refresh(); }
 
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
 
 }
