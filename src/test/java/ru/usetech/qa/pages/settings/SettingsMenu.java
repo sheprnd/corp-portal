@@ -38,6 +38,9 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/reports']")
     private WebElement reportsListLink;
 
+    @FindBy(css = "[href = '#/settings/report-groups']")
+    private WebElement reportGroupsLink;
+
     @FindBy(css = "[href = '#/settings/workflow']")
     private WebElement workflowLink;
 
@@ -71,5 +74,9 @@ public class SettingsMenu extends Page{
 
     public void goToReports(){
         click(reportsListLink);
+    }
+
+    public void goToReportGroups(){
+        click(reportGroupsLink);
     }
 }

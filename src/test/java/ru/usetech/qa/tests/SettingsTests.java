@@ -129,4 +129,15 @@ public class SettingsTests extends TestBase {
 
     }
 
+    @Test(priority=9)
+    public void testReportGroupCreation() {
+
+        app.settings().goToReportGroups();
+        int count = app.reportGroups().count();
+        app.reportGroup().create(new ReportGroupData().withName("#auto ReportGroup " + UUID.randomUUID().toString()));
+        assertTrue(app.reportGroup().alertSuccess());
+        int actualCount = app.reportGroups().count();
+        assertEquals(actualCount, count+1);
+    }
+
 }

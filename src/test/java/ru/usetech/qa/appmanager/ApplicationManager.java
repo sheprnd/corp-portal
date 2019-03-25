@@ -45,10 +45,12 @@ public class ApplicationManager {
     private PriorityPage priorityPage;
     private CategoryPage categoryPage;
     private ReportPage reportPage;
+    private ReportGroupPage reportGroupPage;
 
     private GeneralList generalList;
     private UsersList usersList;
     private RolesList rolesList;
+    private ReportGroupsList reportGroupsList;
 
     private AddDeleteReasonDialog addDeleteReasonDialog;
 
@@ -91,10 +93,12 @@ public class ApplicationManager {
         priorityPage = new PriorityPage(driver);
         categoryPage = new CategoryPage(driver);
         reportPage = new ReportPage(driver);
+        reportGroupPage = new ReportGroupPage(driver);
 
         generalList = new GeneralList(driver);
         usersList = new UsersList(driver);
         rolesList = new RolesList(driver);
+        reportGroupsList = new ReportGroupsList(driver);
 
         addDeleteReasonDialog = new AddDeleteReasonDialog(driver);
 
@@ -123,12 +127,18 @@ public class ApplicationManager {
     public PriorityPage priority() { return priorityPage; }
     public CategoryPage category() { return categoryPage; }
     public ReportPage report() { return reportPage; }
+    public ReportGroupPage reportGroup() {
+        return reportGroupPage;
+    }
 
     public GeneralList list(){
         return generalList;
     }
     public UsersList users(){return usersList;}
     public RolesList roles(){return rolesList;}
+    public ReportGroupsList reportGroups() {
+        return reportGroupsList;
+    }
 
     public AddDeleteReasonDialog deleteReasonDialog(){
         return addDeleteReasonDialog;
