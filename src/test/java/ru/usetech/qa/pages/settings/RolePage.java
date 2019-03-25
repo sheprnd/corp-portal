@@ -11,9 +11,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 // Roles list page and role modal page
 
-public class RolesPage extends Page {
+public class RolePage extends Page {
 
-    public RolesPage(WebDriver driver) {
+    public RolePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

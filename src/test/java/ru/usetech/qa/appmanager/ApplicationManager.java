@@ -36,9 +36,9 @@ public class ApplicationManager {
     private PostsListPage postsListPage;
     private IncidentsListPage incidentsListPage;
 
-    private UsersPage usersPage;
-    private DepartmentsPage departmentsPage;
-    private RolesPage rolesPage;
+    private UserPage userPage;
+    private DepartmentPage departmentPage;
+    private RolePage rolePage;
     private FeedbackTemplatePage feedbackTemplatePage;
     private WorkflowPage workflowPage;
     private ClientReferencePage clientReferencePage;
@@ -82,9 +82,9 @@ public class ApplicationManager {
         postsListPage = new PostsListPage(driver);
         incidentsListPage = new IncidentsListPage(driver);
 
-        usersPage = new UsersPage(driver);
-        departmentsPage = new DepartmentsPage(driver);
-        rolesPage = new RolesPage(driver);
+        userPage = new UserPage(driver);
+        departmentPage = new DepartmentPage(driver);
+        rolePage = new RolePage(driver);
         feedbackTemplatePage = new FeedbackTemplatePage(driver);
         workflowPage = new WorkflowPage(driver);
         clientReferencePage = new ClientReferencePage(driver);
@@ -114,9 +114,9 @@ public class ApplicationManager {
     public PostsListPage posts() { return postsListPage; }
     public IncidentsListPage incidents() { return incidentsListPage; }
 
-    public UsersPage user() { return usersPage; }
-    public DepartmentsPage department() { return departmentsPage; }
-    public RolesPage role() { return rolesPage; }
+    public UserPage user() { return userPage; }
+    public DepartmentPage department() { return departmentPage; }
+    public RolePage role() { return rolePage; }
     public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
     public WorkflowPage workflow() { return workflowPage; }
     public ClientReferencePage clientReferences() { return clientReferencePage; }

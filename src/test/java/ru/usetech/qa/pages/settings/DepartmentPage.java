@@ -11,9 +11,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 //Departments list page
 
-public class DepartmentsPage extends Page {
+public class DepartmentPage extends Page {
 
-    public DepartmentsPage(WebDriver driver) {
+    public DepartmentPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

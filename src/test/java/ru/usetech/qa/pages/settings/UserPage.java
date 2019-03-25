@@ -11,9 +11,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 // страница списка пользователей и форма пользователя
 
-public class UsersPage extends Page {
+public class UserPage extends Page {
 
-    public UsersPage(WebDriver driver){
+    public UserPage(WebDriver driver){
         super(driver);
         PageFactory.initElements(driver,this);
     }
