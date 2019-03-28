@@ -39,7 +39,7 @@ test.doFirst {
 test {
     useTestNG() {
         useDefaultListeners = true
-        suites "Suite1"
+        suites "src/test/resources/testng_2.xml"
     }
 }
 
