@@ -7,7 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class Page {
 
@@ -80,7 +81,7 @@ public class Page {
         try {
 
             wait.until(visibilityOf(alertSuccess));
-            wait.until(stalenessOf(driver.findElement(By.cssSelector(".alert-success"))));
+            closeAlert();
 
             return true;
 
@@ -96,7 +97,4 @@ public class Page {
         alertCloseBtn.click();
     }
 
-
-}
-
-
+    }

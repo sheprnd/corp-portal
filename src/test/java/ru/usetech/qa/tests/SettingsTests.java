@@ -1,12 +1,11 @@
 package ru.usetech.qa.tests;
 
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.*;
 
 import java.util.Random;
-import java.util.UUID;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -14,7 +13,7 @@ import static org.testng.Assert.assertTrue;
 
 public class SettingsTests extends TestBase {
 
-    @BeforeTest
+    @BeforeClass
     public void ensurePreconditions() {
 
         app.goTo().settings();
@@ -23,7 +22,6 @@ public class SettingsTests extends TestBase {
 
     @Test(priority=1)
     public void testUserCreation() {
-
 
         app.settings().goToUsers();
         int count = app.users().count();
@@ -39,8 +37,9 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToRoles();
         int count = app.roles().count();
-        app.role().create(new RoleData().withName("#auto Role" + UUID.randomUUID().toString()));
+        app.role().create(new RoleData().withName("#auto Role" + new Random().nextInt(100000)));
         assertTrue(app.role().alertSuccess());
+        app.roles().waitUpdatedList();
         int actualCount = app.roles().count();
         assertEquals(actualCount, count+1);
     }
@@ -51,7 +50,7 @@ public class SettingsTests extends TestBase {
         app.settings().goToDepartments();
         //исходное количество
         int count = app.list().elementsCount();
-        app.department().create(new DepartmentData().withName("#auto Department " + UUID.randomUUID().toString()));
+        app.department().create(new DepartmentData().withName("#auto Department " + new Random().nextInt(100000)));
         assertTrue(app.department().alertSuccess());
         //новое количество
         int actualCount = app.list().elementsCount();
@@ -64,10 +63,11 @@ public class SettingsTests extends TestBase {
         app.settings().goToFeedbacktemplates();
         int count = app.list().elementsCount();
         app.feedbackTemplates().create(new FeedbackTemplateData()
-                .withName("#auto Feedback " + UUID.randomUUID().toString())
+                .withName("#auto Feedback " + new Random().nextInt(100000))
                 .withText("Прошу оценить результат:\n" + "{close_reasons}")
                 .withReasonText("Отлично"));
         assertTrue(app.feedbackTemplates().alertSuccess());
+
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
 
@@ -78,7 +78,7 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToPriorities();
         int count = app.list().elementsCount();
-        app.priority().create(new PriorityData().withName("#auto Priority " + UUID.randomUUID().toString()));
+        app.priority().create(new PriorityData().withName("#auto Priority " + new Random().nextInt(100000)));
         assertTrue(app.priority().alertSuccess());
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
@@ -89,7 +89,7 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToCategories();
         int count = app.list().elementsCount();
-        app.category().create(new CategoryData().withName("#auto Category " + UUID.randomUUID().toString()));
+        app.category().create(new CategoryData().withName("#auto Category " + new Random().nextInt(100000)));
         assertTrue(app.category().alertSuccess());
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
@@ -101,8 +101,8 @@ public class SettingsTests extends TestBase {
         app.settings().goToReports();
         int count = app.list().elementsCount();
         app.report().create(new ReportData().
-                withName("#auto Report " + UUID.randomUUID().toString()).
-                withExternalId(new Random().nextInt(10000)));
+                withName("#auto Report " + new Random().nextInt(100000)).
+                withExternalId(new Random().nextInt(100000)));
         assertTrue(app.report().alertSuccess());
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
@@ -111,7 +111,7 @@ public class SettingsTests extends TestBase {
     @Test(priority=8)
     public void testClientReferenceCreationAndDeletionTest() throws Exception {
 
-        String name = "#auto ClientReference " + new Random().nextInt(10000);
+        String name = "#auto ClientReference " + new Random().nextInt(100000);
 
         app.clientReferences().create(new ClientReferenceData()
         .withName(name));
@@ -134,9 +134,21 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToReportGroups();
         int count = app.reportGroups().count();
-        app.reportGroup().create(new ReportGroupData().withName("#auto ReportGroup " + UUID.randomUUID().toString()));
+        app.reportGroup().create(new ReportGroupData().withName("#auto ReportGroup " + new Random().nextInt(100000)));
         assertTrue(app.reportGroup().alertSuccess());
         int actualCount = app.reportGroups().count();
+        assertEquals(actualCount, count+1);
+    }
+
+    @Test(priority=10)
+    public void testLocationCreation() {
+
+        app.settings().goToLocations();
+        int count = app.list().elementsCount();
+        app.location().create(new LocationData().
+                withName("#auto Location " + new Random().nextInt(100000)));
+        assertTrue(app.location().alertSuccess());
+        int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
 
