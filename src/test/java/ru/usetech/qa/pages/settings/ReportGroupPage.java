@@ -19,9 +19,8 @@ public class ReportGroupPage extends Page {
     @FindBy(css = ".content__header .btn")
     private WebElement addButton;
 
-    //@FindBy(css = ".modal-body")
     @FindBy(css = "label.ui-dropdown-label")
-    private WebElement modalForm;
+    private WebElement dropdown;
 
     @FindBy(css = "input[formcontrolname='name']")
     private WebElement name;
@@ -31,7 +30,7 @@ public class ReportGroupPage extends Page {
 
     private void initReportGroupCreation() {
         click(addButton);
-        wait.until(visibilityOf(modalForm));
+        wait.until(visibilityOf(dropdown));
     }
 
     private void fillReportGroupForm(ReportGroupData reportGroupData) {
