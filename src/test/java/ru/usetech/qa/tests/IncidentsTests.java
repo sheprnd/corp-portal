@@ -48,7 +48,7 @@ public class IncidentsTests extends TestBase {
         assertTrue(app.incidents().alertSuccess());
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3, enabled=false)
     public void deleteIncFromModal() throws Exception {
 
         app.incidents().openIncident();
