@@ -19,8 +19,8 @@ public class PriorityPage extends Page {
     @FindBy(css = ".content__header .btn")
     private WebElement addButton;
 
-    @FindBy(css = ".modal-body")
-    private WebElement modalForm;
+    @FindBy(css = "icon-tooltip")
+    private WebElement icon;
 
     @FindBy(css = "input[formcontrolname='name']")
     private WebElement name;
@@ -30,7 +30,7 @@ public class PriorityPage extends Page {
 
     private void initPriorityCreation() {
         click(addButton);
-        wait.until(visibilityOf(modalForm));
+        wait.until(visibilityOf(icon));
     }
 
     private void fillPriorityForm(PriorityData priorityData) {

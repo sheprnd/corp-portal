@@ -33,18 +33,6 @@ public class SettingsTests extends TestBase {
     }
 
     @Test(priority=2)
-    public void testRoleCreation() {
-
-        app.settings().goToRoles();
-        int count = app.roles().count();
-        app.role().create(new RoleData().withName("#auto Role" + new Random().nextInt(100000)));
-        assertTrue(app.role().alertSuccess());
-        app.roles().waitUpdatedList();
-        int actualCount = app.roles().count();
-        assertEquals(actualCount, count+1);
-    }
-
-    @Test(priority=3)
     public void testDepartmentCreation() {
 
         app.settings().goToDepartments();
@@ -54,6 +42,17 @@ public class SettingsTests extends TestBase {
         assertTrue(app.department().alertSuccess());
         //новое количество
         int actualCount = app.list().elementsCount();
+        assertEquals(actualCount, count+1);
+    }
+
+    @Test(priority=3)
+    public void testRoleCreation() {
+
+        app.settings().goToRoles();
+        int count = app.roles().count();
+        app.role().create(new RoleData().withName("#auto Role" + new Random().nextInt(100000)));
+        assertTrue(app.role().alertSuccess());
+        int actualCount = app.roles().count();
         assertEquals(actualCount, count+1);
     }
 
@@ -109,6 +108,29 @@ public class SettingsTests extends TestBase {
     }
 
     @Test(priority=8)
+    public void testReportGroupCreation() {
+
+        app.settings().goToReportGroups();
+        int count = app.reportGroups().count();
+        app.reportGroup().create(new ReportGroupData().withName("#auto ReportGroup " + new Random().nextInt(100000)));
+        assertTrue(app.reportGroup().alertSuccess());
+        int actualCount = app.reportGroups().count();
+        assertEquals(actualCount, count+1);
+    }
+
+    @Test(priority=9)
+    public void testLocationCreation() {
+
+        app.settings().goToLocations();
+        int count = app.list().elementsCount();
+        app.location().create(new LocationData().
+                withName("#auto Location " + new Random().nextInt(100000)));
+        assertTrue(app.location().alertSuccess());
+        int actualCount = app.list().elementsCount();
+        assertEquals(actualCount, count+1);
+    }
+
+    @Test(priority=10)
     public void testClientReferenceCreationAndDeletionTest() throws Exception {
 
         String name = "#auto ClientReference " + new Random().nextInt(100000);
@@ -125,31 +147,8 @@ public class SettingsTests extends TestBase {
             assertTrue(app.clientReferences().alertSuccess());
         }
 
-
-
     }
 
-    @Test(priority=9)
-    public void testReportGroupCreation() {
 
-        app.settings().goToReportGroups();
-        int count = app.reportGroups().count();
-        app.reportGroup().create(new ReportGroupData().withName("#auto ReportGroup " + new Random().nextInt(100000)));
-        assertTrue(app.reportGroup().alertSuccess());
-        int actualCount = app.reportGroups().count();
-        assertEquals(actualCount, count+1);
-    }
-
-    @Test(priority=10)
-    public void testLocationCreation() {
-
-        app.settings().goToLocations();
-        int count = app.list().elementsCount();
-        app.location().create(new LocationData().
-                withName("#auto Location " + new Random().nextInt(100000)));
-        assertTrue(app.location().alertSuccess());
-        int actualCount = app.list().elementsCount();
-        assertEquals(actualCount, count+1);
-    }
 
 }
