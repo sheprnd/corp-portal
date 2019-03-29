@@ -74,12 +74,8 @@ public class ApplicationManager {
 
         properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
 
-/*
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
-        options.addArguments(String.valueOf(new URL("http://127.0.1.1:4444/wd/hub")));
-        options.addArguments((List <String>) DesiredCapabilities.chrome());
-*/
 
 
 
