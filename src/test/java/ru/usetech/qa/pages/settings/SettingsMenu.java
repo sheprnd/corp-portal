@@ -48,6 +48,12 @@ public class SettingsMenu extends Page{
     @FindBy(css = "authors-satisfaction-templates")
     private WebElement feedbackTemplateBlock;
 
+    @FindBy(css = "[href = '#/settings/hooks']")
+    private WebElement webhookListLink;
+
+    @FindBy(css = ".grid-im_hooks")
+    private WebElement webhookBlock;
+
     @FindBy(css = "[href = '#/settings/priority']")
     private WebElement prioritiesListLink;
 
@@ -107,6 +113,11 @@ public class SettingsMenu extends Page{
     public void goToFeedbacktemplates() {
         click(feedbackTemplateListLink);
         wait.until(visibilityOf(feedbackTemplateBlock));
+    }
+
+    public void goToWebhooks() {
+        click(webhookListLink);
+        wait.until(visibilityOf(webhookBlock));
     }
 
     public void goToWorkflow() {

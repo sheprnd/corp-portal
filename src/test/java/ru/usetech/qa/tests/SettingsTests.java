@@ -61,15 +61,26 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToTimesheets();
         int count = app.timesheets().count();
-        System.out.println(count);
         app.timesheet().create();
         assertTrue(app.timesheet().alertSuccess());
         int actualCount = app.timesheets().count();
-        System.out.println(actualCount);
         assertEquals(actualCount, count+1);
     }
 
     @Test(priority=5)
+    public void testWebhookCreation() {
+
+        app.settings().goToWebhooks();
+        int count = app.webhooks().count();
+        app.webhook().create(new WebhookData().
+                withName("#auto Webhook" + new Random().nextInt(100000)).
+                withUrl("https://mlgext.usetech.ru/"));
+        assertTrue(app.webhook().alertSuccess());
+        int actualCount = app.webhooks().count();
+        assertEquals(actualCount, count+1);
+    }
+
+    @Test(priority=6)
     public void testFeedbackTemplateCreation() {
 
         app.settings().goToFeedbacktemplates();
@@ -85,7 +96,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test(priority=6)
+    @Test(priority=7)
     public void testPriorityCreation() {
 
         app.settings().goToPriorities();
@@ -96,7 +107,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=7)
+    @Test(priority=8)
     public void testCategoryCreation() {
 
         app.settings().goToCategories();
@@ -107,7 +118,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=8)
+    @Test(priority=9)
     public void testReportCreation() {
 
         app.settings().goToReports();
@@ -120,7 +131,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=9)
+    @Test(priority=10)
     public void testReportGroupCreation() {
 
         app.settings().goToReportGroups();
@@ -131,7 +142,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=10)
+    @Test(priority=11)
     public void testLocationCreation() {
 
         app.settings().goToLocations();
@@ -143,7 +154,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=11)
+    @Test(priority=12)
     public void testClientReferenceCreationAndDeletionTest() throws Exception {
 
         String name = "#auto ClientReference " + new Random().nextInt(100000);

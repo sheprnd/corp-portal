@@ -41,6 +41,7 @@ public class ApplicationManager {
     private RolePage rolePage;
     private TimesheetPage timesheetPage;
     private FeedbackTemplatePage feedbackTemplatePage;
+    private WebhookPage webhookPage;
     private WorkflowPage workflowPage;
     private ClientReferencePage clientReferencePage;
     private PriorityPage priorityPage;
@@ -53,6 +54,7 @@ public class ApplicationManager {
     private UsersList usersList;
     private RolesList rolesList;
     private TimesheetsList timesheetsList;
+    private WebhooksList webhooksList;
     private ReportGroupsList reportGroupsList;
 
     private AddDeleteReasonDialog addDeleteReasonDialog;
@@ -92,6 +94,7 @@ public class ApplicationManager {
         rolePage = new RolePage(driver);
         timesheetPage = new TimesheetPage(driver);
         feedbackTemplatePage = new FeedbackTemplatePage(driver);
+        webhookPage = new WebhookPage(driver);
         workflowPage = new WorkflowPage(driver);
         clientReferencePage = new ClientReferencePage(driver);
         priorityPage = new PriorityPage(driver);
@@ -104,6 +107,7 @@ public class ApplicationManager {
         usersList = new UsersList(driver);
         rolesList = new RolesList(driver);
         timesheetsList = new TimesheetsList(driver);
+        webhooksList = new WebhooksList(driver);
         reportGroupsList = new ReportGroupsList(driver);
 
         addDeleteReasonDialog = new AddDeleteReasonDialog(driver);
@@ -129,6 +133,7 @@ public class ApplicationManager {
     public RolePage role() { return rolePage; }
     public TimesheetPage timesheet() {return timesheetPage;}
     public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
+    public WebhookPage webhook() {return  webhookPage;}
     public WorkflowPage workflow() { return workflowPage; }
     public ClientReferencePage clientReferences() { return clientReferencePage; }
     public PriorityPage priority() { return priorityPage; }
@@ -145,6 +150,7 @@ public class ApplicationManager {
     public UsersList users(){return usersList;}
     public RolesList roles(){return rolesList;}
     public TimesheetsList timesheets() {return timesheetsList;}
+    public WebhooksList webhooks() {return webhooksList;}
     public ReportGroupsList reportGroups() {
         return reportGroupsList;
     }
