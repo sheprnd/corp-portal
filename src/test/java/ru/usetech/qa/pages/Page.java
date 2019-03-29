@@ -92,10 +92,8 @@ public class Page {
         }
     }
 
-    public void closeAlert() throws InterruptedException {
+    public void closeAlert() {
         wait.until(visibilityOf(alertCloseBtn));
-        Thread.sleep(1000);
-
         alertCloseBtn.click();
     }
 
