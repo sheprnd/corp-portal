@@ -35,7 +35,7 @@ public class WorkflowPage extends Page {
 
     public void save() {
         click(saveWorkflowButton);
-        closeAlert();
+       // closeAlert();
         wait.until(visibilityOf(generalSettings));
 
     }
