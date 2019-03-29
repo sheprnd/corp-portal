@@ -11,9 +11,4 @@
             <class name="ru.usetech.qa.tests.PostsTests"/>
         </classes>
     </test>
-    <test name="Settings" >
-        <classes>
-            <class name="ru.usetech.qa.tests.SettingsTests" />
-        </classes>
-    </test>
 </suite>
