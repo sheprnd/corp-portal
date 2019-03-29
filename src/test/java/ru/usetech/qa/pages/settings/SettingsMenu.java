@@ -36,6 +36,12 @@ public class SettingsMenu extends Page{
     @FindBy(css = "settings-groups-list")
     private WebElement rolesBlock;
 
+    @FindBy(css = "[href = '#/settings/timesheet']")
+    private WebElement timesheetsListLink;
+
+    @FindBy(css = "timesheet")
+    private WebElement timesheetsBlock;
+
     @FindBy(css = "[href = '#/settings/satisfaction-templates']")
     private WebElement feedbackTemplateListLink;
 
@@ -91,6 +97,11 @@ public class SettingsMenu extends Page{
     public void goToRoles() {
         click(rolesListLink);
         wait.until(visibilityOf(rolesBlock));
+    }
+
+    public void goToTimesheets() {
+        click(timesheetsListLink);
+        wait.until(visibilityOf(timesheetsBlock));
     }
 
     public void goToFeedbacktemplates() {
