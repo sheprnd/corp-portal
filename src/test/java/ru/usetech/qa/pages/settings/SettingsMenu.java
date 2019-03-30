@@ -43,28 +43,34 @@ public class SettingsMenu extends Page{
     private WebElement timesheetsBlock;
 
     @FindBy(css = "[href = '#/settings/satisfaction-templates']")
-    private WebElement feedbackTemplateListLink;
+    private WebElement feedbackTemplatesListLink;
 
     @FindBy(css = "authors-satisfaction-templates")
-    private WebElement feedbackTemplateBlock;
+    private WebElement feedbackTemplatesBlock;
 
     @FindBy(css = "[href = '#/settings/hooks']")
-    private WebElement webhookListLink;
+    private WebElement webhooksListLink;
 
     @FindBy(css = ".grid-im_hooks")
-    private WebElement webhookBlock;
+    private WebElement webhooksBlock;
+
+    @FindBy(css = "[href = '#/settings/rules']")
+    private WebElement rulesListLink;
+
+    @FindBy(css = "rules-list")
+    private WebElement rulesBlock;
 
     @FindBy(css = "[href = '#/settings/priority']")
     private WebElement prioritiesListLink;
 
     @FindBy(css ="priority")
-    private WebElement priorityBlock;
+    private WebElement prioritiesBlock;
 
     @FindBy(css = "[href = '#/settings/incidents-categories']")
     private WebElement categoriesListLink;
 
     @FindBy(css = "incident-category")
-    private WebElement categoryBlock;
+    private WebElement categoriesBlock;
 
     @FindBy(css = "[href = '#/settings/reports']")
     private WebElement reportsListLink;
@@ -111,13 +117,18 @@ public class SettingsMenu extends Page{
     }
 
     public void goToFeedbacktemplates() {
-        click(feedbackTemplateListLink);
-        wait.until(visibilityOf(feedbackTemplateBlock));
+        click(feedbackTemplatesListLink);
+        wait.until(visibilityOf(feedbackTemplatesBlock));
     }
 
     public void goToWebhooks() {
-        click(webhookListLink);
-        wait.until(visibilityOf(webhookBlock));
+        click(webhooksListLink);
+        wait.until(visibilityOf(webhooksBlock));
+    }
+
+    public void goToRules() {
+        click(rulesListLink);
+        wait.until(visibilityOf(rulesBlock));
     }
 
     public void goToWorkflow() {
@@ -127,12 +138,12 @@ public class SettingsMenu extends Page{
 
     public void goToPriorities(){
         click(prioritiesListLink);
-        wait.until(visibilityOf(priorityBlock));
+        wait.until(visibilityOf(prioritiesBlock));
     }
 
     public void goToCategories(){
         click(categoriesListLink);
-        wait.until(visibilityOf(categoryBlock));
+        wait.until(visibilityOf(categoriesBlock));
     }
 
     public void goToReports(){
