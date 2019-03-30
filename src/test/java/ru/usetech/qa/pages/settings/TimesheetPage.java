@@ -4,14 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import ru.usetech.qa.model.PriorityData;
 import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class PriorityPage extends Page {
+public class TimesheetPage extends Page {
 
-    public PriorityPage(WebDriver driver){
+    public TimesheetPage(WebDriver driver){
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -22,30 +21,34 @@ public class PriorityPage extends Page {
     @FindBy(css = "icon-tooltip")
     private WebElement icon;
 
-    @FindBy(css = "input[formcontrolname='name']")
-    private WebElement name;
+    @FindBy(css = "users-dropdown[formcontrolname='user']")
+    private WebElement dropdownUser;
+
+    @FindBy(css = ".ui-dropdown-items > li:nth-child(2)")
+    private WebElement elementUser;
 
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveButton;
 
-    private void initPriorityCreation() {
+    private void initTimesheetCreation() {
         click(addButton);
         wait.until(visibilityOf(icon));
     }
 
-    private void fillPriorityForm(PriorityData priorityData) {
+    private void fillTimesheetForm() {
 
-        type(name, priorityData.getPriorityName());
+        click(dropdownUser);
+        click(elementUser);
     }
 
-    private void savePriority() {
+    private void saveTimesheet() {
         click(saveButton);
     }
 
-    public void create(PriorityData priorityData) {
-        initPriorityCreation();
-        fillPriorityForm(priorityData);
-        savePriority();
+    public void create() {
+        initTimesheetCreation();
+        fillTimesheetForm();
+        saveTimesheet();
 
     }
 }

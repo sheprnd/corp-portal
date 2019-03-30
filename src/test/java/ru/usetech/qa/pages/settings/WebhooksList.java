@@ -8,21 +8,20 @@ import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class RolesList extends Page {
+public class WebhooksList extends Page {
 
-    public RolesList(WebDriver driver) {
+    public WebhooksList(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = ".groups > div:first-child .groups__line-th")
+    @FindBy(css = ".categories > settings-hook-item:nth-child(2)")
     private WebElement firstRow;
 
     public int count() {
 
         wait.until(visibilityOf(firstRow));
-        return getElementsCount(".groups .groups__line");
+        return getElementsCount(".categories > settings-hook-item");
 
     }
-
 }

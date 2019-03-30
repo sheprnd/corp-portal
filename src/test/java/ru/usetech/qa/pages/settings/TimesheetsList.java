@@ -8,21 +8,20 @@ import ru.usetech.qa.pages.Page;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class RolesList extends Page {
+public class TimesheetsList extends Page {
 
-    public RolesList(WebDriver driver) {
+    public TimesheetsList(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = ".groups > div:first-child .groups__line-th")
+    @FindBy(css = ".default-shedule")
     private WebElement firstRow;
 
     public int count() {
 
         wait.until(visibilityOf(firstRow));
-        return getElementsCount(".groups .groups__line");
+        return getElementsCount(".timesheet-rows .grid-im__wrap");
 
     }
-
 }
