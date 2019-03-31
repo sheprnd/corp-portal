@@ -80,10 +80,10 @@ public class ApplicationManager {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
-        options.setCapability("browserName", "chrome");
-        options.setCapability("version ", "73");
+        //options.addArguments("--no-sandbox");
+        //options.addArguments("--headless");
+        //options.setCapability("browserName", "chrome");
+        //options.setCapability("version ", "73");
 
 
 
