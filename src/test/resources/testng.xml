@@ -11,4 +11,9 @@
             <class name="ru.usetech.qa.tests.SettingsTests" />
         </classes>
     </test>
+    <test name="Incidents">
+        <classes>
+            <class name="ru.usetech.qa.tests.IncidentsTests"/>
+        </classes>
+    </test>
 </suite>

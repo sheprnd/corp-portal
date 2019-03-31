@@ -1,11 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1" verbose="1" >
-    <test name="Incidents">
-        <classes>
-            <class name="ru.usetech.qa.tests.IncidentsTests"/>
-        </classes>
-    </test>
     <test name="Posts">
         <classes>
             <class name="ru.usetech.qa.tests.PostsTests"/>
@@ -14,6 +9,11 @@
     <test name="Settings" >
         <classes>
             <class name="ru.usetech.qa.tests.SettingsTests" />
+        </classes>
+    </test>
+    <test name="Incidents">
+        <classes>
+            <class name="ru.usetech.qa.tests.IncidentsTests"/>
         </classes>
     </test>
 </suite>
