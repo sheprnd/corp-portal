@@ -35,7 +35,7 @@ public class Page {
     public boolean click(WebElement element) {
         try {
 
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             WebDriverWait w = new WebDriverWait(driver, 5);
             w.until(elementToBeClickable(element));
