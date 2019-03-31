@@ -79,17 +79,18 @@ public class ApplicationManager {
         properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        //options.addArguments("--no-sandbox");
-        //options.addArguments("--headless");
-        //options.setCapability("browserName", "chrome");
-        //options.setCapability("version ", "73");
+        options.addArguments("--start-maximized");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        options.setCapability("browserName", "chrome");
+        options.setCapability("version ", "73");
 
 
 
         if (browser.equals(BrowserType.CHROME)) {
             //driver =  new RemoteWebDriver(new URL("http://127.0.1.1:4444/wd/hub"), DesiredCapabilities.chrome());
-            driver =  new RemoteWebDriver(new URL("http://94.177.172.202:4444/wd/hub"), DesiredCapabilities.chrome());
+            //driver =  new RemoteWebDriver(new URL("http://94.177.172.202:4444/wd/hub"), DesiredCapabilities.chrome());
+            driver =  new RemoteWebDriver(new URL("http://94.177.172.202:4444/wd/hub"), options);
 
         } else if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver(); // погуглить как запускать с опциями
