@@ -49,6 +49,8 @@ public class ApplicationManager {
     private TimesheetPage timesheetPage;
     private FeedbackTemplatePage feedbackTemplatePage;
     private WebhookPage webhookPage;
+    private PostRulePage postRulePage;
+    private IncidentRulePage incidentRulePage;
     private WorkflowPage workflowPage;
     private ClientReferencePage clientReferencePage;
     private PriorityPage priorityPage;
@@ -62,6 +64,8 @@ public class ApplicationManager {
     private RolesList rolesList;
     private TimesheetsList timesheetsList;
     private WebhooksList webhooksList;
+    private PostRulesList postRulesList;
+    private IncidentRulesList incidentRulesList;
     private ReportGroupsList reportGroupsList;
 
     private AddDeleteReasonDialog addDeleteReasonDialog;
@@ -113,6 +117,8 @@ public class ApplicationManager {
         timesheetPage = new TimesheetPage(driver);
         feedbackTemplatePage = new FeedbackTemplatePage(driver);
         webhookPage = new WebhookPage(driver);
+        postRulePage = new PostRulePage(driver);
+        incidentRulePage = new IncidentRulePage(driver);
         workflowPage = new WorkflowPage(driver);
         clientReferencePage = new ClientReferencePage(driver);
         priorityPage = new PriorityPage(driver);
@@ -126,6 +132,8 @@ public class ApplicationManager {
         rolesList = new RolesList(driver);
         timesheetsList = new TimesheetsList(driver);
         webhooksList = new WebhooksList(driver);
+        postRulesList = new PostRulesList(driver);
+        incidentRulesList = new IncidentRulesList(driver);
         reportGroupsList = new ReportGroupsList(driver);
 
         addDeleteReasonDialog = new AddDeleteReasonDialog(driver);
@@ -152,6 +160,8 @@ public class ApplicationManager {
     public TimesheetPage timesheet() {return timesheetPage;}
     public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
     public WebhookPage webhook() {return  webhookPage;}
+    public PostRulePage postRule() {return postRulePage;}
+    public IncidentRulePage incidentRule() {return incidentRulePage;}
     public WorkflowPage workflow() { return workflowPage; }
     public ClientReferencePage clientReferences() { return clientReferencePage; }
     public PriorityPage priority() { return priorityPage; }
@@ -169,6 +179,8 @@ public class ApplicationManager {
     public RolesList roles(){return rolesList;}
     public TimesheetsList timesheets() {return timesheetsList;}
     public WebhooksList webhooks() {return webhooksList;}
+    public PostRulesList postRules() {return postRulesList;}
+    public IncidentRulesList incidentRules() {return incidentRulesList;}
     public ReportGroupsList reportGroups() {
         return reportGroupsList;
     }

@@ -68,19 +68,6 @@ public class SettingsTests extends TestBase {
     }
 
     @Test(priority=5)
-    public void testWebhookCreation() {
-
-        app.settings().goToWebhooks();
-        int count = app.webhooks().count();
-        app.webhook().create(new WebhookData().
-                withName("#auto Webhook" + new Random().nextInt(100000)).
-                withUrl("https://mlgext.usetech.ru/"));
-        assertTrue(app.webhook().alertSuccess());
-        int actualCount = app.webhooks().count();
-        assertEquals(actualCount, count+1);
-    }
-
-    @Test(priority=6)
     public void testFeedbackTemplateCreation() {
 
         app.settings().goToFeedbacktemplates();
@@ -96,7 +83,42 @@ public class SettingsTests extends TestBase {
 
     }
 
+    @Test(priority=6)
+    public void testWebhookCreation() {
+
+        app.settings().goToWebhooks();
+        int count = app.webhooks().count();
+        app.webhook().create(new WebhookData().
+                withName("#auto Webhook" + new Random().nextInt(100000)).
+                withUrl("https://mlgext.usetech.ru/"));
+        assertTrue(app.webhook().alertSuccess());
+        int actualCount = app.webhooks().count();
+        assertEquals(actualCount, count+1);
+    }
+
     @Test(priority=7)
+    public void testPostRuleCreation() {
+
+        app.settings().goToRules();
+        int count = app.postRules().count();
+        app.postRule().create(new PostRuleData().withContext("#auto PostRule" + new Random().nextInt(100000)));
+        assertTrue(app.postRule().alertSuccess());
+        int actualCount = app.postRules().count();
+        assertEquals(actualCount, count+1);
+    }
+
+    @Test(priority=8)
+    public void testIncidentRuleCreation() {
+
+        app.settings().goToRules();
+        int count = app.incidentRules().count();
+        app.incidentRule().create();
+        assertTrue(app.incidentRule().alertSuccess());
+        int actualCount = app.incidentRules().count();
+        assertEquals(actualCount, count+1);
+    }
+
+    @Test(priority=9)
     public void testPriorityCreation() {
 
         app.settings().goToPriorities();
@@ -107,7 +129,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=8)
+    @Test(priority=10)
     public void testCategoryCreation() {
 
         app.settings().goToCategories();
@@ -118,7 +140,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=9)
+    @Test(priority=11)
     public void testReportCreation() {
 
         app.settings().goToReports();
@@ -131,7 +153,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=10)
+    @Test(priority=12)
     public void testReportGroupCreation() {
 
         app.settings().goToReportGroups();
@@ -142,7 +164,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=11)
+    @Test(priority=13)
     public void testLocationCreation() {
 
         app.settings().goToLocations();
@@ -154,7 +176,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=12)
+    @Test(priority=14)
     public void testClientReferenceCreationAndDeletionTest() throws Exception {
 
         String name = "#auto ClientReference " + new Random().nextInt(100000);
