@@ -1,6 +1,5 @@
 package ru.usetech.qa.appmanager;
 
-import com.sun.jndi.toolkit.url.Uri;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -8,8 +7,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationMenu;
@@ -22,11 +19,7 @@ import ru.usetech.qa.pages.stages.PostsListPage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
-import java.util.List;
 import java.util.Properties;
-
-import static org.openqa.selenium.remote.DesiredCapabilities.chrome;
 
 public class ApplicationManager {
 
@@ -83,21 +76,10 @@ public class ApplicationManager {
         properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        //options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
-        options.addArguments("--window-size=1920,1080");
-        options.setCapability("browserName", "chrome");
-        options.setCapability("version ", "73");
-
-
+        options.addArguments("start-maximized");
 
         if (browser.equals(BrowserType.CHROME)) {
-            //driver =  new RemoteWebDriver(new URL("http://127.0.1.1:4444/wd/hub"), DesiredCapabilities.chrome());
-            //driver =  new RemoteWebDriver(new URL("http://94.177.172.202:4444/wd/hub"), DesiredCapabilities.chrome());
-            driver =  new RemoteWebDriver(new URL("http://94.177.172.202:4444/wd/hub"), options);
-            //driver =  new RemoteWebDriver(new URL("http://127.0.1.1:4444/wd/hub"), options);
-
+            driver = new ChromeDriver(options);
         } else if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver(); // погуглить как запускать с опциями
         }
@@ -138,61 +120,142 @@ public class ApplicationManager {
 
         addDeleteReasonDialog = new AddDeleteReasonDialog(driver);
 
-        postsHelper = new PostsHelper (this);
-        settingsHelper = new SettingsHelper (this);
+        postsHelper = new PostsHelper(this);
+        settingsHelper = new SettingsHelper(this);
 
         loginPage.open(getProperty("baseUrl"));
         loginPage.login(getProperty("login"), getProperty("password"));
     }
 
-    public LoginPage loginPage() { return loginPage; }
-    public NavigationMenu goTo() { return navigationMenu; }
-    public PipelineMenu pipeline() { return pipelineMenu; }
-    public SettingsMenu settings() { return settingsMenu; }
+    public LoginPage loginPage() {
+        return loginPage;
+    }
 
-    public ManualIncPage manualInc() { return manualincPage; }
-    public PostsListPage posts() { return postsListPage; }
-    public IncidentsListPage incidents() { return incidentsListPage; }
+    public NavigationMenu goTo() {
+        return navigationMenu;
+    }
 
-    public UserPage user() { return userPage; }
-    public DepartmentPage department() { return departmentPage; }
-    public RolePage role() { return rolePage; }
-    public TimesheetPage timesheet() {return timesheetPage;}
-    public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
-    public WebhookPage webhook() {return  webhookPage;}
-    public PostRulePage postRule() {return postRulePage;}
-    public IncidentRulePage incidentRule() {return incidentRulePage;}
-    public WorkflowPage workflow() { return workflowPage; }
-    public ClientReferencePage clientReferences() { return clientReferencePage; }
-    public PriorityPage priority() { return priorityPage; }
-    public CategoryPage category() { return categoryPage; }
-    public ReportPage report() { return reportPage; }
+    public PipelineMenu pipeline() {
+        return pipelineMenu;
+    }
+
+    public SettingsMenu settings() {
+        return settingsMenu;
+    }
+
+    public ManualIncPage manualInc() {
+        return manualincPage;
+    }
+
+    public PostsListPage posts() {
+        return postsListPage;
+    }
+
+    public IncidentsListPage incidents() {
+        return incidentsListPage;
+    }
+
+    public UserPage user() {
+        return userPage;
+    }
+
+    public DepartmentPage department() {
+        return departmentPage;
+    }
+
+    public RolePage role() {
+        return rolePage;
+    }
+
+    public TimesheetPage timesheet() {
+        return timesheetPage;
+    }
+
+    public FeedbackTemplatePage feedbackTemplates() {
+        return feedbackTemplatePage;
+    }
+
+    public WebhookPage webhook() {
+        return webhookPage;
+    }
+
+    public PostRulePage postRule() {
+        return postRulePage;
+    }
+
+    public IncidentRulePage incidentRule() {
+        return incidentRulePage;
+    }
+
+    public WorkflowPage workflow() {
+        return workflowPage;
+    }
+
+    public ClientReferencePage clientReferences() {
+        return clientReferencePage;
+    }
+
+    public PriorityPage priority() {
+        return priorityPage;
+    }
+
+    public CategoryPage category() {
+        return categoryPage;
+    }
+
+    public ReportPage report() {
+        return reportPage;
+    }
+
     public ReportGroupPage reportGroup() {
         return reportGroupPage;
     }
-    public LocationPage location() {return locationPage;}
 
-    public GeneralList list(){
+    public LocationPage location() {
+        return locationPage;
+    }
+
+    public GeneralList list() {
         return generalList;
     }
-    public UsersList users(){return usersList;}
-    public RolesList roles(){return rolesList;}
-    public TimesheetsList timesheets() {return timesheetsList;}
-    public WebhooksList webhooks() {return webhooksList;}
-    public PostRulesList postRules() {return postRulesList;}
-    public IncidentRulesList incidentRules() {return incidentRulesList;}
+
+    public UsersList users() {
+        return usersList;
+    }
+
+    public RolesList roles() {
+        return rolesList;
+    }
+
+    public TimesheetsList timesheets() {
+        return timesheetsList;
+    }
+
+    public WebhooksList webhooks() {
+        return webhooksList;
+    }
+
+    public PostRulesList postRules() {
+        return postRulesList;
+    }
+
+    public IncidentRulesList incidentRules() {
+        return incidentRulesList;
+    }
+
     public ReportGroupsList reportGroups() {
         return reportGroupsList;
     }
 
-    public AddDeleteReasonDialog deleteReasonDialog(){
+    public AddDeleteReasonDialog deleteReasonDialog() {
         return addDeleteReasonDialog;
     }
 
-    public PostsHelper postsHelper(){
+    public PostsHelper postsHelper() {
         return postsHelper;
     }
-    public SettingsHelper settingsHelper(){
+
+    public SettingsHelper settingsHelper() {
         return settingsHelper;
     }
 
@@ -202,7 +265,6 @@ public class ApplicationManager {
     }
 
   /*public boolean isLogOut() {
-
     if (driver.getCurrentUrl().equals(getProperty("baseUrl"))) {
       //System.out.println(driver.getCurrentUrl());
       return true;
