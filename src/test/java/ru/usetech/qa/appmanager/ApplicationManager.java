@@ -92,6 +92,7 @@ public class ApplicationManager {
             //driver =  new RemoteWebDriver(new URL("http://127.0.1.1:4444/wd/hub"), DesiredCapabilities.chrome());
             //driver =  new RemoteWebDriver(new URL("http://94.177.172.202:4444/wd/hub"), DesiredCapabilities.chrome());
             driver =  new RemoteWebDriver(new URL("http://94.177.172.202:4444/wd/hub"), options);
+            //driver =  new RemoteWebDriver(new URL("http://127.0.1.1:4444/wd/hub"), options);
 
         } else if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver(); // погуглить как запускать с опциями
