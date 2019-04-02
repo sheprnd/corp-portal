@@ -17,6 +17,10 @@ configurations {
     agent
 }
 
+compileJava {
+    options.encoding = "UTF-8"
+}
+
 dependencies {
     compile 'org.testng:testng:6.14.3'
     compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
@@ -29,17 +33,17 @@ dependencies {
 
 }
 
-
-
-
 test.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
+
+ext.testFile = System.getProperty('Test_Plan') ?: 'testng.xml'
 
 test {
     useTestNG() {
         useDefaultListeners = true
         suites "src/test/resources/testng.xml"
+        suites "src/test/resources/smoke.xml"
     }
 }
 
