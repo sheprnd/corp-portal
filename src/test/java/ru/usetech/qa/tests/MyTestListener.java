@@ -21,19 +21,15 @@ public class MyTestListener implements ITestListener{
 
     @Override
     public void onTestFailure(ITestResult result) {
-/*
         ApplicationManager app = (ApplicationManager) result.getTestContext().getAttribute("app");
         TestBase.app.takeScreenshot();
         saveScreenshot(TestBase.app.takeScreenshot());
-*/
     }
 
-/*
     @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] saveScreenshot(byte[] screenShot) {
         return screenShot;
     }
-*/
 
     @Override
     public void onTestSkipped(ITestResult result) {
