@@ -87,6 +87,8 @@ public class ApplicationManager {
         -Pui=true - для удаленного запуска на Ubuntu Desktop (можно смотреть в UI как выполняется)
         posts/allTests/smoke - задача в build.gradle на основе xml файлов в ресурсах, по умолчанию выкл.
 
+        запуск отдельного xml -DTest_Plan=testng.xml  clean test -i
+
 
     */
     public void init() throws IOException {
