@@ -17,6 +17,10 @@ configurations {
     agent
 }
 
+compileJava {
+    options.encoding = "UTF-8"
+}
+
 dependencies {
     compile 'org.testng:testng:6.14.3'
     compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
@@ -29,17 +33,65 @@ dependencies {
 
 }
 
-
-
-
 test.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
 
-test {
-    useTestNG() {
-        useDefaultListeners = true
+
+
+task posts(type: Test) {
+    useTestNG {
+        suites "src/test/resources/posts.xml"
+        if (project.hasProperty('driverType')) {
+            systemProperty 'driverType', "${driverType}"
+        }
+        if (project.hasProperty('remoteUrl')) {
+            systemProperty 'remoteUrl', "${remoteUrl}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }
+        if (project.hasProperty('ui')) {
+            systemProperty 'ui', "${ui}"
+        }
+    }
+
+
+
+task allTests(type: Test) {
+    useTestNG {
         suites "src/test/resources/testng.xml"
+        if (project.hasProperty('driverType')) {
+            systemProperty 'driverType', "${driverType}"
+        }
+        if (project.hasProperty('remoteUrl')) {
+            systemProperty 'remoteUrl', "${remoteUrl}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }
+    if (project.hasProperty('ui')) {
+        systemProperty 'ui', "${ui}"
+    }
+}
+
+task smoke(type: Test) {
+    useTestNG {
+        suites "src/test/resources/smoke.xml"
+        if (project.hasProperty('driverType')) {
+            systemProperty 'driverType', "${driverType}"
+        }
+        if (project.hasProperty('remoteUrl')) {
+            systemProperty 'remoteUrl', "${remoteUrl}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }
+    if (project.hasProperty('ui')) {
+        systemProperty 'ui', "${ui}"
     }
 }
 
@@ -49,6 +101,7 @@ buildscript {
     }
     dependencies {
         classpath "ru.d10xa:gradle-allure-plugin:0.5.5"
+
     }
 }
 

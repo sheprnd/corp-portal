@@ -93,7 +93,7 @@ public class Page {
         }
     }
 
-    public void closeAlert(){
+    public void closeAlert() {
         wait.until(visibilityOf(alertCloseBtn));
         alertCloseBtn.click();
     }
