@@ -1,6 +1,5 @@
 package ru.usetech.qa.tests;
 
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.*;
@@ -28,6 +27,7 @@ public class SettingsTests extends TestBase {
         app.user().create(new UserData().withLastName("#auto LastName").withFirstName("#auto FirstName")
                 .withEmail(new Random().nextInt(10000) + "@yandex.ru").withPassword("1")); //доделать рандомное получение данных юзера
         assertTrue(app.user().alertSuccess());
+        app.users().waitListUpdated(count);
         int actualCount = app.users().count();
         assertEquals(actualCount, count+1);
     }
@@ -41,6 +41,7 @@ public class SettingsTests extends TestBase {
         app.department().create(new DepartmentData().withName("#auto Department " + new Random().nextInt(100000)));
         assertTrue(app.department().alertSuccess());
         //новое количество
+        app.list().waitListUpdated(count);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
@@ -52,6 +53,7 @@ public class SettingsTests extends TestBase {
         int count = app.roles().count();
         app.role().create(new RoleData().withName("#auto Role" + new Random().nextInt(100000)));
         assertTrue(app.role().alertSuccess());
+        app.roles().waitListUpdated(count);
         int actualCount = app.roles().count();
         assertEquals(actualCount, count+1);
     }
@@ -63,6 +65,7 @@ public class SettingsTests extends TestBase {
         int count = app.timesheets().count();
         app.timesheet().create();
         assertTrue(app.timesheet().alertSuccess());
+        app.timesheets().waitListUpdated(count);
         int actualCount = app.timesheets().count();
         assertEquals(actualCount, count+1);
     }
@@ -72,11 +75,12 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToFeedbacktemplates();
         int count = app.list().elementsCount();
-        app.feedbackTemplates().create(new FeedbackTemplateData()
+        app.feedbackTemplate().create(new FeedbackTemplateData()
                 .withName("#auto Feedback " + new Random().nextInt(100000))
                 .withText("Прошу оценить результат:\n" + "{close_reasons}")
                 .withReasonText("Отлично"));
-        assertTrue(app.feedbackTemplates().alertSuccess());
+        assertTrue(app.feedbackTemplate().alertSuccess());
+        app.list().waitListUpdated(count);
 
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
@@ -84,6 +88,43 @@ public class SettingsTests extends TestBase {
     }
 
     @Test(priority=6)
+    public void testVKSocialAccountCreation() {
+
+        String socialType = "ВКонтакте";
+        String accountName = "Anna Test";
+        String[] groups = {"Group_225","Group_1"};
+
+        app.settings().goToSocialAccounts();
+
+        // если учетки уже привязана - удаляем
+        if (app.socialAccounts().socialAccountExists(socialType, accountName)) {
+            int count = app.socialAccounts().countAccounts();
+            app.socialAccounts().deleteSocialAccount(socialType, accountName);
+            app.socialAccounts().waitListUpdated(count, 1);
+        }
+
+        int countAccounts = app.socialAccounts().countAccounts();
+        int countGroups = groups.length;
+
+        app.vkAccount().create(new SocialAccountData()
+                .withUsername("+79188995534")
+                .withPassword("annadev1234")
+                .withGroups(groups));
+        assertTrue(app.vkAccount().success(), "Не появился диалог успешной привязки учетки ВК");
+        app.socialAccounts().waitListUpdated(countAccounts, 2);
+
+        // проверка на количество аккаунтов
+        int actualCountAccounts = app.socialAccounts().countAccounts();
+        assertEquals(actualCountAccounts, countAccounts+1);
+
+        // проверка на количество групп
+        int actualCountGroups =  app.socialAccounts().countCroups(socialType, accountName);
+        assertEquals(actualCountGroups, countGroups);
+
+
+    }
+
+    @Test(priority=7)
     public void testWebhookCreation() {
 
         app.settings().goToWebhooks();
@@ -92,55 +133,60 @@ public class SettingsTests extends TestBase {
                 withName("#auto Webhook" + new Random().nextInt(100000)).
                 withUrl("https://mlgext.usetech.ru/"));
         assertTrue(app.webhook().alertSuccess());
+        app.webhooks().waitListUpdated(count);
         int actualCount = app.webhooks().count();
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=7)
+    @Test(priority=8)
     public void testPostRuleCreation() {
 
         app.settings().goToRules();
         int count = app.postRules().count();
         app.postRule().create(new PostRuleData().withContext("#auto PostRule" + new Random().nextInt(100000)));
         assertTrue(app.postRule().alertSuccess());
+        app.postRules().waitListUpdated(count);
         int actualCount = app.postRules().count();
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=8)
+    @Test(priority=9)
     public void testIncidentRuleCreation() {
 
         app.settings().goToRules();
         int count = app.incidentRules().count();
         app.incidentRule().create();
         assertTrue(app.incidentRule().alertSuccess());
+        app.incidentRules().waitListUpdated(count);
         int actualCount = app.incidentRules().count();
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=9)
+    @Test(priority=10)
     public void testPriorityCreation() {
 
         app.settings().goToPriorities();
         int count = app.list().elementsCount();
         app.priority().create(new PriorityData().withName("#auto Priority " + new Random().nextInt(100000)));
         assertTrue(app.priority().alertSuccess());
+        app.list().waitListUpdated(count);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=10)
+    @Test(priority=11)
     public void testCategoryCreation() {
 
         app.settings().goToCategories();
         int count = app.list().elementsCount();
         app.category().create(new CategoryData().withName("#auto Category " + new Random().nextInt(100000)));
         assertTrue(app.category().alertSuccess());
+        app.list().waitListUpdated(count);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=11)
+    @Test(priority=12)
     public void testReportCreation() {
 
         app.settings().goToReports();
@@ -149,22 +195,24 @@ public class SettingsTests extends TestBase {
                 withName("#auto Report " + new Random().nextInt(100000)).
                 withExternalId(new Random().nextInt(100000)));
         assertTrue(app.report().alertSuccess());
+        app.list().waitListUpdated(count);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=12)
+    @Test(priority=13)
     public void testReportGroupCreation() {
 
         app.settings().goToReportGroups();
         int count = app.reportGroups().count();
         app.reportGroup().create(new ReportGroupData().withName("#auto ReportGroup " + new Random().nextInt(100000)));
         assertTrue(app.reportGroup().alertSuccess());
+        app.reportGroups().waitListUpdated(count);
         int actualCount = app.reportGroups().count();
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=13)
+    @Test(priority=14)
     public void testLocationCreation() {
 
         app.settings().goToLocations();
@@ -172,11 +220,12 @@ public class SettingsTests extends TestBase {
         app.location().create(new LocationData().
                 withName("#auto Location " + new Random().nextInt(100000)));
         assertTrue(app.location().alertSuccess());
+        app.list().waitListUpdated(count);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=14)
+    @Test(priority=15)
     public void testClientReferenceCreationAndDeletionTest() throws Exception {
 
         String name = "#auto ClientReference " + new Random().nextInt(100000);

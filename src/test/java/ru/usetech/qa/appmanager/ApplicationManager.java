@@ -41,6 +41,7 @@ public class ApplicationManager {
     private RolePage rolePage;
     private TimesheetPage timesheetPage;
     private FeedbackTemplatePage feedbackTemplatePage;
+    private VKSocialAccountPage vkSocialAccountPage;
     private WebhookPage webhookPage;
     private PostRulePage postRulePage;
     private IncidentRulePage incidentRulePage;
@@ -56,6 +57,7 @@ public class ApplicationManager {
     private UsersList usersList;
     private RolesList rolesList;
     private TimesheetsList timesheetsList;
+    private SocialAccountsList socialAccountsList;
     private WebhooksList webhooksList;
     private PostRulesList postRulesList;
     private IncidentRulesList incidentRulesList;
@@ -98,6 +100,7 @@ public class ApplicationManager {
         rolePage = new RolePage(driver);
         timesheetPage = new TimesheetPage(driver);
         feedbackTemplatePage = new FeedbackTemplatePage(driver);
+        vkSocialAccountPage = new VKSocialAccountPage(driver);
         webhookPage = new WebhookPage(driver);
         postRulePage = new PostRulePage(driver);
         incidentRulePage = new IncidentRulePage(driver);
@@ -113,6 +116,7 @@ public class ApplicationManager {
         usersList = new UsersList(driver);
         rolesList = new RolesList(driver);
         timesheetsList = new TimesheetsList(driver);
+        socialAccountsList = new SocialAccountsList(driver);
         webhooksList = new WebhooksList(driver);
         postRulesList = new PostRulesList(driver);
         incidentRulesList = new IncidentRulesList(driver);
@@ -140,7 +144,8 @@ public class ApplicationManager {
     public DepartmentPage department() { return departmentPage; }
     public RolePage role() { return rolePage; }
     public TimesheetPage timesheet() {return timesheetPage;}
-    public FeedbackTemplatePage feedbackTemplates() { return feedbackTemplatePage; }
+    public FeedbackTemplatePage feedbackTemplate() { return feedbackTemplatePage; }
+    public VKSocialAccountPage vkAccount() {return vkSocialAccountPage;}
     public WebhookPage webhook() {return  webhookPage;}
     public PostRulePage postRule() {return postRulePage;}
     public IncidentRulePage incidentRule() {return incidentRulePage;}
@@ -160,6 +165,7 @@ public class ApplicationManager {
     public UsersList users(){return usersList;}
     public RolesList roles(){return rolesList;}
     public TimesheetsList timesheets() {return timesheetsList;}
+    public SocialAccountsList socialAccounts() {return socialAccountsList;}
     public WebhooksList webhooks() {return webhooksList;}
     public PostRulesList postRules() {return postRulesList;}
     public IncidentRulesList incidentRules() {return incidentRulesList;}

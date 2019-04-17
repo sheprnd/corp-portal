@@ -7,9 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class Page {
 
@@ -58,6 +56,10 @@ public class Page {
 
     }
 
+    public void waitListUpdated(String locator, int count) {
+        wait.until(numberOfElementsToBeMoreThan(By.cssSelector(locator), count));
+    }
+
     public int getElementsCount(String locator) {
         scrollPage();
         return driver.findElements(By.cssSelector(locator)).size();
@@ -82,7 +84,8 @@ public class Page {
         try {
 
             wait.until(visibilityOf(alertSuccess));
-            wait.until(stalenessOf(driver.findElement(By.cssSelector(".alert-success"))));
+            click(alertCloseBtn);
+            //wait.until(stalenessOf(driver.findElement(By.cssSelector(".alert-success"))));
 
             return true;
 

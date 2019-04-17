@@ -48,6 +48,12 @@ public class SettingsMenu extends Page{
     @FindBy(css = "authors-satisfaction-templates")
     private WebElement feedbackTemplatesBlock;
 
+    @FindBy(css = "[href = '#/settings/social']")
+    private WebElement socialsListLink;
+
+    @FindBy(css = ".social")
+    private WebElement socialsBlock;
+
     @FindBy(css = "[href = '#/settings/hooks']")
     private WebElement webhooksListLink;
 
@@ -119,6 +125,11 @@ public class SettingsMenu extends Page{
     public void goToFeedbacktemplates() {
         click(feedbackTemplatesListLink);
         wait.until(visibilityOf(feedbackTemplatesBlock));
+    }
+
+    public void goToSocialAccounts() {
+        click(socialsListLink);
+        wait.until(visibilityOf(socialsBlock));
     }
 
     public void goToWebhooks() {
