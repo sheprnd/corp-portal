@@ -44,6 +44,7 @@ public class ApplicationManager {
     private RolePage rolePage;
     private TimesheetPage timesheetPage;
     private FeedbackTemplatePage feedbackTemplatePage;
+    private VKSocialAccountPage vkSocialAccountPage;
     private WebhookPage webhookPage;
     private PostRulePage postRulePage;
     private IncidentRulePage incidentRulePage;
@@ -59,6 +60,7 @@ public class ApplicationManager {
     private UsersList usersList;
     private RolesList rolesList;
     private TimesheetsList timesheetsList;
+    private SocialAccountsList socialAccountsList;
     private WebhooksList webhooksList;
     private PostRulesList postRulesList;
     private IncidentRulesList incidentRulesList;
@@ -147,6 +149,7 @@ public class ApplicationManager {
         rolePage = new RolePage(driver);
         timesheetPage = new TimesheetPage(driver);
         feedbackTemplatePage = new FeedbackTemplatePage(driver);
+        vkSocialAccountPage = new VKSocialAccountPage(driver);
         webhookPage = new WebhookPage(driver);
         postRulePage = new PostRulePage(driver);
         incidentRulePage = new IncidentRulePage(driver);
@@ -162,6 +165,7 @@ public class ApplicationManager {
         usersList = new UsersList(driver);
         rolesList = new RolesList(driver);
         timesheetsList = new TimesheetsList(driver);
+        socialAccountsList = new SocialAccountsList(driver);
         webhooksList = new WebhooksList(driver);
         postRulesList = new PostRulesList(driver);
         incidentRulesList = new IncidentRulesList(driver);
@@ -176,90 +180,32 @@ public class ApplicationManager {
         loginPage.login(getProperty("login"), getProperty("password"));
     }
 
-    public LoginPage loginPage() {
-        return loginPage;
-    }
+    public LoginPage loginPage() { return loginPage; }
+    public NavigationMenu goTo() { return navigationMenu; }
+    public PipelineMenu pipeline() { return pipelineMenu; }
+    public SettingsMenu settings() { return settingsMenu; }
 
-    public NavigationMenu goTo() {
-        return navigationMenu;
-    }
+    public ManualIncPage manualInc() { return manualincPage; }
+    public PostsListPage posts() { return postsListPage; }
+    public IncidentsListPage incidents() { return incidentsListPage; }
 
-    public PipelineMenu pipeline() {
-        return pipelineMenu;
-    }
-
-    public SettingsMenu settings() {
-        return settingsMenu;
-    }
-
-    public ManualIncPage manualInc() {
-        return manualincPage;
-    }
-
-    public PostsListPage posts() {
-        return postsListPage;
-    }
-
-    public IncidentsListPage incidents() {
-        return incidentsListPage;
-    }
-
-    public UserPage user() {
-        return userPage;
-    }
-
-    public DepartmentPage department() {
-        return departmentPage;
-    }
-
-    public RolePage role() {
-        return rolePage;
-    }
-
-    public TimesheetPage timesheet() {
-        return timesheetPage;
-    }
-
-    public FeedbackTemplatePage feedbackTemplates() {
-        return feedbackTemplatePage;
-    }
-
-    public WebhookPage webhook() {
-        return webhookPage;
-    }
-
-    public PostRulePage postRule() {
-        return postRulePage;
-    }
-
-    public IncidentRulePage incidentRule() {
-        return incidentRulePage;
-    }
-
-    public WorkflowPage workflow() {
-        return workflowPage;
-    }
-
-    public ClientReferencePage clientReferences() {
-        return clientReferencePage;
-    }
-
-    public PriorityPage priority() {
-        return priorityPage;
-    }
-
-    public CategoryPage category() {
-        return categoryPage;
-    }
-
-    public ReportPage report() {
-        return reportPage;
-    }
-
+    public UserPage user() { return userPage; }
+    public DepartmentPage department() { return departmentPage; }
+    public RolePage role() { return rolePage; }
+    public TimesheetPage timesheet() {return timesheetPage;}
+    public FeedbackTemplatePage feedbackTemplate() { return feedbackTemplatePage; }
+    public VKSocialAccountPage vkAccount() {return vkSocialAccountPage;}
+    public WebhookPage webhook() {return  webhookPage;}
+    public PostRulePage postRule() {return postRulePage;}
+    public IncidentRulePage incidentRule() {return incidentRulePage;}
+    public WorkflowPage workflow() { return workflowPage; }
+    public ClientReferencePage clientReferences() { return clientReferencePage; }
+    public PriorityPage priority() { return priorityPage; }
+    public CategoryPage category() { return categoryPage; }
+    public ReportPage report() { return reportPage; }
     public ReportGroupPage reportGroup() {
         return reportGroupPage;
     }
-
     public LocationPage location() {
         return locationPage;
     }
@@ -267,31 +213,13 @@ public class ApplicationManager {
     public GeneralList list() {
         return generalList;
     }
-
-    public UsersList users() {
-        return usersList;
-    }
-
-    public RolesList roles() {
-        return rolesList;
-    }
-
-    public TimesheetsList timesheets() {
-        return timesheetsList;
-    }
-
-    public WebhooksList webhooks() {
-        return webhooksList;
-    }
-
-    public PostRulesList postRules() {
-        return postRulesList;
-    }
-
-    public IncidentRulesList incidentRules() {
-        return incidentRulesList;
-    }
-
+    public UsersList users(){return usersList;}
+    public RolesList roles(){return rolesList;}
+    public TimesheetsList timesheets() {return timesheetsList;}
+    public SocialAccountsList socialAccounts() {return socialAccountsList;}
+    public WebhooksList webhooks() {return webhooksList;}
+    public PostRulesList postRules() {return postRulesList;}
+    public IncidentRulesList incidentRules() {return incidentRulesList;}
     public ReportGroupsList reportGroups() {
         return reportGroupsList;
     }
@@ -303,12 +231,9 @@ public class ApplicationManager {
     public PostsHelper postsHelper() {
         return postsHelper;
     }
-
     public SettingsHelper settingsHelper() {
         return settingsHelper;
     }
-
-
     public String getProperty(String key) {
         return properties.getProperty(key);
     }

@@ -24,10 +24,12 @@ public class PostsListPage extends Page {
     @FindBy(css = ".post > p")
     private WebElement postId;
 
-    @FindBy(css = ".wokflow-grid-1 > post:first-child .post__buttons > button:last-child")
+    //@FindBy(css = ".wokflow-grid-1 > post:first-child .post__buttons > button:last-child")
+    @FindBy(css = ".wokflow-grid-1 > app-post:first-child  button:last-child")
     private WebElement deleteButton;
 
-    @FindBy(css = ".wokflow-grid-1 > post:first-child .post__buttons > button:first-child")
+    //@FindBy(css = ".wokflow-grid-1 > post:first-child .post__buttons > button:first-child")
+    @FindBy(css = ".wokflow-grid-1 > app-post:first-child  button:first-child")
     private WebElement moveToSelectedButton;
 
     @FindBy(css = "confirm-modal button.btn__blue")
