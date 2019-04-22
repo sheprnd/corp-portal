@@ -89,13 +89,14 @@ public class SettingsTests extends TestBase {
 
     @Test(priority=6)
     public void testDefaultTimesheetEditing() {
+
         app.settings().goToTimesheets();
         int count = app.timesheets().count();
         app.timesheets().scrollPageUp();
-        assertTrue(app.timesheet().edit(), "Не сохранились настройки общего расписания");
-        assertTrue(app.timesheet().alertSuccess(), "Не было алерта об успехе изменения общего расписания");
+        app.timesheet().edit();
+        assertTrue(app.timesheet().alertSuccess());
         int actualCount = app.timesheets().count();
-        assertEquals(actualCount, count, "Неверное количество элементов в списке");
+        assertEquals(actualCount, count);
     }
 
     @Test(priority=7)
