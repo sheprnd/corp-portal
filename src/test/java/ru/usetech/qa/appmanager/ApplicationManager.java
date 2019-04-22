@@ -81,7 +81,7 @@ public class ApplicationManager {
         gradlew  clean allTests - запуск всех тестов локально на машине c IDE
 
         c опциями
-        gradlew  clean  -Ptarget=beta -PremoteUrl="http://94.177.172.202:4444/wd/hub" -PdriverType=remote -Pui=false posts
+        gradlew  clean  -Dfile.encoding=UTF-8 -Ptarget=beta -PremoteUrl="http://94.177.172.202:4444/wd/hub" -PdriverType=remote -Pui=false posts
 
         -Ptarget={beta/dev} dev по умолчанию
         -PdriverType=remote - для удаленного запуска, надо указать -PremoteUrl

@@ -77,7 +77,7 @@ public class IncidentsListPage extends Page {
     @FindBy(css = "dropdown-button")
     private WebElement publishAndMoveBtn;
 
-    public void scrollPage() {
+    public void scrollPageDown() {
 
         wait.until(visibilityOf(incidentAtIncidentsLists));
 

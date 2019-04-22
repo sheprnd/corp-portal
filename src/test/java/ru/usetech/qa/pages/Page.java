@@ -49,10 +49,17 @@ public class Page {
 
     }
 
-    public void scrollPage() {
+    public void scrollPageDown() {
 
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+
+    }
+
+    public void scrollPageUp() {
+
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("window.scrollTo(0,-1000)");
 
     }
 
@@ -61,8 +68,9 @@ public class Page {
     }
 
     public int getElementsCount(String locator) {
-        scrollPage();
+        scrollPageDown();
         return driver.findElements(By.cssSelector(locator)).size();
+
     }
 
     public boolean isElementPresent(WebElement element) {

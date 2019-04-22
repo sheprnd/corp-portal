@@ -71,7 +71,7 @@ public class ClientReferencePage extends Page {
         String pencilLocator = "settings-users-references-list li:nth-child(" + (index + 1) +") .fa-pencil";
 
         wait.until(visibilityOf(addButton));
-        scrollPage();
+        scrollPageDown();
         WebElement referenceLink = driver.findElement(By.cssSelector(linkLocator));
 
         Actions action = new Actions(driver);

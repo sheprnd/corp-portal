@@ -21,6 +21,9 @@ public class TimesheetPage extends Page {
     @FindBy(css = "icon-tooltip")
     private WebElement icon;
 
+    @FindBy(css = "[formcontrolname='work_to']")
+    private WebElement dropdownWorkTo;
+
     @FindBy(css = "users-dropdown[formcontrolname='user']")
     private WebElement dropdownUser;
 
@@ -29,6 +32,9 @@ public class TimesheetPage extends Page {
 
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveButton;
+
+    @FindBy(css = ".default-shedule")
+    private WebElement defaultShedule;
 
     private void initTimesheetCreation() {
         click(addButton);
@@ -50,5 +56,16 @@ public class TimesheetPage extends Page {
         fillTimesheetForm();
         saveTimesheet();
 
+    }
+
+    public void edit() {
+        openDefaultShedule();
+        click(saveButton);
+
+    }
+
+    private void openDefaultShedule() {
+        click(defaultShedule);
+        wait.until(visibilityOf(dropdownWorkTo));
     }
 }
