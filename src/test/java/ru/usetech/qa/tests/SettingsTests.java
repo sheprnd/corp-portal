@@ -88,40 +88,15 @@ public class SettingsTests extends TestBase {
     }
 
     @Test(priority=6)
-    public void testVKSocialAccountCreation() {
+    public void testDefaultTimesheetEditing() {
 
-        String socialType = "ВКонтакте";
-        String accountName = "Anna Test";
-        String[] groups = {"Group_225","Group_1"};
-
-        app.settings().goToSocialAccounts();
-
-        // если учетки уже привязана - удаляем
-        if (app.socialAccounts().socialAccountExists(socialType, accountName)) {
-            int count = app.socialAccounts().countAccounts();
-            app.socialAccounts().deleteSocialAccount(socialType, accountName);
-            app.socialAccounts().waitListUpdated(count, 1);
-        }
-
-        int countAccounts = app.socialAccounts().countAccounts();
-        int countGroups = groups.length;
-
-        app.vkAccount().create(new SocialAccountData()
-                .withUsername("+79188995534")
-                .withPassword("annadev1234")
-                .withGroups(groups));
-        assertTrue(app.vkAccount().success(), "Не появился диалог успешной привязки учетки ВК");
-        app.socialAccounts().waitListUpdated(countAccounts, 2);
-
-        // проверка на количество аккаунтов
-        int actualCountAccounts = app.socialAccounts().countAccounts();
-        assertEquals(actualCountAccounts, countAccounts+1);
-
-        // проверка на количество групп
-        int actualCountGroups =  app.socialAccounts().countCroups(socialType, accountName);
-        assertEquals(actualCountGroups, countGroups);
-
-
+        app.settings().goToTimesheets();
+        int count = app.timesheets().count();
+        app.timesheets().scrollPageUp();
+        app.timesheet().edit();
+        assertTrue(app.timesheet().alertSuccess());
+        int actualCount = app.timesheets().count();
+        assertEquals(actualCount, count);
     }
 
     @Test(priority=7)
@@ -245,16 +220,42 @@ public class SettingsTests extends TestBase {
     }
 
     @Test(priority=16)
-    public void testDefaultTimesheetEditing() {
+    public void testVKSocialAccountCreation() {
 
-        app.settings().goToTimesheets();
-        int count = app.timesheets().count();
-        app.timesheets().scrollPageUp();
-        app.timesheet().edit();
-        assertTrue(app.timesheet().alertSuccess());
-        int actualCount = app.timesheets().count();
-        assertEquals(actualCount, count);
+        String socialType = "ВКонтакте";
+        String accountName = "Anna Test";
+        String[] groups = {"Group_225","Group_1"};
+
+        app.settings().goToSocialAccounts();
+
+        // если учетки уже привязана - удаляем
+        if (app.socialAccounts().socialAccountExists(socialType, accountName)) {
+            int count = app.socialAccounts().countAccounts();
+            app.socialAccounts().deleteSocialAccount(socialType, accountName);
+            app.socialAccounts().waitListUpdated(count, 1);
+        }
+
+        int countAccounts = app.socialAccounts().countAccounts();
+        int countGroups = groups.length;
+
+        app.vkAccount().create(new SocialAccountData()
+                .withUsername("+79188995534")
+                .withPassword("annadev1234")
+                .withGroups(groups));
+        assertTrue(app.vkAccount().success(), "Не появился диалог успешной привязки учетки ВК");
+        app.socialAccounts().waitListUpdated(countAccounts, 2);
+
+        // проверка на количество аккаунтов
+        int actualCountAccounts = app.socialAccounts().countAccounts();
+        assertEquals(actualCountAccounts, countAccounts+1);
+
+        // проверка на количество групп
+        int actualCountGroups =  app.socialAccounts().countCroups(socialType, accountName);
+        assertEquals(actualCountGroups, countGroups);
+
+
     }
+
 
 
 
