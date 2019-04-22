@@ -58,7 +58,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=4, enabled = true, invocationCount = 1)
+    @Test(priority=4, enabled = false, invocationCount = 1)
     public void testTimesheetCreation() {
 
         app.settings().goToTimesheets();
