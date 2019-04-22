@@ -36,7 +36,7 @@ public class PostsListPage extends Page {
     private WebElement deleteCurrentButton;
 
 
-    public void scrollPage() {
+    public void scrollPageDown() {
 
         wait.until(visibilityOf(postAtPostsLists));
 

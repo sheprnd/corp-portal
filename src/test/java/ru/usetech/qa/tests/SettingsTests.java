@@ -19,12 +19,12 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test(priority=1)
+    @Test(priority=1, invocationCount = 1)
     public void testUserCreation() {
 
         app.settings().goToUsers();
         int count = app.users().count();
-        app.user().create(new UserData().withLastName("#auto LastName").withFirstName("#auto FirstName")
+        app.user().create(new UserData().withLastName("#auto LastName" + new Random().nextInt(100000)).withFirstName("#auto FirstName" + new Random().nextInt(100000))
                 .withEmail(new Random().nextInt(10000) + "@yandex.ru").withPassword("1")); //доделать рандомное получение данных юзера
         assertTrue(app.user().alertSuccess());
         app.users().waitListUpdated(count);
@@ -58,7 +58,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=4, enabled = false)
+    @Test(priority=4, enabled = true, invocationCount = 1)
     public void testTimesheetCreation() {
 
         app.settings().goToTimesheets();
@@ -249,6 +249,7 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToTimesheets();
         int count = app.timesheets().count();
+        app.timesheets().scrollPageUp();
         app.timesheet().edit();
         assertTrue(app.timesheet().alertSuccess());
         int actualCount = app.timesheets().count();

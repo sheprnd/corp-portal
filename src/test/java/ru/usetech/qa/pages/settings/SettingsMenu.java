@@ -21,79 +21,79 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/users']")
     private WebElement usersListLink;
 
-    @FindBy(css = "users-list")
+    @FindBy(xpath = "//h3[contains(text(), 'Пользователи')]")
     private WebElement usersBlock;
 
     @FindBy(css = "[href = '#/settings/departments']")
     private WebElement departmentsListLink;
 
-    @FindBy(css = "departments")
+    @FindBy(xpath = "//h3[contains(text(), 'Отделы')]")
     private WebElement departmentsBlock;;
 
     @FindBy(css = "[href = '#/settings/groups']")
     private WebElement rolesListLink;
 
-    @FindBy(css = "settings-groups-list")
+    @FindBy(xpath = "//h3[contains(text(), 'Роли')]")
     private WebElement rolesBlock;
 
     @FindBy(css = "[href = '#/settings/timesheet']")
     private WebElement timesheetsListLink;
 
-    @FindBy(css = "timesheet")
+    @FindBy(xpath = "//h3[contains(text(), 'Расписание')]")
     private WebElement timesheetsBlock;
 
     @FindBy(css = "[href = '#/settings/satisfaction-templates']")
     private WebElement feedbackTemplatesListLink;
 
-    @FindBy(css = "authors-satisfaction-templates")
+    @FindBy(xpath = "//h3[contains(text(), 'Шаблоны опросов')]")
     private WebElement feedbackTemplatesBlock;
 
     @FindBy(css = "[href = '#/settings/social']")
     private WebElement socialsListLink;
 
-    @FindBy(css = ".social")
+    @FindBy(xpath = "//h3[contains(text(), 'Социальные сети')]")
     private WebElement socialsBlock;
 
     @FindBy(css = "[href = '#/settings/hooks']")
     private WebElement webhooksListLink;
 
-    @FindBy(css = ".grid-im_hooks")
+    @FindBy(xpath = "//h3[contains(text(), 'Веб-хуки')]")
     private WebElement webhooksBlock;
 
     @FindBy(css = "[href = '#/settings/rules']")
     private WebElement rulesListLink;
 
-    @FindBy(css = "rules-list")
+    @FindBy(xpath = "//h3[contains(text(), 'Правила')]")
     private WebElement rulesBlock;
 
     @FindBy(css = "[href = '#/settings/priority']")
     private WebElement prioritiesListLink;
 
-    @FindBy(css ="priority")
+    @FindBy(xpath = "//h3[contains(text(), 'Важность')]")
     private WebElement prioritiesBlock;
 
     @FindBy(css = "[href = '#/settings/incidents-categories']")
     private WebElement categoriesListLink;
 
-    @FindBy(css = "incident-category")
+    @FindBy(xpath = "//h3[contains(text(), 'Категории инцидентов')]")
     private WebElement categoriesBlock;
 
     @FindBy(css = "[href = '#/settings/reports']")
     private WebElement reportsListLink;
 
-    @FindBy(css = "settings-reports")
+    @FindBy(xpath = "//h3[contains(text(), 'Темы')]")
     private WebElement reportsBlock;
 
     @FindBy(css = "[href = '#/settings/report-groups']")
     private WebElement reportGroupsListLink;
 
-    @FindBy(css = "settings-report-groups")
+    @FindBy(xpath = "//h3[contains(text(), 'Группы тем')]")
     private WebElement reportGroupsBlock;
 
     @FindBy(css = "[href = '#/settings/location']")
     private WebElement locationsListLink;
 
-    @FindBy(css = "location")
+    @FindBy(xpath = "//h3[contains(text(), 'Локации')]")
     private WebElement locationsBlock;
 
     @FindBy(css = "[href = '#/settings/workflow']")
