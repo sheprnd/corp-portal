@@ -58,7 +58,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
-    @Test(priority=4)
+    @Test(priority=4, enabled = false)
     public void testTimesheetCreation() {
 
         app.settings().goToTimesheets();
@@ -243,6 +243,19 @@ public class SettingsTests extends TestBase {
         }
 
     }
+
+    @Test(priority=16)
+    public void testDefaultTimesheetEditing() {
+
+        app.settings().goToTimesheets();
+        int count = app.timesheets().count();
+        app.timesheet().edit();
+        assertTrue(app.timesheet().alertSuccess());
+        int actualCount = app.timesheets().count();
+        assertEquals(actualCount, count);
+    }
+
+
 
 
 
