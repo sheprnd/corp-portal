@@ -89,13 +89,31 @@ public class SettingsTests extends TestBase {
 
     @Test(priority=6)
     public void testDefaultTimesheetEditing() {
+
+        // сейчас реализован только выбор целых часов
+        int timeAt = 13;
+        int timeTo = 21;
+        String expectedValue = "13:00 — 20:59";
+
         app.settings().goToTimesheets();
-        int count = app.timesheets().count();
-        app.timesheets().scrollPageUp();
-        assertTrue(app.timesheet().edit(), "Не сохранились настройки общего расписания");
-        assertTrue(app.timesheet().alertSuccess(), "Не было алерта об успехе изменения общего расписания");
-        int actualCount = app.timesheets().count();
-        assertEquals(actualCount, count, "Неверное количество элементов в списке");
+        app.timesheets().waitListUpdated(0);
+
+        String value = app.timesheets().getValueFromTheCell(1);
+
+        // если в ячейке указано время, то флаг дня будет сниматься
+        // и время устанавливать не нужно
+        if (!value.equals("-")) {
+            timeAt = -1;
+            timeTo = -1;
+            expectedValue = "-";
+        }
+
+        app.timesheet().editDefaultTimesheet(1, timeAt, timeTo);
+        assertTrue(app.timesheet().alertSuccess(), "Не появился аллерт об успешном обновлении общего расписания.");
+
+        String actualValue = app.timesheets().getValueFromTheCell(1);
+        assertEquals(actualValue, expectedValue, "Для общего расписания не верно отображается обновленное время в ячейке");
+
     }
 
     @Test(priority=7)
