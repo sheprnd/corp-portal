@@ -31,4 +31,10 @@ public class TimesheetsList extends Page {
 
         wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".timesheet-rows .grid-im__wrap"), count));
     }
+
+    public String getValueFromTheCell(int cellIndex) {
+
+        WebElement cell = driver.findElement(By.cssSelector(".default-shedule .timesheet-rows .grid__col-index_" + cellIndex));
+        return cell.getText();
+    }
 }
