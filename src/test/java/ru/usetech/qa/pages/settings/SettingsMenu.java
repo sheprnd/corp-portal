@@ -21,7 +21,7 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/users']")
     private WebElement usersListLink;
 
-    @FindBy(xpath = "//h3[contains(text(), 'Пользователи')]")
+    @FindBy(css = "app-users-list")
     private WebElement usersBlock;
 
     @FindBy(css = "[href = '#/settings/departments']")

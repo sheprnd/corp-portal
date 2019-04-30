@@ -1,5 +1,6 @@
 package ru.usetech.qa.pages.settings;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,6 +43,9 @@ public class UserPage extends Page {
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveUserButton;
 
+    @FindBy(css = ".modal-header__close")
+    private WebElement closeUserButton;
+
     @FindBy(css = ".post__avatar")
     private WebElement avatar;
 
@@ -71,6 +75,30 @@ public class UserPage extends Page {
         saveUser();
     }
 
+
+    public void edit(int userIndex, UserData userData, String text) {
+        openUser(userIndex);
+        type(firstName, userData.getFirstName() + "_" + text);
+        saveUser();
+    }
+
+    private void openUser(int index) {
+        WebElement user = driver.findElement(By.cssSelector(".users .ng-star-inserted:nth-child(" + index + ") .grid-im"));
+        click(user);
+        wait.until(visibilityOf(userForm));
+    }
+
+    private void closeUser() {
+        click(closeUserButton);
+        //wait.until(visibilityOf(userForm));
+    }
+
+    public UserData getUser(int index) {
+        openUser(index);
+        UserData user = new UserData().withFirstName(firstName.getAttribute("value")).withEmail(email.getAttribute("value"));
+        closeUser();
+        return user;
+    }
 
 
 }

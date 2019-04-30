@@ -32,6 +32,44 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1);
     }
 
+    @Test
+    public void testUserEditing() {
+
+        // текст, который будет добавлен к имени
+        String text = "updated";
+
+        app.settings().goToUsers();
+        // получаем случаного юзера
+        //int index = new Random().nextInt(app.users().count());
+        int index=2;
+        System.out.println(index);
+        // получаем полное имя юзера в списке
+        // и формируем ожидаемое полное имя после обновления юзера
+        String fullName = app.users().getUserName(index);
+        System.out.println(fullName);
+        String expextedfullName = fullName + "_" + text;
+        System.out.println(expextedfullName);
+
+        // получаем данные юзера
+        UserData user = app.user().getUser(index);
+
+        app.user().edit(index, user, text);
+        assertTrue(app.user().alertSuccess());
+
+        String actualFullName = app.users().getUserNameByEmail(user.getEmail());
+
+        System.out.println(user.getEmail());
+        System.out.println(actualFullName);
+        //assertEquals(actualFullName, expextedfullName, "В списке пользователей не отображается обновленное имя пользователя");
+
+
+
+
+        //app.users().waitListUpdated(count);
+        //int actualCount = app.users().count();
+        //assertEquals(actualCount, count+1);
+    }
+
     @Test(priority=2)
     public void testDepartmentCreation() {
 
