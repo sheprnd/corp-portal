@@ -35,39 +35,23 @@ public class SettingsTests extends TestBase {
     @Test
     public void testUserEditing() {
 
-        // текст, который будет добавлен к имени
-        String text = "updated";
-
         app.settings().goToUsers();
-        // получаем случаного юзера
-        //int index = new Random().nextInt(app.users().count());
-        int index=2;
-        System.out.println(index);
-        // получаем полное имя юзера в списке
-        // и формируем ожидаемое полное имя после обновления юзера
-        String fullName = app.users().getUserName(index);
-        System.out.println(fullName);
-        String expextedfullName = fullName + "_" + text;
-        System.out.println(expextedfullName);
 
-        // получаем данные юзера
-        UserData user = app.user().getUser(index);
+        // редактируем первого юзера
+        int index = 1;
+        // получаем данные юзера из списка
+        // (в данных юзера - email, чтобы после обновления найти по нему строку,
+        // так как после обновления строка меняет положение в списке)
+        UserData user = app.users().getUser(index);
+        // данные для обновления юзера
+        UserData updUser = new UserData().withFirstName("#auto FirstName_upd " + new Random().nextInt(100000))
+                .withLastName("#auto LastName_upd " + new Random().nextInt(100000));
 
-        app.user().edit(index, user, text);
-        assertTrue(app.user().alertSuccess());
-
-        String actualFullName = app.users().getUserNameByEmail(user.getEmail());
-
-        System.out.println(user.getEmail());
-        System.out.println(actualFullName);
-        //assertEquals(actualFullName, expextedfullName, "В списке пользователей не отображается обновленное имя пользователя");
-
-
-
-
-        //app.users().waitListUpdated(count);
-        //int actualCount = app.users().count();
-        //assertEquals(actualCount, count+1);
+        String expectedFullName = app.user().getFullName(updUser);
+        app.user().edit(index, updUser);
+        assertTrue(app.user().alertSuccess(), "Не появился аллерт об успешном обновлении пользователя.");
+        String actualFullName = app.users().getUserFullNameByEmail(user.getEmail());
+        assertEquals(actualFullName, expectedFullName, "В списке пользователей не отображается обновленное имя пользователя");
     }
 
     @Test(priority=2)

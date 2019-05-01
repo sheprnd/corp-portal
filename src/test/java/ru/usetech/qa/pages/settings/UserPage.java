@@ -8,9 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import ru.usetech.qa.model.UserData;
 import ru.usetech.qa.pages.Page;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBeNotEmpty;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-
-// страница списка пользователей и форма пользователя
 
 public class UserPage extends Page {
 
@@ -43,9 +42,6 @@ public class UserPage extends Page {
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveUserButton;
 
-    @FindBy(css = ".modal-header__close")
-    private WebElement closeUserButton;
-
     @FindBy(css = ".post__avatar")
     private WebElement avatar;
 
@@ -53,7 +49,6 @@ public class UserPage extends Page {
         click(addUserButton);
         wait.until(visibilityOf(userForm));
     }
-
 
     private void fillUserForm(UserData userData) {
 
@@ -75,10 +70,11 @@ public class UserPage extends Page {
         saveUser();
     }
 
-
-    public void edit(int userIndex, UserData userData, String text) {
+    public void edit(int userIndex, UserData user) {
         openUser(userIndex);
-        type(firstName, userData.getFirstName() + "_" + text);
+        wait.until(attributeToBeNotEmpty(lastName, "value"));
+        type(lastName, user.getLastName());
+        type(firstName, user.getFirstName());
         saveUser();
     }
 
@@ -88,17 +84,7 @@ public class UserPage extends Page {
         wait.until(visibilityOf(userForm));
     }
 
-    private void closeUser() {
-        click(closeUserButton);
-        //wait.until(visibilityOf(userForm));
+    public String getFullName(UserData user) {
+        return user.getLastName() + " " + user.getFirstName();
     }
-
-    public UserData getUser(int index) {
-        openUser(index);
-        UserData user = new UserData().withFirstName(firstName.getAttribute("value")).withEmail(email.getAttribute("value"));
-        closeUser();
-        return user;
-    }
-
-
 }

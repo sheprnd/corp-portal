@@ -14,6 +14,25 @@ public class SettingsHelper extends HttpSession{
         super(app);
     }
 
+    //===================пользователи======================================//
+
+    private JSONArray getActiveUsers() throws Exception {
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("all","true"));
+        params.add(new BasicNameValuePair("show_deleted","false"));
+
+        String result = get("api/accounts/users/access_list/" , getToken(), params);
+        return new JSONArray(result);
+
+    }
+
+    public int getActiveUsersCount() throws Exception {
+        // количество неудаленных пользователей, исключая системного
+        return getActiveUsers().length() - 1;
+
+    }
+
     //================== причины удаления =================================//
 
     // все причины удаления
