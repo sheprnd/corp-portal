@@ -27,9 +27,8 @@ public class GeneralList extends Page {
 
     }
 
-    public void waitListUpdated(int count) {
-
-        wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".categories div.table__line"), count));
+    public void waitListUpdated(int count, int operationType) {
+        waitListUpdated(".categories div.table__line", count, operationType);
     }
 
 }

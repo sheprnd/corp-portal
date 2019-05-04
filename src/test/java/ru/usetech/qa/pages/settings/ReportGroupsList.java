@@ -27,8 +27,7 @@ public class ReportGroupsList extends Page {
 
     }
 
-    public void waitListUpdated(int count) {
-
-        wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".report-groups-grid-contained > report-group-node"), count));
+    public void waitListUpdated(int count, int operationType) {
+        waitListUpdated(".report-groups-grid-contained > report-group-node", count, operationType);
     }
 }

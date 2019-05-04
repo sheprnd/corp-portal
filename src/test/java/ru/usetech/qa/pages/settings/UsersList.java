@@ -36,10 +36,7 @@ public class UsersList extends Page {
     }
 
     public void waitListUpdated(int count, int operationType) {
-        if (operationType == 1)
-            wait.until(numberOfElementsToBeLessThan(By.cssSelector(".users .grid-im__wrap"), count));
-        else
-            wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".users .grid-im__wrap"), count));
+        waitListUpdated(".users .grid-im__wrap", count, operationType);
     }
 
     private String getEmail(int index) {

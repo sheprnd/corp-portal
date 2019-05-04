@@ -27,8 +27,7 @@ public class IncidentRulesList extends Page {
 
     }
 
-    public void waitListUpdated(int count) {
-
-        wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".rules.left > div:last-child > .rules__line"), count));
+    public void waitListUpdated(int count, int operationType) {
+        waitListUpdated(".rules.left > div:last-child > .rules__line", count, operationType);
     }
 }

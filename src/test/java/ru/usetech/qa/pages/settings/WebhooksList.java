@@ -27,8 +27,7 @@ public class WebhooksList extends Page {
 
     }
 
-    public void waitListUpdated(int count) {
-
-        wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".categories > settings-hook-item"), count));
+    public void waitListUpdated(int count, int operationType) {
+        waitListUpdated(".categories > settings-hook-item", count, operationType);
     }
 }

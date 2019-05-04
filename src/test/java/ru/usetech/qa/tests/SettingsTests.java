@@ -86,7 +86,7 @@ public class SettingsTests extends TestBase {
         app.department().create(new DepartmentData().withName("#auto Department " + new Random().nextInt(100000)));
         assertTrue(app.department().alertSuccess());
         //новое количество
-        app.list().waitListUpdated(count);
+        app.list().waitListUpdated(count,2);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
@@ -98,7 +98,7 @@ public class SettingsTests extends TestBase {
         int count = app.roles().count();
         app.role().create(new RoleData().withName("#auto Role" + new Random().nextInt(100000)));
         assertTrue(app.role().alertSuccess());
-        app.roles().waitListUpdated(count);
+        app.roles().waitListUpdated(count, 2);
         int actualCount = app.roles().count();
         assertEquals(actualCount, count+1);
     }
@@ -110,7 +110,7 @@ public class SettingsTests extends TestBase {
         int count = app.timesheets().count();
         app.timesheet().create();
         assertTrue(app.timesheet().alertSuccess());
-        app.timesheets().waitListUpdated(count);
+        app.timesheets().waitListUpdated(count, 2);
         int actualCount = app.timesheets().count();
         assertEquals(actualCount, count+1);
     }
@@ -125,7 +125,7 @@ public class SettingsTests extends TestBase {
                 .withText("Прошу оценить результат:\n" + "{close_reasons}")
                 .withReasonText("Отлично"));
         assertTrue(app.feedbackTemplate().alertSuccess());
-        app.list().waitListUpdated(count);
+        app.list().waitListUpdated(count, 2);
 
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
@@ -141,7 +141,7 @@ public class SettingsTests extends TestBase {
         String expectedValue = "13:00 — 20:59";
 
         app.settings().goToTimesheets();
-        app.timesheets().waitListUpdated(0);
+        app.timesheets().waitListUpdated(0, 2);
 
         String value = app.timesheets().getValueFromTheCell(1);
 
@@ -170,7 +170,7 @@ public class SettingsTests extends TestBase {
                 withName("#auto Webhook" + new Random().nextInt(100000)).
                 withUrl("https://mlgext.usetech.ru/"));
         assertTrue(app.webhook().alertSuccess());
-        app.webhooks().waitListUpdated(count);
+        app.webhooks().waitListUpdated(count, 2);
         int actualCount = app.webhooks().count();
         assertEquals(actualCount, count+1);
     }
@@ -182,7 +182,7 @@ public class SettingsTests extends TestBase {
         int count = app.postRules().count();
         app.postRule().create(new PostRuleData().withContext("#auto PostRule" + new Random().nextInt(100000)));
         assertTrue(app.postRule().alertSuccess());
-        app.postRules().waitListUpdated(count);
+        app.postRules().waitListUpdated(count, 2);
         int actualCount = app.postRules().count();
         assertEquals(actualCount, count+1);
     }
@@ -194,7 +194,7 @@ public class SettingsTests extends TestBase {
         int count = app.incidentRules().count();
         app.incidentRule().create();
         assertTrue(app.incidentRule().alertSuccess());
-        app.incidentRules().waitListUpdated(count);
+        app.incidentRules().waitListUpdated(count, 2);
         int actualCount = app.incidentRules().count();
         assertEquals(actualCount, count+1);
     }
@@ -206,7 +206,7 @@ public class SettingsTests extends TestBase {
         int count = app.list().elementsCount();
         app.priority().create(new PriorityData().withName("#auto Priority " + new Random().nextInt(100000)));
         assertTrue(app.priority().alertSuccess());
-        app.list().waitListUpdated(count);
+        app.list().waitListUpdated(count, 2);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
@@ -218,7 +218,7 @@ public class SettingsTests extends TestBase {
         int count = app.list().elementsCount();
         app.category().create(new CategoryData().withName("#auto Category " + new Random().nextInt(100000)));
         assertTrue(app.category().alertSuccess());
-        app.list().waitListUpdated(count);
+        app.list().waitListUpdated(count, 2);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
@@ -232,7 +232,7 @@ public class SettingsTests extends TestBase {
                 withName("#auto Report " + new Random().nextInt(100000)).
                 withExternalId(new Random().nextInt(100000)));
         assertTrue(app.report().alertSuccess());
-        app.list().waitListUpdated(count);
+        app.list().waitListUpdated(count, 2);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }
@@ -244,7 +244,7 @@ public class SettingsTests extends TestBase {
         int count = app.reportGroups().count();
         app.reportGroup().create(new ReportGroupData().withName("#auto ReportGroup " + new Random().nextInt(100000)));
         assertTrue(app.reportGroup().alertSuccess());
-        app.reportGroups().waitListUpdated(count);
+        app.reportGroups().waitListUpdated(count, 2);
         int actualCount = app.reportGroups().count();
         assertEquals(actualCount, count+1);
     }
@@ -257,7 +257,7 @@ public class SettingsTests extends TestBase {
         app.location().create(new LocationData().
                 withName("#auto Location " + new Random().nextInt(100000)));
         assertTrue(app.location().alertSuccess());
-        app.list().waitListUpdated(count);
+        app.list().waitListUpdated(count, 2);
         int actualCount = app.list().elementsCount();
         assertEquals(actualCount, count+1);
     }

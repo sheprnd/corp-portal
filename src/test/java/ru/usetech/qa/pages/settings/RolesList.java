@@ -27,9 +27,8 @@ public class RolesList extends Page {
 
     }
 
-    public void waitListUpdated(int count) {
-
-        wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".groups .groups__line"), count));
+    public void waitListUpdated(int count, int operationType) {
+        waitListUpdated(".groups .groups__line", count, operationType);
     }
 
 }
