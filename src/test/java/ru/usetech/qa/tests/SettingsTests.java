@@ -24,15 +24,17 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToUsers();
         int count = app.users().count();
-        app.user().create(new UserData().withLastName("#auto LastName" + new Random().nextInt(100000)).withFirstName("#auto FirstName" + new Random().nextInt(100000))
-                .withEmail(new Random().nextInt(10000) + "@yandex.ru").withPassword("1")); //доделать рандомное получение данных юзера
-        assertTrue(app.user().alertSuccess());
-        app.users().waitListUpdated(count);
+        app.user().create(new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
+                .withFirstName("#auto FirstName" + new Random().nextInt(100000))
+                .withEmail(System.currentTimeMillis() + "@yandex.ru")
+                .withPassword("1"));
+        assertTrue(app.user().alertSuccess(), "Не появился алерт об успешном создании пользователя.");
+        app.users().waitListUpdated(count, 2);
         int actualCount = app.users().count();
-        assertEquals(actualCount, count+1);
+        assertEquals(actualCount, count+1, "После создания нового пользователя количество пользователей в списке не увеличилось на 1.");
     }
 
-    @Test
+    @Test(priority=2)
     public void testUserEditing() {
 
         app.settings().goToUsers();
@@ -49,9 +51,30 @@ public class SettingsTests extends TestBase {
 
         String expectedFullName = app.user().getFullName(updUser);
         app.user().edit(index, updUser);
-        assertTrue(app.user().alertSuccess(), "Не появился аллерт об успешном обновлении пользователя.");
+        assertTrue(app.user().alertSuccess(), "Не появился алерт об успешном обновлении пользователя.");
         String actualFullName = app.users().getUserFullNameByEmail(user.getEmail());
         assertEquals(actualFullName, expectedFullName, "В списке пользователей не отображается обновленное имя пользователя");
+    }
+
+    @Test(priority=3)
+    public void testUserDeletion() {
+
+        app.settings().goToUsers();
+        // так как для логина и для апи используются пользователи
+        // создадим отдельного пользователя, которого будем удалять
+        int count = app.users().count();
+        UserData user = new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
+                .withFirstName("#auto FirstName" + new Random().nextInt(100000))
+                .withEmail(System.currentTimeMillis() + "@yandex.ru")
+                .withPassword("1");
+        app.user().create(user);
+        app.users().waitListUpdated(count, 2);
+        // удаляем созданного пользователя
+        app.users().delete(user);
+        app.users().waitListUpdated(count+1, 1);
+        int actualCount = app.users().count();
+        assertEquals(actualCount, count, "После удаления пользователя количество пользоватей в списке не уменьшилось на 1.");
+
     }
 
     @Test(priority=2)

@@ -10,8 +10,7 @@ import ru.usetech.qa.pages.Page;
 
 import java.util.List;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class UsersList extends Page {
 
@@ -23,6 +22,12 @@ public class UsersList extends Page {
     @FindBy(css = ".users > div:first-child .post__avatar")
     private WebElement firstRow;
 
+    @FindBy(css = "confirm-modal")
+    private WebElement confirmModal;
+
+    @FindBy(css = "confirm-modal .btn__blue")
+    private WebElement confirmDeleteButton;
+
     public int count() {
 
         wait.until(visibilityOf(firstRow));
@@ -30,24 +35,39 @@ public class UsersList extends Page {
 
     }
 
-    public void waitListUpdated(int count) {
-        wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".users .grid-im__wrap"), count));
+    public void waitListUpdated(int count, int operationType) {
+        if (operationType == 1)
+            wait.until(numberOfElementsToBeLessThan(By.cssSelector(".users .grid-im__wrap"), count));
+        else
+            wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".users .grid-im__wrap"), count));
     }
 
     private String getEmail(int index) {
         return driver.findElement(By.cssSelector(".users .ng-star-inserted:nth-child(" + index + ") .grid__col-index_1")).getText();
     }
 
+    private List<WebElement> getUsers(){
+        return driver.findElements(By.cssSelector(".users .ng-star-inserted"));
+    }
+
+    private WebElement getUserByEmail(String email) {
+        return getUsers().stream().filter(m -> m.findElement(By.cssSelector(".grid__col-index_1")).
+                getText().equals(email)).findFirst().get();
+    }
+
     public String getUserFullNameByEmail(String email) {
-
-        List<WebElement> users = driver.findElements(By.cssSelector(".users .ng-star-inserted"));
-
-        return users.stream().filter(m -> m.findElement(By.cssSelector(".grid__col-index_1")).
-                getText().equals(email)).findFirst().get().findElement(By.cssSelector(".grid__col-index_0")).getText();
-
+        return getUserByEmail(email).findElement(By.cssSelector(".grid__col-index_0")).getText();
     }
 
     public UserData getUser(int index) {
         return new UserData().withEmail(getEmail(index));
+    }
+
+    public void delete(UserData user) {
+
+        WebElement deleteButton = getUserByEmail(user.getEmail()).findElement(By.cssSelector(".btn__close"));
+        click(deleteButton);
+        wait.until(visibilityOf(confirmModal));
+        click(confirmDeleteButton);
     }
 }
