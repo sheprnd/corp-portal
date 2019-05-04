@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.usetech.qa.pages.Page;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class TimesheetsList extends Page {

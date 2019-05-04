@@ -10,7 +10,7 @@ import ru.usetech.qa.pages.Page;
 
 import java.util.List;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class UsersList extends Page {
 
