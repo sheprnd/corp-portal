@@ -14,6 +14,19 @@ public class SettingsHelper extends HttpSession{
         super(app);
     }
 
+    //================== отделы ============================================//
+
+    // количество неудаленных отделов
+    public int getActiveDepartmentsCount() throws Exception {
+        return getDepartments().length();
+    }
+
+    // все неудаленные отделы
+    private JSONArray getDepartments() throws Exception {
+        String result = get("api/accounts/departments/" , getToken(), null);
+        return new JSONArray(result);
+    }
+
     //================== причины удаления =================================//
 
     // все причины удаления
