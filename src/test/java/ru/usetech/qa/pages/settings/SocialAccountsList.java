@@ -11,7 +11,7 @@ import ru.usetech.qa.pages.Page;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class SocialAccountsList extends Page {
 
@@ -31,11 +31,7 @@ public class SocialAccountsList extends Page {
 
     public void waitListUpdated(int count, int operationType) {
 
-        if (operationType == 1)
-            wait.until(numberOfElementsToBeLessThan(By.cssSelector(".social div.social__line"), count));
-        else
-            wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".social div.social__line"), count));
-
+        waitListUpdated(".social div.social__line", count, operationType);
     }
 
     public int countAccounts() {

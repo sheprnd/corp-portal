@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.usetech.qa.pages.Page;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class TimesheetsList extends Page {
@@ -27,9 +26,8 @@ public class TimesheetsList extends Page {
 
     }
 
-    public void waitListUpdated(int count) {
-
-        wait.until(numberOfElementsToBeMoreThan(By.cssSelector(".timesheet-rows .grid-im__wrap"), count));
+    public void waitListUpdated(int count, int operationType) {
+        waitListUpdated(".timesheet-rows .grid-im__wrap", count, operationType);
     }
 
     public String getValueFromTheCell(int cellIndex) {

@@ -63,8 +63,12 @@ public class Page {
 
     }
 
-    public void waitListUpdated(String locator, int count) {
-        wait.until(numberOfElementsToBeMoreThan(By.cssSelector(locator), count));
+    public void waitListUpdated(String locator, int count, int operationType) {
+        // 1 - дeление, 2 - создание
+        if (operationType == 1)
+            wait.until(numberOfElementsToBeLessThan(By.cssSelector(locator), count));
+        else
+            wait.until(numberOfElementsToBeMoreThan(By.cssSelector(locator), count));
     }
 
     public int getElementsCount(String locator) {
