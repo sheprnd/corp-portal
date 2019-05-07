@@ -4,6 +4,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.*;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 
 import static org.testng.Assert.assertEquals;
@@ -84,13 +86,13 @@ public class SettingsTests extends TestBase {
         //исходное количество
         int count = 0;
         if (app.settingsHelper().getActiveDepartmentsCount() != 0)
-            count = app.list().elementsCount();
+            count = app.departments().count();
 
         app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
         assertTrue(app.department().alertSuccess(), "Не появился алерт об успешном создании отдела.");
         //новое количество
-        app.list().waitListUpdated(count,2);
-        int actualCount = app.list().elementsCount();
+        app.departments().waitListUpdated(count,2);
+        int actualCount = app.departments().count();
         assertEquals(actualCount, count+1, "После создания нового отдела количество отделов в списке не увеличилось на 1.");
     }
 
@@ -101,16 +103,23 @@ public class SettingsTests extends TestBase {
         // если список отделов пустой - создаем новый отдел
         if (app.settingsHelper().getActiveDepartmentsCount() == 0) {
             app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
-            app.list().waitListUpdated(0,2);
+            app.departments().waitListUpdated(0,2);
         }
+        // исходный список отделов
+        List<DepartmentData> before = app.departments().getList();
         // редактируем первый отдел
         int index = 1;
-        // данные для обновления данные
-        //String updName = "#auto Department " + System.currentTimeMillis();
         DepartmentData updDepartment = new DepartmentData().withName("#auto Department " + System.currentTimeMillis());
         app.department().edit(index, updDepartment);
         assertTrue(app.department().alertSuccess(), "Не появился алерт об успешном обновлении отдела.");
-        // добавить проверку на сравнение списка до и после
+        // формируем ожидаемый список
+        before.remove(0);
+        before.add(updDepartment);
+        // обновленный список отделов
+        List<DepartmentData> after = app.departments().getList();
+        // сравнение списков, преобразованных в неупорядочееное множество,
+        // т.к. после редактирования отдел меняет положение в списке
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "В списке отделов не отображается обновленное имя отдела");
 
     }
 

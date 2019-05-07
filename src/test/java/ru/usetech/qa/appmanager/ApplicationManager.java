@@ -58,6 +58,7 @@ public class ApplicationManager {
 
     private GeneralList generalList;
     private UsersList usersList;
+    private DepartmentsList departmentsList;
     private RolesList rolesList;
     private TimesheetsList timesheetsList;
     private SocialAccountsList socialAccountsList;
@@ -163,6 +164,7 @@ public class ApplicationManager {
 
         generalList = new GeneralList(driver);
         usersList = new UsersList(driver);
+        departmentsList = new DepartmentsList(driver);
         rolesList = new RolesList(driver);
         timesheetsList = new TimesheetsList(driver);
         socialAccountsList = new SocialAccountsList(driver);
@@ -214,6 +216,7 @@ public class ApplicationManager {
         return generalList;
     }
     public UsersList users(){return usersList;}
+    public DepartmentsList departments() {return departmentsList;}
     public RolesList roles(){return rolesList;}
     public TimesheetsList timesheets() {return timesheetsList;}
     public SocialAccountsList socialAccounts() {return socialAccountsList;}
