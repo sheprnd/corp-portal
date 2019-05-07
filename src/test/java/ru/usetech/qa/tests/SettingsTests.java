@@ -123,6 +123,25 @@ public class SettingsTests extends TestBase {
 
     }
 
+    @Test(priority=6)
+    public void testDepartmentDeletion() throws Exception {
+
+        app.settings().goToDepartments();
+        // если список отделов пустой - создаем новый, который будем далее удалять
+        if (app.settingsHelper().getActiveDepartmentsCount() == 0){
+            app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
+            app.departments().waitListUpdated(0,2);
+        }
+        int count = app.departments().count();
+        // удаляем первый отдел
+        int index = 1;
+        app.departments().delete(index);
+        app.departments().waitListUpdated(count, 1);
+        int actualCount = app.departments().count();
+        assertEquals(actualCount, count-1, "После удаления отдела количество отделов в списке не уменьшилось на 1.");
+
+    }
+
     @Test(priority=3)
     public void testRoleCreation() {
 

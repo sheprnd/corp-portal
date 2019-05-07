@@ -23,6 +23,12 @@ public class DepartmentsList extends Page {
     @FindBy(css = ".categories div.table__line")
     private WebElement firstRow;
 
+    @FindBy(css = "confirm-modal")
+    private WebElement confirmModal;
+
+    @FindBy(css = "confirm-modal .btn__blue")
+    private WebElement confirmDeleteButton;
+
     public int count() {
         wait.until(visibilityOf(firstRow));
         return getElementsCount(".categories div.table__line");
@@ -41,5 +47,13 @@ public class DepartmentsList extends Page {
             departments.add(department);
         }
         return departments;
+    }
+
+    public void delete(int index) {
+        WebElement deleteButton = driver.findElement(By.cssSelector(".categories div.table__line:nth-child(" + (index + 1) + ") .btn__close"));
+        click(deleteButton);
+        wait.until(visibilityOf(confirmModal));
+        click(confirmDeleteButton);
+
     }
 }
