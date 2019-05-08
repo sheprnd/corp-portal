@@ -88,13 +88,21 @@ public class SettingsTests extends TestBase {
         int count = 0;
         if (app.settingsHelper().getActiveDepartmentsCount() != 0)
             count = app.departments().count();
-
-        app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
+        // исходный список отделов
+        List<DepartmentData> before = app.departments().getList();
+        // создаем новый отдел
+        DepartmentData newDepartment = new DepartmentData().withName("#auto Department " + System.currentTimeMillis());
+        app.department().create(newDepartment);
         assertTrue(app.department().alertSuccess(), "Не появился алерт об успешном создании отдела.");
-        //новое количество
         app.departments().waitListUpdated(count,2);
+        //новое количество
         int actualCount = app.departments().count();
         assertEquals(actualCount, count+1, "После создания нового отдела количество отделов в списке не увеличилось на 1.");
+        // ожидаемый список отделов
+        before.add(newDepartment);
+        // текущий список отделов
+        List<DepartmentData> after = app.departments().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список отделов после добавления нового отдела.");
     }
 
     @Test(priority=5)
