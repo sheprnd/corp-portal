@@ -79,7 +79,7 @@ public class UserPage extends Page {
     }
 
     private void openUser(int index) {
-        WebElement user = driver.findElement(By.cssSelector(".users .ng-star-inserted:nth-child(" + index + ") .grid-im"));
+        WebElement user = driver.findElement(By.cssSelector(".users > div:nth-child(" + index + ") .grid-im"));
         click(user);
         wait.until(visibilityOf(userForm));
     }
