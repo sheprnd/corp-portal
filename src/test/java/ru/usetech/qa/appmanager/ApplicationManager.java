@@ -12,6 +12,7 @@ import ru.usetech.qa.pages.LoginPage;
 import ru.usetech.qa.pages.ManualIncPage;
 import ru.usetech.qa.pages.NavigationMenu;
 import ru.usetech.qa.pages.modalDialogs.AddDeleteReasonDialog;
+import ru.usetech.qa.pages.modalDialogs.ConfirmDialog;
 import ru.usetech.qa.pages.settings.*;
 import ru.usetech.qa.pages.stages.IncidentsListPage;
 import ru.usetech.qa.pages.stages.PipelineMenu;
@@ -68,6 +69,7 @@ public class ApplicationManager {
     private ReportGroupsList reportGroupsList;
 
     private AddDeleteReasonDialog addDeleteReasonDialog;
+    private ConfirmDialog confirmDialog;
 
     private PostsHelper postsHelper;
     private SettingsHelper settingsHelper;
@@ -174,6 +176,7 @@ public class ApplicationManager {
         reportGroupsList = new ReportGroupsList(driver);
 
         addDeleteReasonDialog = new AddDeleteReasonDialog(driver);
+        confirmDialog = new ConfirmDialog(driver);
 
         postsHelper = new PostsHelper(this);
         settingsHelper = new SettingsHelper(this);
@@ -230,6 +233,7 @@ public class ApplicationManager {
     public AddDeleteReasonDialog deleteReasonDialog() {
         return addDeleteReasonDialog;
     }
+    public ConfirmDialog confirmDialog(){return confirmDialog;}
 
     public PostsHelper postsHelper() {
         return postsHelper;

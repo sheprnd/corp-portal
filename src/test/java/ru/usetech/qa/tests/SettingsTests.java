@@ -73,6 +73,7 @@ public class SettingsTests extends TestBase {
         app.users().waitListUpdated(count, 2);
         // удаляем созданного пользователя
         app.users().delete(user);
+        app.confirmDialog().confirm();
         app.users().waitListUpdated(count+1, 1);
         int actualCount = app.users().count();
         assertEquals(actualCount, count, "После удаления пользователя количество пользоватей в списке не уменьшилось на 1.");
@@ -136,6 +137,7 @@ public class SettingsTests extends TestBase {
         // удаляем первый отдел
         int index = 1;
         app.departments().delete(index);
+        app.confirmDialog().confirm();
         app.departments().waitListUpdated(count, 1);
         int actualCount = app.departments().count();
         assertEquals(actualCount, count-1, "После удаления отдела количество отделов в списке не уменьшилось на 1.");

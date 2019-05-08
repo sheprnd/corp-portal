@@ -22,12 +22,6 @@ public class UsersList extends Page {
     @FindBy(css = ".users > div:first-child .post__avatar")
     private WebElement firstRow;
 
-    @FindBy(css = "confirm-modal")
-    private WebElement confirmModal;
-
-    @FindBy(css = "confirm-modal .btn__blue")
-    private WebElement confirmDeleteButton;
-
     public int count() {
 
         wait.until(visibilityOf(firstRow));
@@ -64,7 +58,5 @@ public class UsersList extends Page {
 
         WebElement deleteButton = getUserByEmail(user.getEmail()).findElement(By.cssSelector(".btn__close"));
         click(deleteButton);
-        wait.until(visibilityOf(confirmModal));
-        click(confirmDeleteButton);
     }
 }
