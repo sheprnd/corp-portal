@@ -26,14 +26,19 @@ public class SettingsTests extends TestBase {
 
         app.settings().goToUsers();
         int count = app.users().count();
-        app.user().create(new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
+        List<UserData> before = app.users().getList();
+        UserData newUser = new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
                 .withFirstName("#auto FirstName" + new Random().nextInt(100000))
                 .withEmail(System.currentTimeMillis() + "@yandex.ru")
-                .withPassword("1"));
+                .withPassword("1");
+        app.user().create(newUser);
         assertTrue(app.user().alertSuccess(), "Не появился алерт об успешном создании пользователя.");
         app.users().waitListUpdated(count, 2);
         int actualCount = app.users().count();
         assertEquals(actualCount, count+1, "После создания нового пользователя количество пользователей в списке не увеличилось на 1.");
+        before.add(newUser);
+        List<UserData> after = app.users().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список пользователей после добавления нового пользователя.");
     }
 
     @Test(priority=2)
@@ -46,7 +51,7 @@ public class SettingsTests extends TestBase {
         // получаем данные юзера из списка
         // (в данных юзера - email, чтобы после обновления найти по нему строку,
         // так как после обновления строка меняет положение в списке)
-        UserData user = app.users().getUser(index);
+        UserData user = app.users().getUserByIndex(index);
         // данные для обновления юзера
         UserData updUser = new UserData().withFirstName("#auto FirstName_upd " + new Random().nextInt(100000))
                 .withLastName("#auto LastName_upd " + new Random().nextInt(100000));
@@ -65,18 +70,22 @@ public class SettingsTests extends TestBase {
         // так как для логина и для апи используются пользователи
         // создадим отдельного пользователя, которого будем удалять
         int count = app.users().count();
+        List<UserData> before = app.users().getList();
         UserData user = new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
                 .withFirstName("#auto FirstName" + new Random().nextInt(100000))
                 .withEmail(System.currentTimeMillis() + "@yandex.ru")
                 .withPassword("1");
         app.user().create(user);
+        assertTrue(app.user().alertSuccess(), "Не появился алерт об успешном создании пользователя.");
         app.users().waitListUpdated(count, 2);
         // удаляем созданного пользователя
         app.users().delete(user);
+        app.confirmDialog().confirm();
         app.users().waitListUpdated(count+1, 1);
         int actualCount = app.users().count();
         assertEquals(actualCount, count, "После удаления пользователя количество пользоватей в списке не уменьшилось на 1.");
-
+        List<UserData> after = app.users().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список пользователей после удаления пользователя.");
     }
 
     @Test(priority=4)
@@ -87,13 +96,21 @@ public class SettingsTests extends TestBase {
         int count = 0;
         if (app.settingsHelper().getActiveDepartmentsCount() != 0)
             count = app.departments().count();
-
-        app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
+        // исходный список отделов
+        List<DepartmentData> before = app.departments().getList();
+        // создаем новый отдел
+        DepartmentData newDepartment = new DepartmentData().withName("#auto Department " + System.currentTimeMillis());
+        app.department().create(newDepartment);
         assertTrue(app.department().alertSuccess(), "Не появился алерт об успешном создании отдела.");
-        //новое количество
         app.departments().waitListUpdated(count,2);
+        //новое количество
         int actualCount = app.departments().count();
         assertEquals(actualCount, count+1, "После создания нового отдела количество отделов в списке не увеличилось на 1.");
+        // ожидаемый список отделов
+        before.add(newDepartment);
+        // текущий список отделов
+        List<DepartmentData> after = app.departments().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список отделов после добавления нового отдела.");
     }
 
     @Test(priority=5)
@@ -120,6 +137,31 @@ public class SettingsTests extends TestBase {
         // сравнение списков, преобразованных в неупорядочееное множество,
         // т.к. после редактирования отдел меняет положение в списке
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "В списке отделов не отображается обновленное имя отдела");
+
+    }
+
+    @Test(priority=6)
+    public void testDepartmentDeletion() throws Exception {
+
+        app.settings().goToDepartments();
+        // если список отделов пустой - создаем новый, который будем далее удалять
+        if (app.settingsHelper().getActiveDepartmentsCount() == 0){
+            app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
+            app.departments().waitListUpdated(0,2);
+        }
+        int count = app.departments().count();
+        List<DepartmentData> before = app.departments().getList();
+        // удаляем первый отдел
+        int index = 1;
+        app.departments().delete(index);
+        app.confirmDialog().confirm();
+        app.departments().waitListUpdated(count, 1);
+        int actualCount = app.departments().count();
+        assertEquals(actualCount, count-1, "После удаления отдела количество отделов в списке не уменьшилось на 1.");
+        before.remove(0);
+        // обновленный список отделов
+        List<DepartmentData> after = app.departments().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список отделов после удаления отдела.");
 
     }
 

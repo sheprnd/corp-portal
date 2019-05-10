@@ -15,31 +15,41 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class DepartmentsList extends Page {
 
+    private final String departmentRowLocator = ".categories div.table__line";
+
     public DepartmentsList(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = ".categories div.table__line")
+    @FindBy(css = departmentRowLocator)
     private WebElement firstRow;
 
     public int count() {
         wait.until(visibilityOf(firstRow));
-        return getElementsCount(".categories div.table__line");
+        return getDepartments().size();
     }
 
     public void waitListUpdated(int count, int operationType) {
-        waitListUpdated(".categories div.table__line", count, operationType);
+        waitListUpdated(departmentRowLocator, count, operationType);
+    }
+
+    private List<WebElement> getDepartments(){
+        return driver.findElements(By.cssSelector(departmentRowLocator));
+    }
+
+    private DepartmentData getDepartmentFromDepartmentRow(WebElement departmentRow) {
+        return new DepartmentData().withName(departmentRow.getText());
     }
 
     public List<DepartmentData> getList(){
-        scrollPageDown();
         List<DepartmentData> departments = new ArrayList<>();
-        List<WebElement> elements = driver.findElements(By.cssSelector(".categories div.table__line"));
-        for (WebElement element:elements) {
-            DepartmentData department = new DepartmentData().withName(element.getText());
-            departments.add(department);
-        }
+        getDepartments().forEach((m) -> departments.add(getDepartmentFromDepartmentRow(m)));
         return departments;
+    }
+
+    public void delete(int index) {
+        WebElement deleteButton = driver.findElement(By.cssSelector(departmentRowLocator+":nth-child(" + (index + 1) + ") .btn__close"));
+        click(deleteButton);
     }
 }
