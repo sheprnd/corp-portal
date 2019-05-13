@@ -165,16 +165,21 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test(priority=3)
+    @Test(priority=7)
     public void testRoleCreation() {
 
         app.settings().goToRoles();
         int count = app.roles().count();
-        app.role().create(new RoleData().withName("#auto Role" + new Random().nextInt(100000)));
-        assertTrue(app.role().alertSuccess());
+        List<RoleData> before = app.roles().getList();
+        RoleData newRole = new RoleData().withName("#auto Role" + + System.currentTimeMillis());
+        app.role().create(newRole);
+        assertTrue(app.role().alertSuccess(), "Не появился алерт об успешном создании роли.");
         app.roles().waitListUpdated(count, 2);
         int actualCount = app.roles().count();
-        assertEquals(actualCount, count+1);
+        assertEquals(actualCount, count+1, "После создания новой роли количество ролей в списке не увеличилось на 1.");
+        before.add(newRole);
+        List<RoleData> after = app.roles().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список ролей после добавления новой роли.");
     }
 
     @Test(priority=4, enabled = false, invocationCount = 1)
