@@ -45,7 +45,7 @@ public class SettingsTests extends TestBase {
     public void testUserEditing() {
 
         app.settings().goToUsers();
-
+        app.users().waitListUpdated(0,2);
         // редактируем первого юзера
         int index = 1;
         // получаем данные юзера из списка
@@ -120,8 +120,8 @@ public class SettingsTests extends TestBase {
         // если список отделов пустой - создаем новый отдел
         if (app.settingsHelper().getActiveDepartmentsCount() == 0) {
             app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
-            app.departments().waitListUpdated(0,2);
         }
+        app.departments().waitListUpdated(0,2);
         // исходный список отделов
         List<DepartmentData> before = app.departments().getList();
         // редактируем первый отдел
@@ -130,7 +130,7 @@ public class SettingsTests extends TestBase {
         app.department().edit(index, updDepartment);
         assertTrue(app.department().alertSuccess(), "Не появился алерт об успешном обновлении отдела.");
         // формируем ожидаемый список
-        before.remove(0);
+        before.remove(index - 1);
         before.add(updDepartment);
         // обновленный список отделов
         List<DepartmentData> after = app.departments().getList();
@@ -158,7 +158,7 @@ public class SettingsTests extends TestBase {
         app.departments().waitListUpdated(count, 1);
         int actualCount = app.departments().count();
         assertEquals(actualCount, count-1, "После удаления отдела количество отделов в списке не уменьшилось на 1.");
-        before.remove(0);
+        before.remove(index - 1);
         // обновленный список отделов
         List<DepartmentData> after = app.departments().getList();
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список отделов после удаления отдела.");
