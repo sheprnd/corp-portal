@@ -1,6 +1,7 @@
 package ru.usetech.qa.pages.settings;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,5 +49,17 @@ public class RolesList extends Page {
 
     private List<WebElement> getRoles() {
         return driver.findElements(By.cssSelector(roleRowLocator));
+    }
+
+    public void delete(RoleData role) {
+        WebElement deleteButton = getRoleRowByName(role.getRoleName()).findElement(By.cssSelector(".btn__close"));
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollBy(0,"+(deleteButton.getLocation().getY()-700)+");");
+        click(deleteButton);
+    }
+
+    private WebElement getRoleRowByName(String roleName) {
+        return getRoles().stream().filter((m) -> m.findElement(By.cssSelector(".groups__line-th:first-child"))
+                .getText().equals(roleName)).findFirst().get();
     }
 }

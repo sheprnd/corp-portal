@@ -198,6 +198,28 @@ public class SettingsTests extends TestBase {
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "В списке ролей не отображается обновленное имя роли");
     }
 
+    @Test(priority=9)
+    public void testRoleDeletion() {
+
+        app.settings().goToRoles();
+        // так как для логина и для апи используются пользователи c ролями
+        // создадим отдельную роль, которую будем удалять
+        int count = app.roles().count();
+        List<RoleData> before = app.roles().getList();
+        RoleData role = new RoleData().withName("#auto Role" + + System.currentTimeMillis());
+        app.role().create(role);
+        assertTrue(app.role().alertSuccess(), "Не появился алерт об успешном создании роли.");
+        app.roles().waitListUpdated(count, 2);
+        // удаляем созданную роль
+        app.roles().delete(role);
+        app.confirmDialog().confirm();
+        app.roles().waitListUpdated(count + 1, 1);
+        int actualCount = app.roles().count();
+        assertEquals(actualCount, count, "После удаления роли количество ролей в списке не уменьшилось на 1.");
+        List<RoleData> after = app.roles().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список ролей после удаления роли.");
+    }
+
     @Test(priority=4, enabled = false, invocationCount = 1)
     public void testTimesheetCreation() {
 
