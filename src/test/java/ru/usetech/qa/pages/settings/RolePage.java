@@ -1,5 +1,6 @@
 package ru.usetech.qa.pages.settings;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import ru.usetech.qa.model.RoleData;
 import ru.usetech.qa.pages.Page;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBeNotEmpty;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 // Roles list page and role modal page
@@ -56,4 +58,16 @@ public class RolePage extends Page {
         saveRole();
     }
 
+    public void edit(int index, RoleData role) {
+        openRole(index);
+        wait.until(attributeToBeNotEmpty(nameGroup, "value"));
+        type(nameGroup, role.getRoleName());
+        saveRole();
+    }
+
+    private void openRole(int index) {
+        WebElement role = driver.findElement(By.cssSelector(".groups > div:nth-child(" + index + ") .groups__line"));
+        click(role);
+        wait.until(visibilityOf(roleForm));
+    }
 }

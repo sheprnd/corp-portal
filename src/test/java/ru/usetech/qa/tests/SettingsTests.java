@@ -45,7 +45,7 @@ public class SettingsTests extends TestBase {
     public void testUserEditing() {
 
         app.settings().goToUsers();
-
+        app.users().waitListUpdated(0,2);
         // редактируем первого юзера
         int index = 1;
         // получаем данные юзера из списка
@@ -120,8 +120,8 @@ public class SettingsTests extends TestBase {
         // если список отделов пустой - создаем новый отдел
         if (app.settingsHelper().getActiveDepartmentsCount() == 0) {
             app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
-            app.departments().waitListUpdated(0,2);
         }
+        app.departments().waitListUpdated(0,2);
         // исходный список отделов
         List<DepartmentData> before = app.departments().getList();
         // редактируем первый отдел
@@ -130,7 +130,7 @@ public class SettingsTests extends TestBase {
         app.department().edit(index, updDepartment);
         assertTrue(app.department().alertSuccess(), "Не появился алерт об успешном обновлении отдела.");
         // формируем ожидаемый список
-        before.remove(0);
+        before.remove(index - 1);
         before.add(updDepartment);
         // обновленный список отделов
         List<DepartmentData> after = app.departments().getList();
@@ -158,23 +158,66 @@ public class SettingsTests extends TestBase {
         app.departments().waitListUpdated(count, 1);
         int actualCount = app.departments().count();
         assertEquals(actualCount, count-1, "После удаления отдела количество отделов в списке не уменьшилось на 1.");
-        before.remove(0);
+        before.remove(index - 1);
         // обновленный список отделов
         List<DepartmentData> after = app.departments().getList();
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список отделов после удаления отдела.");
 
     }
 
-    @Test(priority=3)
+    @Test(priority=7)
     public void testRoleCreation() {
 
         app.settings().goToRoles();
         int count = app.roles().count();
-        app.role().create(new RoleData().withName("#auto Role" + new Random().nextInt(100000)));
-        assertTrue(app.role().alertSuccess());
+        List<RoleData> before = app.roles().getList();
+        RoleData newRole = new RoleData().withName("#auto Role" + + System.currentTimeMillis());
+        app.role().create(newRole);
+        assertTrue(app.role().alertSuccess(), "Не появился алерт об успешном создании роли.");
         app.roles().waitListUpdated(count, 2);
         int actualCount = app.roles().count();
-        assertEquals(actualCount, count+1);
+        assertEquals(actualCount, count+1, "После создания новой роли количество ролей в списке не увеличилось на 1.");
+        before.add(newRole);
+        List<RoleData> after = app.roles().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список ролей после добавления новой роли.");
+    }
+
+    @Test(priority=8)
+    public void testRoleEditing() {
+
+        app.settings().goToRoles();
+        app.roles().waitListUpdated(0,2);
+        List<RoleData> before = app.roles().getList();
+        int index = 1;
+        RoleData updRole = new RoleData().withName("#auto Role" + System.currentTimeMillis());
+        app.role().edit(index, updRole);
+        assertTrue(app.role().alertSuccess(), "Не появился алерт об успешном обновлении роли.");
+        before.remove(index - 1);
+        before.add(updRole);
+        List<RoleData> after = app.roles().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "В списке ролей не отображается обновленное имя роли");
+    }
+
+    @Test(priority=9)
+    public void testRoleDeletion() {
+
+        app.settings().goToRoles();
+        // так как для логина и для апи используются пользователи c ролями
+        // создадим отдельную роль, которую будем удалять
+        int count = app.roles().count();
+        List<RoleData> before = app.roles().getList();
+        RoleData role = new RoleData().withName("#auto Role" + + System.currentTimeMillis());
+        app.role().create(role);
+        assertTrue(app.role().alertSuccess(), "Не появился алерт об успешном создании роли.");
+        app.roles().waitListUpdated(count, 2);
+        // удаляем созданную роль
+        app.roles().delete(role);
+        app.confirmDialog().confirm();
+        app.roles().waitListUpdated(count + 1, 1);
+        int actualCount = app.roles().count();
+        assertEquals(actualCount, count, "После удаления роли количество ролей в списке не уменьшилось на 1.");
+        List<RoleData> after = app.roles().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список ролей после удаления роли.");
     }
 
     @Test(priority=4, enabled = false, invocationCount = 1)
