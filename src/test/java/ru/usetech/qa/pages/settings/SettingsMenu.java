@@ -33,7 +33,7 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/groups']")
     private WebElement rolesListLink;
 
-    @FindBy(xpath = "//h3[contains(text(), 'Роли')]")
+    @FindBy(css = "settings-groups-list")
     private WebElement rolesBlock;
 
     @FindBy(css = "[href = '#/settings/timesheet']")

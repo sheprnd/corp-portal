@@ -64,7 +64,7 @@ public class Page {
     }
 
     public void waitListUpdated(String locator, int count, int operationType) {
-        // 1 - дeление, 2 - создание
+        // 1 - удаление, 2 - создание
         if (operationType == 1)
             wait.until(numberOfElementsToBeLessThan(By.cssSelector(locator), count));
         else

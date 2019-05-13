@@ -182,6 +182,22 @@ public class SettingsTests extends TestBase {
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список ролей после добавления новой роли.");
     }
 
+    @Test(priority=8)
+    public void testRoleEditing() {
+
+        app.settings().goToRoles();
+        app.roles().waitListUpdated(0,2);
+        List<RoleData> before = app.roles().getList();
+        int index = 1;
+        RoleData updRole = new RoleData().withName("#auto Role" + System.currentTimeMillis());
+        app.role().edit(index, updRole);
+        assertTrue(app.role().alertSuccess(), "Не появился алерт об успешном обновлении роли.");
+        before.remove(index - 1);
+        before.add(updRole);
+        List<RoleData> after = app.roles().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "В списке ролей не отображается обновленное имя роли");
+    }
+
     @Test(priority=4, enabled = false, invocationCount = 1)
     public void testTimesheetCreation() {
 
