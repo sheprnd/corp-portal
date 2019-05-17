@@ -5,7 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.usetech.qa.model.UserData;
 import ru.usetech.qa.pages.Page;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -51,21 +55,30 @@ public class TimesheetPage extends Page {
         wait.until(visibilityOf(icon));
     }
 
-    private void fillTimesheetForm() {
+    private void fillTimesheetForm(UserData user) {
 
         click(dropdownUser);
-        click(elementUser);
+        selectUser(user);
+        //click(elementUser);
+    }
+
+    private void selectUser(UserData user) {
+
+    }
+
+    private List<WebElement> getUserList() {
+        return driver.findElements(By.cssSelector(".ui-dropdown-item"));
     }
 
     private void saveTimesheet() {
         click(saveButton);
     }
 
-    public void create() {
+    public void create(UserData user) {
         wait.until(visibilityOf(defaulSheduleCell));
 
         initTimesheetCreation();
-        fillTimesheetForm();
+        fillTimesheetForm(user);
         click(checkBox);
         saveTimesheet();
 

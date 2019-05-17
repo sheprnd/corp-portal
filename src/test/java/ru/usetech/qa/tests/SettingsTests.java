@@ -220,36 +220,7 @@ public class SettingsTests extends TestBase {
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список ролей после удаления роли.");
     }
 
-    @Test(priority=4, enabled = false, invocationCount = 1)
-    public void testTimesheetCreation() {
-
-        app.settings().goToTimesheets();
-        int count = app.timesheets().count();
-        app.timesheet().create();
-        assertTrue(app.timesheet().alertSuccess());
-        app.timesheets().waitListUpdated(count, 2);
-        int actualCount = app.timesheets().count();
-        assertEquals(actualCount, count+1);
-    }
-
-    @Test(priority=5)
-    public void testFeedbackTemplateCreation() {
-
-        app.settings().goToFeedbacktemplates();
-        int count = app.list().elementsCount();
-        app.feedbackTemplate().create(new FeedbackTemplateData()
-                .withName("#auto Feedback " + new Random().nextInt(100000))
-                .withText("Прошу оценить результат:\n" + "{close_reasons}")
-                .withReasonText("Отлично"));
-        assertTrue(app.feedbackTemplate().alertSuccess());
-        app.list().waitListUpdated(count, 2);
-
-        int actualCount = app.list().elementsCount();
-        assertEquals(actualCount, count+1);
-
-    }
-
-    @Test(priority=6)
+    @Test(priority=10)
     public void testDefaultTimesheetEditing() {
 
         // сейчас реализован только выбор целых часов
@@ -277,6 +248,51 @@ public class SettingsTests extends TestBase {
         assertEquals(actualValue, expectedValue, "Для общего расписания не верно отображается обновленное время в ячейке");
 
     }
+
+    @Test(priority=11)
+    public void testUserTimesheetCreation() {
+
+        // создадим нового юзера, которого будем выбирать в расписании
+        app.settings().goToUsers();
+        UserData user = new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
+                .withFirstName("#auto FirstName" + new Random().nextInt(100000))
+                .withEmail(System.currentTimeMillis() + "@yandex.ru")
+                .withPassword("1");
+        app.user().create(user);
+
+        app.settings().goToTimesheets();
+        int count = app.timesheets().count();
+        List<TimesheetData> before = app.timesheets().getList();
+
+
+        app.timesheet().create(user);
+        assertTrue(app.timesheet().alertSuccess(), "Не появился аллерт об успешном создании расписания пользователя");
+        app.timesheets().waitListUpdated(count, 2);
+        int actualCount = app.timesheets().count();
+        assertEquals(actualCount, count+1, "После создания нового расписания количество распианий в списке не увеличилось на 1.");
+        before.add(new TimesheetData().withUserFullName(app.users().getUserFullNameByEmail(newUser.getEmail())));
+        List<RoleData> after = app.roles().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список ролей после добавления новой роли.");
+    }
+
+    @Test(priority=5)
+    public void testFeedbackTemplateCreation() {
+
+        app.settings().goToFeedbacktemplates();
+        int count = app.list().elementsCount();
+        app.feedbackTemplate().create(new FeedbackTemplateData()
+                .withName("#auto Feedback " + new Random().nextInt(100000))
+                .withText("Прошу оценить результат:\n" + "{close_reasons}")
+                .withReasonText("Отлично"));
+        assertTrue(app.feedbackTemplate().alertSuccess());
+        app.list().waitListUpdated(count, 2);
+
+        int actualCount = app.list().elementsCount();
+        assertEquals(actualCount, count+1);
+
+    }
+
+
 
     @Test(priority=7)
     public void testWebhookCreation() {
