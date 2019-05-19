@@ -36,9 +36,9 @@ public class TimesheetsList extends Page {
         waitListUpdated(timesheetRowLocator, count, operationType);
     }
 
-    public String getValueFromTheCell(int cellIndex) {
-
-        WebElement cell = driver.findElement(By.cssSelector(".default-shedule .timesheet-rows .grid__col-index_" + cellIndex));
+    public String getValueFromTheCell( int rowIndex, int cellIndex) {
+        WebElement cell = driver.findElement(By.cssSelector(".timesheet-rows > div:nth-child("
+                + rowIndex + ")" + " .grid__col-index_" + cellIndex));
         return cell.getText();
     }
 
