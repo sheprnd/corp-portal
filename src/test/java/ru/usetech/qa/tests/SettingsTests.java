@@ -263,16 +263,15 @@ public class SettingsTests extends TestBase {
         app.settings().goToTimesheets();
         int count = app.timesheets().count();
         List<TimesheetData> before = app.timesheets().getList();
-
-
         app.timesheet().create(user);
         assertTrue(app.timesheet().alertSuccess(), "Не появился аллерт об успешном создании расписания пользователя");
         app.timesheets().waitListUpdated(count, 2);
         int actualCount = app.timesheets().count();
         assertEquals(actualCount, count+1, "После создания нового расписания количество распианий в списке не увеличилось на 1.");
-        before.add(new TimesheetData().withUserFullName(app.users().getUserFullNameByEmail(newUser.getEmail())));
-        List<RoleData> after = app.roles().getList();
-        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список ролей после добавления новой роли.");
+        before.add(new TimesheetData().withUserFullName(user.getFullName()));
+        List<TimesheetData> after = app.timesheets().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список расписаний после добавления нового расписания.");
+
     }
 
     @Test(priority=5)

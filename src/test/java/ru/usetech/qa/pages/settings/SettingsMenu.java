@@ -39,7 +39,7 @@ public class SettingsMenu extends Page{
     @FindBy(css = "[href = '#/settings/timesheet']")
     private WebElement timesheetsListLink;
 
-    @FindBy(xpath = "//h3[contains(text(), 'Расписание')]")
+    @FindBy(css = "timesheet")
     private WebElement timesheetsBlock;
 
     @FindBy(css = "[href = '#/settings/satisfaction-templates']")

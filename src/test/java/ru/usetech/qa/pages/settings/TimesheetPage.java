@@ -44,7 +44,7 @@ public class TimesheetPage extends Page {
     @FindBy(css = ".default-shedule")
     private WebElement defaultShedule;
 
-    @FindBy(css = ".ui-chkbox-icon")
+    @FindBy(css = ".ui-chkbox-box")
     private WebElement checkBox;
 
     @FindBy(css = "div.default-shedule .grid-im__item.table-h__item-row.grid__col-index_1")
@@ -59,11 +59,12 @@ public class TimesheetPage extends Page {
 
         click(dropdownUser);
         selectUser(user);
-        //click(elementUser);
+
     }
 
     private void selectUser(UserData user) {
-
+        WebElement userItem = getUserList().stream().filter(m -> m.getText().equals(user.getFullName())).findFirst().get();
+        click(userItem);
     }
 
     private List<WebElement> getUserList() {
