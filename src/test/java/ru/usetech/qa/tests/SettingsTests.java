@@ -321,6 +321,39 @@ public class SettingsTests extends TestBase {
 
     }
 
+    @Test(priority=13)
+    public void testUserTimesheetDeletion() {
+
+        app.settings().goToTimesheets();
+        app.timesheets().waitListUpdated(0, 2);
+        // если в списке только Общее расписание,
+        // создадим новое расписание пользователя
+        if (app.timesheets().count()==1) {
+            app.settings().goToUsers();
+            UserData user = new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
+                    .withFirstName("#auto FirstName" + new Random().nextInt(100000))
+                    .withEmail(System.currentTimeMillis() + "@yandex.ru")
+                    .withPassword("1");
+            app.user().create(user);
+            app.settings().goToTimesheets();
+            int count = app.timesheets().count();
+            app.timesheet().create(user);
+            app.timesheets().waitListUpdated(count, 2);
+        }
+
+        int count = app.timesheets().count();
+        List<TimesheetData> before = app.timesheets().getList();
+        int index = 12;
+        app.timesheets().delete(index);
+        app.confirmDialog().confirm();
+        app.timesheets().waitListUpdated(count, 1);
+        int actualCount = app.timesheets().count();
+        assertEquals(actualCount, count-1, "После удаления расписания пользователя количество расписаний в списке не уменьшилось на 1.");
+        before.remove(index - 1);
+        List<TimesheetData> after = app.timesheets().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список расписаний пользователей после удаления расписания.");
+
+    }
 
     @Test(priority=5)
     public void testFeedbackTemplateCreation() {

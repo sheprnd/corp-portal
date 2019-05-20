@@ -1,6 +1,7 @@
 package ru.usetech.qa.pages.settings;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,5 +55,12 @@ public class TimesheetsList extends Page {
 
     private TimesheetData getTimesheetFromTimesheetRow(WebElement timesheetRow) {
         return new TimesheetData().withUserFullName(timesheetRow.findElement(By.cssSelector(" .grid__col-index_0")).getText());
+    }
+
+    public void delete(int index) {
+        WebElement deleteButton = driver.findElements(By.cssSelector(timesheetRowLocator + " .btn__close")).get(index-2);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollBy(0,"+(deleteButton.getLocation().getY()-700)+");");
+        click(deleteButton);
     }
 }
