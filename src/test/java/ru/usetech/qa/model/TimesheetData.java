@@ -6,10 +6,6 @@ public class TimesheetData {
 
     private String userFullName;
 
-    public String getUserFullName() {
-        return userFullName;
-    }
-
     public TimesheetData withUserFullName(String userFullName) {
         this.userFullName = userFullName;
         return this;
