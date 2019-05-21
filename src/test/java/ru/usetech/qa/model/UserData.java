@@ -25,6 +25,9 @@ public class UserData {
         return password;
     }
 
+    public String getFullName() {
+        return lastName + " " + firstName;
+    }
     public UserData withLastName(String lastName) {
         this.lastName = lastName;
         return this;

@@ -1,11 +1,15 @@
 package ru.usetech.qa.pages.settings;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.usetech.qa.model.UserData;
 import ru.usetech.qa.pages.Page;
+
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -28,60 +32,54 @@ public class TimesheetPage extends Page {
     @FindBy(css = "users-dropdown[formcontrolname='user']")
     private WebElement dropdownUser;
 
-    @FindBy(css = ".ui-dropdown-items > li:nth-child(2)")
-    private WebElement elementUser;
-
-    @FindBy(css = ".ui-dropdown-items")
-    private WebElement timeList;
-
     @FindBy(css = ".modal-footer .btn.btn-left.btn__blue")
     private WebElement saveButton;
 
-    @FindBy(css = ".default-shedule")
-    private WebElement defaultShedule;
-
-    @FindBy(css = ".ui-chkbox-icon")
+   @FindBy(css = ".ui-chkbox-box")
     private WebElement checkBox;
-
-    @FindBy(css = "div.default-shedule .grid-im__item.table-h__item-row.grid__col-index_1")
-    private WebElement defaulSheduleCell;
 
     private void initTimesheetCreation() {
         click(addButton);
         wait.until(visibilityOf(icon));
     }
 
-    private void fillTimesheetForm() {
-
+    private void fillTimesheetForm(UserData user) {
         click(dropdownUser);
-        click(elementUser);
+        selectUser(user);
+    }
+
+    private void selectUser(UserData user) {
+        WebElement userItem = getUserList().stream().filter(m -> m.getText().equals(user.getFullName())).findFirst().get();
+        click(userItem);
+    }
+
+    private List<WebElement> getUserList() {
+        return driver.findElements(By.cssSelector(".ui-dropdown-item"));
     }
 
     private void saveTimesheet() {
         click(saveButton);
     }
 
-    public void create() {
-        wait.until(visibilityOf(defaulSheduleCell));
-
+    public void create(UserData user) {
         initTimesheetCreation();
-        fillTimesheetForm();
+        fillTimesheetForm(user);
         click(checkBox);
         saveTimesheet();
-
     }
 
-    private void openDefaultShedule() {
-        click(defaultShedule);
+    private void openTimesheet(int index) {
+        WebElement timesheet = driver.findElements(By.cssSelector(".timesheet-rows .grid-im__wrap")).get(index-1);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollBy(0,"+(timesheet.getLocation().getY()-700)+");");
+        click(timesheet);
         wait.until(visibilityOf(dropdownWorkTo));
     }
 
-    public void editDefaultTimesheet(int dayIndex, int timeAt, int timeTo) {
-
-        openDefaultShedule();
+    public void editTimesheet(int rowIndex, int dayIndex, int timeAt, int timeTo) {
+        openTimesheet(rowIndex);
         editDay(dayIndex, timeAt, timeTo);
         saveTimesheet();
-
     }
 
     private void editDay(int dayIndex, int timeAt, int timeTo) {

@@ -220,16 +220,139 @@ public class SettingsTests extends TestBase {
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список ролей после удаления роли.");
     }
 
-    @Test(priority=4, enabled = false, invocationCount = 1)
-    public void testTimesheetCreation() {
+    @Test(priority=10)
+    public void testDefaultTimesheetEditing() {
+
+        // сейчас реализован только выбор целых часов
+        int timeAt = 13;
+        int timeTo = 21;
+        String expectedValue = "13:00 — 20:59";
+        int rowIndex = 1;
+        int cellIndex = 1;
+
+        app.settings().goToTimesheets();
+        app.timesheets().waitListUpdated(0, 2);
+
+        String value = app.timesheets().getValueFromTheCell(rowIndex, cellIndex);
+
+        // если в ячейке указано время, то флаг дня будет сниматься
+        // и время устанавливать не нужно
+        if (!value.equals("-")) {
+            timeAt = -1;
+            timeTo = -1;
+            expectedValue = "-";
+        }
+
+        app.timesheet().editTimesheet(rowIndex, cellIndex, timeAt, timeTo);
+        assertTrue(app.timesheet().alertSuccess(), "Не появился аллерт об успешном обновлении общего расписания.");
+
+        String actualValue = app.timesheets().getValueFromTheCell(rowIndex, cellIndex);
+        assertEquals(actualValue, expectedValue, "Для общего расписания не верно отображается обновленное время в ячейке");
+
+    }
+
+    @Test(priority=11)
+    public void testUserTimesheetCreation() {
+
+        // создадим нового юзера, которого будем выбирать в расписании
+        app.settings().goToUsers();
+        UserData user = new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
+                .withFirstName("#auto FirstName" + new Random().nextInt(100000))
+                .withEmail(System.currentTimeMillis() + "@yandex.ru")
+                .withPassword("1");
+        app.user().create(user);
 
         app.settings().goToTimesheets();
         int count = app.timesheets().count();
-        app.timesheet().create();
-        assertTrue(app.timesheet().alertSuccess());
+        List<TimesheetData> before = app.timesheets().getList();
+        app.timesheet().create(user);
+        assertTrue(app.timesheet().alertSuccess(), "Не появился аллерт об успешном создании расписания пользователя");
         app.timesheets().waitListUpdated(count, 2);
         int actualCount = app.timesheets().count();
-        assertEquals(actualCount, count+1);
+        assertEquals(actualCount, count+1, "После создания нового расписания количество распианий в списке не увеличилось на 1.");
+        before.add(new TimesheetData().withUserFullName(user.getFullName()));
+        List<TimesheetData> after = app.timesheets().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список расписаний после добавления нового расписания.");
+
+    }
+
+    @Test(priority=12)
+    public void testUserTimesheetEditing() {
+
+        app.settings().goToTimesheets();
+        app.timesheets().waitListUpdated(0, 2);
+        // если в списке только Общее расписание,
+        // создадим новое расписание пользователя
+        if (app.timesheets().count()==1) {
+            app.settings().goToUsers();
+            UserData user = new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
+                    .withFirstName("#auto FirstName" + new Random().nextInt(100000))
+                    .withEmail(System.currentTimeMillis() + "@yandex.ru")
+                    .withPassword("1");
+            app.user().create(user);
+            app.settings().goToTimesheets();
+            int count = app.timesheets().count();
+            app.timesheet().create(user);
+            app.timesheets().waitListUpdated(count, 2);
+        }
+
+        // сейчас реализован только выбор целых часов
+        int timeAt = 13;
+        int timeTo = 21;
+        String expectedValue = "13:00 — 20:59";
+        int rowIndex = 2;
+        int cellIndex = 1;
+
+        String value = app.timesheets().getValueFromTheCell(rowIndex, cellIndex);
+        System.out.println(value);
+        // если в ячейке указано время, то флаг дня будет сниматься
+        // и время устанавливать не нужно
+       if (!value.equals("-")) {
+            timeAt = -1;
+            timeTo = -1;
+            expectedValue = "-";
+        }
+
+        app.timesheet().editTimesheet(rowIndex, cellIndex, timeAt, timeTo);
+        assertTrue(app.timesheet().alertSuccess(), "Не появился аллерт об успешном обновлении расписания пользователя.");
+
+        String actualValue = app.timesheets().getValueFromTheCell(rowIndex, cellIndex);
+        assertEquals(actualValue, expectedValue, "Для расписания пользователя не верно отображается обновленное время в ячейке");
+
+    }
+
+    @Test(priority=13)
+    public void testUserTimesheetDeletion() {
+
+        app.settings().goToTimesheets();
+        app.timesheets().waitListUpdated(0, 2);
+        // если в списке только Общее расписание,
+        // создадим новое расписание пользователя
+        if (app.timesheets().count()==1) {
+            app.settings().goToUsers();
+            UserData user = new UserData().withLastName("#auto LastName" + new Random().nextInt(100000))
+                    .withFirstName("#auto FirstName" + new Random().nextInt(100000))
+                    .withEmail(System.currentTimeMillis() + "@yandex.ru")
+                    .withPassword("1");
+            app.user().create(user);
+            app.settings().goToTimesheets();
+            int count = app.timesheets().count();
+            app.timesheet().create(user);
+            app.timesheets().waitListUpdated(count, 2);
+        }
+
+        int count = app.timesheets().count();
+        List<TimesheetData> before = app.timesheets().getList();
+        int index = 2;
+        app.timesheets().delete(index);
+        app.confirmDialog().confirm();
+        app.timesheets().waitListUpdated(count, 1);
+        int actualCount = app.timesheets().count();
+        assertEquals(actualCount, count-1, "После удаления расписания пользователя количество расписаний в списке не уменьшилось на 1.");
+        before.remove(index - 1);
+        List<TimesheetData> after = app.timesheets().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список расписаний пользователей после удаления расписания.");
+
     }
 
     @Test(priority=5)
@@ -249,34 +372,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test(priority=6)
-    public void testDefaultTimesheetEditing() {
 
-        // сейчас реализован только выбор целых часов
-        int timeAt = 13;
-        int timeTo = 21;
-        String expectedValue = "13:00 — 20:59";
-
-        app.settings().goToTimesheets();
-        app.timesheets().waitListUpdated(0, 2);
-
-        String value = app.timesheets().getValueFromTheCell(1);
-
-        // если в ячейке указано время, то флаг дня будет сниматься
-        // и время устанавливать не нужно
-        if (!value.equals("-")) {
-            timeAt = -1;
-            timeTo = -1;
-            expectedValue = "-";
-        }
-
-        app.timesheet().editDefaultTimesheet(1, timeAt, timeTo);
-        assertTrue(app.timesheet().alertSuccess(), "Не появился аллерт об успешном обновлении общего расписания.");
-
-        String actualValue = app.timesheets().getValueFromTheCell(1);
-        assertEquals(actualValue, expectedValue, "Для общего расписания не верно отображается обновленное время в ячейке");
-
-    }
 
     @Test(priority=7)
     public void testWebhookCreation() {
