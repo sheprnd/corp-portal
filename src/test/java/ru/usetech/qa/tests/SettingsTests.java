@@ -343,7 +343,7 @@ public class SettingsTests extends TestBase {
 
         int count = app.timesheets().count();
         List<TimesheetData> before = app.timesheets().getList();
-        int index = 12;
+        int index = 2;
         app.timesheets().delete(index);
         app.confirmDialog().confirm();
         app.timesheets().waitListUpdated(count, 1);
