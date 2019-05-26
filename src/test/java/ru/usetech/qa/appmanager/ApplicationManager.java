@@ -44,6 +44,7 @@ public class ApplicationManager {
     private DepartmentPage departmentPage;
     private RolePage rolePage;
     private TimesheetPage timesheetPage;
+    private ConnectionLog connectionLog;
     private FeedbackTemplatePage feedbackTemplatePage;
     private VKSocialAccountPage vkSocialAccountPage;
     private WebhookPage webhookPage;
@@ -151,6 +152,7 @@ public class ApplicationManager {
         departmentPage = new DepartmentPage(driver);
         rolePage = new RolePage(driver);
         timesheetPage = new TimesheetPage(driver);
+        connectionLog = new ConnectionLog(driver);
         feedbackTemplatePage = new FeedbackTemplatePage(driver);
         vkSocialAccountPage = new VKSocialAccountPage(driver);
         webhookPage = new WebhookPage(driver);
@@ -198,6 +200,7 @@ public class ApplicationManager {
     public DepartmentPage department() { return departmentPage; }
     public RolePage role() { return rolePage; }
     public TimesheetPage timesheet() {return timesheetPage;}
+    public ConnectionLog connectionLog () {return connectionLog;}
     public FeedbackTemplatePage feedbackTemplate() { return feedbackTemplatePage; }
     public VKSocialAccountPage vkAccount() {return vkSocialAccountPage;}
     public WebhookPage webhook() {return  webhookPage;}

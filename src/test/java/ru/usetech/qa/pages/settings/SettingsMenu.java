@@ -42,6 +42,12 @@ public class SettingsMenu extends Page{
     @FindBy(css = "timesheet")
     private WebElement timesheetsBlock;
 
+    @FindBy(css="[href = '#/settings/connection-log']")
+    private WebElement connectionLogLink;
+
+    @FindBy(css=".content__header_users")
+    private WebElement connectionLogBlock;
+
     @FindBy(css = "[href = '#/settings/satisfaction-templates']")
     private WebElement feedbackTemplatesListLink;
 
@@ -120,6 +126,11 @@ public class SettingsMenu extends Page{
     public void goToTimesheets() {
         click(timesheetsListLink);
         wait.until(visibilityOf(timesheetsBlock));
+    }
+
+    public void goToConnectionLog() {
+        click(connectionLogLink);
+        wait.until(visibilityOf(connectionLogBlock));
     }
 
     public void goToFeedbacktemplates() {
