@@ -34,6 +34,7 @@ public class ConnectionLog extends Page {
     private WebElement applyButton;
 
     public void filter(String start, String end){
+        wait.until(visibilityOf(datePicker));
         click(datePicker);
         wait.until(visibilityOf(daterangepicker));
         type(dateStart,start);
