@@ -28,7 +28,7 @@ public class HttpSession {
         httpClient = HttpClients.custom().build();
     }
 
-    public int post(String url, String token, List params) throws IOException {
+    public int post(String url, String token, List<NameValuePair> params) throws IOException {
 
         HttpPost request = new HttpPost(baseUrl + url);
         request.setEntity(new UrlEncodedFormEntity(params));
@@ -40,7 +40,7 @@ public class HttpSession {
         return code;
     }
 
-    public String get(String url, String token, List params) throws Exception {
+    public String get(String url, String token, List<NameValuePair> params) throws Exception {
 
         URIBuilder builder = new URIBuilder(baseUrl + url);
 

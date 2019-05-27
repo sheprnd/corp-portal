@@ -5,7 +5,10 @@ import org.testng.annotations.Test;
 import ru.usetech.qa.model.*;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -373,20 +376,28 @@ public class SettingsTests extends TestBase {
         assertTrue(app.connectionLog().isNotEmpty(), "Пустой журнал входа.");
     }
 
-    @Test(priority=5)
-    public void testFeedbackTemplateCreation() {
+    @Test(priority=15)
+    public void testFeedbackTemplateCreation() throws Exception {
 
         app.settings().goToFeedbacktemplates();
-        int count = app.list().elementsCount();
-        app.feedbackTemplate().create(new FeedbackTemplateData()
-                .withName("#auto Feedback " + new Random().nextInt(100000))
-                .withText("Прошу оценить результат:\n" + "{close_reasons}")
-                .withReasonText("Отлично"));
-        assertTrue(app.feedbackTemplate().alertSuccess());
-        app.list().waitListUpdated(count, 2);
+        int count = 0;
+        if (app.settingsHelper().getActiveFeedbackTemplatesCount() != 0)
+            count = app.feedbackTemplates().count();
+        List<FeedbackTemplateData> before = app.feedbackTemplates().getList();
 
-        int actualCount = app.list().elementsCount();
-        assertEquals(actualCount, count+1);
+        //добавить проверку наличия причин закрытия инцидентов, чтобы передавать не текст причины
+        FeedbackTemplateData newFeedbackTemplate = new FeedbackTemplateData()
+                .withName("#auto Feedback " + System.currentTimeMillis())
+                .withText("Прошу оценить результат:\n" + "{close_reasons}")
+                .withReasonText("Отлично");
+        app.feedbackTemplate().create(newFeedbackTemplate);
+        assertTrue(app.feedbackTemplate().alertSuccess(), "Не появился алерт об успешном создании шаблона опроса.");
+        app.feedbackTemplates().waitListUpdated(count, 2);
+        int actualCount = app.feedbackTemplates().count();
+        assertEquals(actualCount, count+1, "После создания нового шаблона опроса количество шаблонов в списке не увеличилось на 1.");
+        before.add(newFeedbackTemplate);
+        List<FeedbackTemplateData> after = app.feedbackTemplates().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список шаблонов опросов после добавления нового шпблонп.");
 
     }
 

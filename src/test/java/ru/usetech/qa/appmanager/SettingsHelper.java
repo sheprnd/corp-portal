@@ -27,6 +27,32 @@ public class SettingsHelper extends HttpSession{
         return new JSONArray(result);
     }
 
+    //================== шаблоны опросов ====================================//
+
+    // количество неудаленных шаблонов опросов
+    public int getActiveFeedbackTemplatesCount() throws Exception {
+        return getActiveFeedbackTemplates().length();
+    }
+
+    // все неудаленные шаблоны опросов
+    private JSONArray getActiveFeedbackTemplates() throws Exception {
+        String result = get("api/reference/feedback_response_template/" , getToken(), null);
+        return new JSONArray(result);
+    }
+
+    //================== причины закрытия инцидентов ==========================//
+
+    // все неудаленных причины закрытия инцидентоы
+    private JSONArray getСloseReasons() throws Exception {
+        String result = get("api/reference/close_reasons/" , getToken(), null);
+        return new JSONArray(result);
+    }
+
+    // все неудаленных причины закрытия инцидентоы
+    /*private int getActiveСloseReasons() throws Exception {
+
+    }*/
+
     //================== причины удаления =================================//
 
     // все причины удаления
@@ -87,4 +113,6 @@ public class SettingsHelper extends HttpSession{
         return -1;
 
     }
+
+
 }

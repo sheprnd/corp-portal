@@ -63,6 +63,7 @@ public class ApplicationManager {
     private DepartmentsList departmentsList;
     private RolesList rolesList;
     private TimesheetsList timesheetsList;
+    private FeedbackTemplatesList feedbackTemplatesList;
     private SocialAccountsList socialAccountsList;
     private WebhooksList webhooksList;
     private PostRulesList postRulesList;
@@ -171,6 +172,7 @@ public class ApplicationManager {
         departmentsList = new DepartmentsList(driver);
         rolesList = new RolesList(driver);
         timesheetsList = new TimesheetsList(driver);
+        feedbackTemplatesList = new FeedbackTemplatesList(driver);
         socialAccountsList = new SocialAccountsList(driver);
         webhooksList = new WebhooksList(driver);
         postRulesList = new PostRulesList(driver);
@@ -225,6 +227,7 @@ public class ApplicationManager {
     public DepartmentsList departments() {return departmentsList;}
     public RolesList roles(){return rolesList;}
     public TimesheetsList timesheets() {return timesheetsList;}
+    public FeedbackTemplatesList feedbackTemplates() {return feedbackTemplatesList;}
     public SocialAccountsList socialAccounts() {return socialAccountsList;}
     public WebhooksList webhooks() {return webhooksList;}
     public PostRulesList postRules() {return postRulesList;}
