@@ -4,9 +4,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -353,6 +352,25 @@ public class SettingsTests extends TestBase {
         List<TimesheetData> after = app.timesheets().getList();
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список расписаний пользователей после удаления расписания.");
 
+    }
+
+    @Test(priority=14)
+    public void ConnectionLogTest(){
+
+        // текущий день, за который будем смотреть журнал входа (чтобы точно были записи входа)
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(year, month, day, 0, 0, 0);
+        String startDate = formatForDateNow.format(calendar.getTime());
+        calendar.set(year, month, day, 23, 59, 59);
+        String endDate = formatForDateNow.format(calendar.getTime());
+
+        app.settings().goToConnectionLog();
+        app.connectionLog().filter(startDate, endDate);
+        assertTrue(app.connectionLog().isNotEmpty(), "Пустой журнал входа.");
     }
 
     @Test(priority=5)
