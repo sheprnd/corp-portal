@@ -378,6 +378,14 @@ public class SettingsTests extends TestBase {
 
     @Test(priority=15)
     public void testFeedbackTemplateCreation() throws Exception {
+        // если для выбора в шаблоне опроса нет ни одной активной причины закрытия,
+        // то создаем новую причину закрытия
+        if (app.settingsHelper().getActiveСloseReasonsCount() == 0) {
+            app.settings().goToСloseReasons();
+            app.closeReason().create(new CloseReasonData()
+                    .withName("#auto CloseReason " + System.currentTimeMillis())
+                    .withSatisfaction(15));
+        }
 
         app.settings().goToFeedbacktemplates();
         int count = 0;

@@ -20,7 +20,6 @@ public class FeedbackTemplatesList extends Page {
     }
 
     public int count() {
-        System.out.println(getFeedbackTemplates().size());
         return getFeedbackTemplates().size();
     }
 

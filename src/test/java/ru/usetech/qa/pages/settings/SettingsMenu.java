@@ -102,6 +102,12 @@ public class SettingsMenu extends Page{
     @FindBy(xpath = "//h3[contains(text(), 'Локации')]")
     private WebElement locationsBlock;
 
+    @FindBy(css = "[href = '#/settings/incident-close-reasons']")
+    private WebElement closeReasonsListLink;
+
+    @FindBy(css = "incident-close-reason")
+    private WebElement closeReasonsBlock;
+
     @FindBy(css = "[href = '#/settings/workflow']")
     private WebElement workflowLink;
 
@@ -181,6 +187,11 @@ public class SettingsMenu extends Page{
     public void goToLocations(){
         click(locationsListLink);
         wait.until(visibilityOf(locationsBlock));
+    }
+
+    public void goToСloseReasons(){
+        click(closeReasonsListLink);
+        wait.until(visibilityOf(closeReasonsBlock));
     }
 
 }

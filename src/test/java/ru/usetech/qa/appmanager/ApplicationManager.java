@@ -57,6 +57,7 @@ public class ApplicationManager {
     private ReportPage reportPage;
     private ReportGroupPage reportGroupPage;
     private LocationPage locationPage;
+    private CloseReasonPage closeReasonPage;
 
     private GeneralList generalList;
     private UsersList usersList;
@@ -166,6 +167,7 @@ public class ApplicationManager {
         reportPage = new ReportPage(driver);
         reportGroupPage = new ReportGroupPage(driver);
         locationPage = new LocationPage(driver);
+        closeReasonPage = new CloseReasonPage(driver);
 
         generalList = new GeneralList(driver);
         usersList = new UsersList(driver);
@@ -219,6 +221,7 @@ public class ApplicationManager {
     public LocationPage location() {
         return locationPage;
     }
+    public CloseReasonPage closeReason() {return closeReasonPage;}
 
     public GeneralList list() {
         return generalList;

@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 public class SettingsHelper extends HttpSession{
 
@@ -48,10 +49,14 @@ public class SettingsHelper extends HttpSession{
         return new JSONArray(result);
     }
 
-    // все неудаленных причины закрытия инцидентоы
-    /*private int getActiveСloseReasons() throws Exception {
+    // количество неудаленных активных причин закрытия инцидентоы
+    public long getActiveСloseReasonsCount() throws Exception {
 
-    }*/
+            return StreamSupport.stream(getСloseReasons().spliterator(), false).filter((Object obj) -> {
+                JSONObject closeReason = (JSONObject) obj;
+                return closeReason.getBoolean("is_active");
+            }).count();
+    }
 
     //================== причины удаления =================================//
 
