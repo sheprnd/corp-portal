@@ -139,7 +139,7 @@ public class SettingsMenu extends Page{
         wait.until(visibilityOf(connectionLogBlock));
     }
 
-    public void goToFeedbacktemplates() {
+    public void goToFeedbackTemplates() {
         click(feedbackTemplatesListLink);
         wait.until(visibilityOf(feedbackTemplatesBlock));
     }

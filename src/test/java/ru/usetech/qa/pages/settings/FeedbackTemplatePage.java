@@ -1,5 +1,7 @@
 package ru.usetech.qa.pages.settings;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import ru.usetech.qa.model.FeedbackTemplateData;
 import ru.usetech.qa.pages.Page;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBeNotEmpty;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 //Feedback templates list page
@@ -74,4 +77,18 @@ public class FeedbackTemplatePage extends Page {
         click(saveButton);
     }
 
+    public void edit(int index, FeedbackTemplateData feedbackTemplate) {
+        openFeedbackTemplate(index);
+        wait.until(attributeToBeNotEmpty(templateName, "value"));
+        type(templateName, feedbackTemplate.getTemplateName());
+        save();
+    }
+
+    private void openFeedbackTemplate(int index) {
+        WebElement feedbackTemplate = driver.findElements(By.cssSelector(".table__line")).get(index-1);
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollBy(0,"+(feedbackTemplate.getLocation().getY()-700)+");");
+        click(feedbackTemplate);
+        wait.until(visibilityOf(templateName));
+    }
 }

@@ -41,6 +41,14 @@ public class SettingsHelper extends HttpSession{
         return new JSONArray(result);
     }
 
+    // количество шаблонов опросов по умолчанию
+    public int getDefaultFeedbackTemplatesCount() throws Exception {
+        return (int) StreamSupport.stream(getActiveFeedbackTemplates().spliterator(), false).filter((Object obj) -> {
+            JSONObject feedbackTemplate = (JSONObject) obj;
+            return feedbackTemplate.getBoolean("default");
+        }).count();
+    }
+
     //================== причины закрытия инцидентов ==========================//
 
     // все неудаленных причины закрытия инцидентоы
@@ -49,7 +57,7 @@ public class SettingsHelper extends HttpSession{
         return new JSONArray(result);
     }
 
-    // количество неудаленных активных причин закрытия инцидентоы
+    // количество неудаленных активных причин закрытия инцидентов
     public long getActiveСloseReasonsCount() throws Exception {
 
             return StreamSupport.stream(getСloseReasons().spliterator(), false).filter((Object obj) -> {
@@ -118,6 +126,7 @@ public class SettingsHelper extends HttpSession{
         return -1;
 
     }
+
 
 
 }

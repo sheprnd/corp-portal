@@ -387,7 +387,7 @@ public class SettingsTests extends TestBase {
                     .withSatisfaction(15));
         }
 
-        app.settings().goToFeedbacktemplates();
+        app.settings().goToFeedbackTemplates();
         int count = 0;
         if (app.settingsHelper().getActiveFeedbackTemplatesCount() != 0)
             count = app.feedbackTemplates().count();
@@ -405,11 +405,91 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count+1, "После создания нового шаблона опроса количество шаблонов в списке не увеличилось на 1.");
         before.add(newFeedbackTemplate);
         List<FeedbackTemplateData> after = app.feedbackTemplates().getList();
-        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список шаблонов опросов после добавления нового шпблонп.");
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список шаблонов опросов после добавления нового шпблона.");
 
     }
 
+    @Test(priority=16)
+    public void testFeedbackTemplateEditing() throws Exception {
 
+        // если список швблонов опросов пустой - создаем новый, который будем далее редактировать
+        if (app.settingsHelper().getActiveFeedbackTemplatesCount() == 0)
+        {
+            // если для выбора в шаблоне опроса нет ни одной активной причины закрытия,
+            // то создаем новую причину закрытия
+            if (app.settingsHelper().getActiveСloseReasonsCount() == 0) {
+                app.settings().goToСloseReasons();
+                app.closeReason().create(new CloseReasonData()
+                        .withName("#auto CloseReason " + System.currentTimeMillis())
+                        .withSatisfaction(15));
+            }
+            app.settings().goToFeedbackTemplates();
+            app.feedbackTemplate().create(new FeedbackTemplateData()
+                    .withName("#auto Feedback " + System.currentTimeMillis())
+                    .withText("Прошу оценить результат:\n" + "{close_reasons}")
+                    .withReasonText("Отлично"));
+        }
+        else {
+            app.settings().goToFeedbackTemplates();
+        }
+
+        app.feedbackTemplates().waitListUpdated(0,2);
+        List<FeedbackTemplateData> before = app.feedbackTemplates().getList();
+        int index = 1;
+        FeedbackTemplateData updFeedbackTemplate = new FeedbackTemplateData().withName("#auto Feedback " + System.currentTimeMillis());
+        app.feedbackTemplate().edit(index, updFeedbackTemplate);
+        assertTrue(app.feedbackTemplate().alertSuccess(), "Не появился алерт об успешном обновлении шаблона опроса.");
+        before.remove(index - 1);
+        before.add(updFeedbackTemplate);
+        List<FeedbackTemplateData> after = app.feedbackTemplates().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "В списке шаблонов опросов не отображается обновленное имя шаблона");
+    }
+
+    @Test(priority=17)
+    public void testFeedbackTemplateDeletion() throws Exception {
+
+        int activeCount = app.settingsHelper().getActiveFeedbackTemplatesCount();
+        int defaultCount = app.settingsHelper().getDefaultFeedbackTemplatesCount();
+        System.out.println(defaultCount);
+        // если список швблонов опросов пустой ИЛИ в списке только шаблон по умолчанию (его удалить нельзя)
+        // создаем новый шаблон, который будем далее удалять
+        if (( activeCount == 0) || (activeCount == defaultCount))
+        {
+            // если для выбора в шаблоне опроса нет ни одной активной причины закрытия,
+            // то создаем новую причину закрытия
+            if (app.settingsHelper().getActiveСloseReasonsCount() == 0) {
+                app.settings().goToСloseReasons();
+                app.closeReason().create(new CloseReasonData()
+                        .withName("#auto CloseReason " + System.currentTimeMillis())
+                        .withSatisfaction(15));
+            }
+            app.settings().goToFeedbackTemplates();
+            app.feedbackTemplate().create(new FeedbackTemplateData()
+                    .withName("#auto Feedback " + System.currentTimeMillis())
+                    .withText("Прошу оценить результат:\n" + "{close_reasons}")
+                    .withReasonText("Отлично"));
+        }
+        else {
+            app.settings().goToFeedbackTemplates();
+        }
+
+        // получаем индекс первого не default шаблона опроса, так как шаблон опроса по умолчанию нельзя удалить
+        int index = app.feedbackTemplates().getNotDefaultFeedbackTemplateIndex();
+
+        System.out.println(index);
+        app.feedbackTemplates().waitListUpdated(0,2);
+        int count = app.feedbackTemplates().count();
+        List<FeedbackTemplateData> before = app.feedbackTemplates().getList();
+        app.feedbackTemplates().delete(index);
+        app.confirmDialog().confirm();
+        assertTrue(app.feedbackTemplate().alertSuccess(), "Не появился алерт об успешном удалении шаблона опроса.");
+        app.feedbackTemplates().waitListUpdated(count, 1);
+        int actualCount = app.feedbackTemplates().count();
+        assertEquals(actualCount, count-1, "После удаления шаблона опроса количество шаблонов в списке не уменьшилось на 1.");
+        before.remove(index - 1);
+        List<FeedbackTemplateData> after = app.feedbackTemplates().getList();
+        assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список шаблонов опросов после удаления шпблона.");
+    }
 
     @Test(priority=7)
     public void testWebhookCreation() {
