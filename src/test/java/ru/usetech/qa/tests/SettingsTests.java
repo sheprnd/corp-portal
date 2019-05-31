@@ -392,8 +392,7 @@ public class SettingsTests extends TestBase {
     public void testFeedbackTemplateCreation() throws Exception {
         // если для выбора в шаблоне опроса нет ни одной активной причины закрытия,
         // то создаем новую причину закрытия
-        int activeCloseReasonsCount = app.settingsHelper().getActiveСloseReasonsCount();
-        if (activeCloseReasonsCount == 0) {
+        if (app.settingsHelper().getActiveСloseReasonsCount() == 0) {
             app.settings().goToСloseReasons();
             app.closeReason().create(new CloseReasonData()
                     .withName("#auto CloseReason " + System.currentTimeMillis())
@@ -402,7 +401,7 @@ public class SettingsTests extends TestBase {
         }
         app.settings().goToFeedbackTemplates();
         int count = 0;
-        if (activeCloseReasonsCount != 0){
+        if (app.settingsHelper().getActiveFeedbackTemplatesCount() != 0){
             app.feedbackTemplates().waitListUpdated(0, 2);
             count = app.feedbackTemplates().count();
         }
