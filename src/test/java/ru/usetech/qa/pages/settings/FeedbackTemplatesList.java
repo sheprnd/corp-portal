@@ -57,4 +57,8 @@ public class FeedbackTemplatesList extends Page {
         }
         return -1;
     }
+
+    public boolean isDefaultFeedbackTemplate(int index) {
+       return  getFeedbackTemplates().get(index-1).getText().contains("По умолчанию");
+    }
 }

@@ -58,7 +58,7 @@ public class FeedbackTemplatePage extends Page {
 
     private void initFeedbackTemplateCreation() {
         click(addButton);
-        wait.until(visibilityOf(modalForm));
+        wait.until(visibilityOf(templateName));
     }
 
 

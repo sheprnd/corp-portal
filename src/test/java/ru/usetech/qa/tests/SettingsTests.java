@@ -1,5 +1,6 @@
 package ru.usetech.qa.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.usetech.qa.model.*;
@@ -78,11 +79,12 @@ public class SettingsTests extends TestBase {
                 .withEmail(System.currentTimeMillis() + "@yandex.ru")
                 .withPassword("1");
         app.user().create(user);
-        assertTrue(app.user().alertSuccess(), "Не появился алерт об успешном создании пользователя.");
+        app.user().closeAlert();
         app.users().waitListUpdated(count, 2);
         // удаляем созданного пользователя
         app.users().delete(user);
         app.confirmDialog().confirm();
+        assertTrue(app.user().alertSuccess(), "Не появился алерт об успешном удалении пользователя.");
         app.users().waitListUpdated(count+1, 1);
         int actualCount = app.users().count();
         assertEquals(actualCount, count, "После удаления пользователя количество пользоватей в списке не уменьшилось на 1.");
@@ -96,8 +98,10 @@ public class SettingsTests extends TestBase {
         app.settings().goToDepartments();
         //исходное количество
         int count = 0;
-        if (app.settingsHelper().getActiveDepartmentsCount() != 0)
+        if (app.settingsHelper().getActiveDepartmentsCount() != 0){
+            app.departments().waitListUpdated(0,2);
             count = app.departments().count();
+        }
         // исходный список отделов
         List<DepartmentData> before = app.departments().getList();
         // создаем новый отдел
@@ -122,6 +126,7 @@ public class SettingsTests extends TestBase {
         // если список отделов пустой - создаем новый отдел
         if (app.settingsHelper().getActiveDepartmentsCount() == 0) {
             app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
+            app.department().closeAlert();
         }
         app.departments().waitListUpdated(0,2);
         // исходный список отделов
@@ -149,14 +154,16 @@ public class SettingsTests extends TestBase {
         // если список отделов пустой - создаем новый, который будем далее удалять
         if (app.settingsHelper().getActiveDepartmentsCount() == 0){
             app.department().create(new DepartmentData().withName("#auto Department " + System.currentTimeMillis()));
-            app.departments().waitListUpdated(0,2);
+            app.department().closeAlert();
         }
+        app.departments().waitListUpdated(0,2);
         int count = app.departments().count();
         List<DepartmentData> before = app.departments().getList();
         // удаляем первый отдел
         int index = 1;
         app.departments().delete(index);
         app.confirmDialog().confirm();
+        assertTrue(app.department().alertSuccess(), "Не появился алерт об успешном удалении отдела.");
         app.departments().waitListUpdated(count, 1);
         int actualCount = app.departments().count();
         assertEquals(actualCount, count-1, "После удаления отдела количество отделов в списке не уменьшилось на 1.");
@@ -210,11 +217,12 @@ public class SettingsTests extends TestBase {
         List<RoleData> before = app.roles().getList();
         RoleData role = new RoleData().withName("#auto Role" + + System.currentTimeMillis());
         app.role().create(role);
-        assertTrue(app.role().alertSuccess(), "Не появился алерт об успешном создании роли.");
+        app.role().closeAlert();
         app.roles().waitListUpdated(count, 2);
         // удаляем созданную роль
         app.roles().delete(role);
         app.confirmDialog().confirm();
+        assertTrue(app.role().alertSuccess(), "Не появился алерт об успешном удалении роли.");
         app.roles().waitListUpdated(count + 1, 1);
         int actualCount = app.roles().count();
         assertEquals(actualCount, count, "После удаления роли количество ролей в списке не уменьшилось на 1.");
@@ -263,7 +271,6 @@ public class SettingsTests extends TestBase {
                 .withEmail(System.currentTimeMillis() + "@yandex.ru")
                 .withPassword("1");
         app.user().create(user);
-
         app.settings().goToTimesheets();
         int count = app.timesheets().count();
         List<TimesheetData> before = app.timesheets().getList();
@@ -292,9 +299,11 @@ public class SettingsTests extends TestBase {
                     .withEmail(System.currentTimeMillis() + "@yandex.ru")
                     .withPassword("1");
             app.user().create(user);
+            app.user().closeAlert();
             app.settings().goToTimesheets();
             int count = app.timesheets().count();
             app.timesheet().create(user);
+            app.timesheet().closeAlert();
             app.timesheets().waitListUpdated(count, 2);
         }
 
@@ -337,9 +346,11 @@ public class SettingsTests extends TestBase {
                     .withEmail(System.currentTimeMillis() + "@yandex.ru")
                     .withPassword("1");
             app.user().create(user);
+            app.user().closeAlert();
             app.settings().goToTimesheets();
             int count = app.timesheets().count();
             app.timesheet().create(user);
+            app.timesheet().closeAlert();
             app.timesheets().waitListUpdated(count, 2);
         }
 
@@ -348,6 +359,7 @@ public class SettingsTests extends TestBase {
         int index = 2;
         app.timesheets().delete(index);
         app.confirmDialog().confirm();
+        assertTrue(app.timesheet().alertSuccess(), "Не появился аллерт об успешном удалении расписания пользователя.");
         app.timesheets().waitListUpdated(count, 1);
         int actualCount = app.timesheets().count();
         assertEquals(actualCount, count-1, "После удаления расписания пользователя количество расписаний в списке не уменьшилось на 1.");
@@ -380,20 +392,21 @@ public class SettingsTests extends TestBase {
     public void testFeedbackTemplateCreation() throws Exception {
         // если для выбора в шаблоне опроса нет ни одной активной причины закрытия,
         // то создаем новую причину закрытия
-        if (app.settingsHelper().getActiveСloseReasonsCount() == 0) {
+        int activeCloseReasonsCount = app.settingsHelper().getActiveСloseReasonsCount();
+        if (activeCloseReasonsCount == 0) {
             app.settings().goToСloseReasons();
             app.closeReason().create(new CloseReasonData()
                     .withName("#auto CloseReason " + System.currentTimeMillis())
                     .withSatisfaction(15));
+            app.closeReason().closeAlert();
         }
-
         app.settings().goToFeedbackTemplates();
         int count = 0;
-        if (app.settingsHelper().getActiveFeedbackTemplatesCount() != 0)
+        if (activeCloseReasonsCount != 0){
+            app.feedbackTemplates().waitListUpdated(0, 2);
             count = app.feedbackTemplates().count();
+        }
         List<FeedbackTemplateData> before = app.feedbackTemplates().getList();
-
-        //добавить проверку наличия причин закрытия инцидентов, чтобы передавать не текст причины
         FeedbackTemplateData newFeedbackTemplate = new FeedbackTemplateData()
                 .withName("#auto Feedback " + System.currentTimeMillis())
                 .withText("Прошу оценить результат:\n" + "{close_reasons}")
@@ -422,12 +435,14 @@ public class SettingsTests extends TestBase {
                 app.closeReason().create(new CloseReasonData()
                         .withName("#auto CloseReason " + System.currentTimeMillis())
                         .withSatisfaction(15));
+                app.closeReason().closeAlert();
             }
             app.settings().goToFeedbackTemplates();
             app.feedbackTemplate().create(new FeedbackTemplateData()
                     .withName("#auto Feedback " + System.currentTimeMillis())
                     .withText("Прошу оценить результат:\n" + "{close_reasons}")
                     .withReasonText("Отлично"));
+            app.feedbackTemplate().closeAlert();
         }
         else {
             app.settings().goToFeedbackTemplates();
@@ -440,7 +455,12 @@ public class SettingsTests extends TestBase {
         app.feedbackTemplate().edit(index, updFeedbackTemplate);
         assertTrue(app.feedbackTemplate().alertSuccess(), "Не появился алерт об успешном обновлении шаблона опроса.");
         before.remove(index - 1);
-        before.add(updFeedbackTemplate);
+        // если был отдерактирован шаблон опроса по умолчанию - добавляем к названию текст (По умолчанию)
+        if (app.feedbackTemplates().isDefaultFeedbackTemplate(index))
+            before.add(new FeedbackTemplateData().withName(updFeedbackTemplate.getTemplateName() + " (По умолчанию)"));
+        else
+            before.add(updFeedbackTemplate);
+
         List<FeedbackTemplateData> after = app.feedbackTemplates().getList();
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "В списке шаблонов опросов не отображается обновленное имя шаблона");
     }
@@ -450,7 +470,6 @@ public class SettingsTests extends TestBase {
 
         int activeCount = app.settingsHelper().getActiveFeedbackTemplatesCount();
         int defaultCount = app.settingsHelper().getDefaultFeedbackTemplatesCount();
-        System.out.println(defaultCount);
         // если список швблонов опросов пустой ИЛИ в списке только шаблон по умолчанию (его удалить нельзя)
         // создаем новый шаблон, который будем далее удалять
         if (( activeCount == 0) || (activeCount == defaultCount))
@@ -462,22 +481,29 @@ public class SettingsTests extends TestBase {
                 app.closeReason().create(new CloseReasonData()
                         .withName("#auto CloseReason " + System.currentTimeMillis())
                         .withSatisfaction(15));
+                app.closeReason().closeAlert();
             }
             app.settings().goToFeedbackTemplates();
             app.feedbackTemplate().create(new FeedbackTemplateData()
                     .withName("#auto Feedback " + System.currentTimeMillis())
                     .withText("Прошу оценить результат:\n" + "{close_reasons}")
                     .withReasonText("Отлично"));
+            app.feedbackTemplate().closeAlert();
+
+            if (activeCount == 0)
+                app.feedbackTemplates().waitListUpdated(0,2);
+            else
+                app.feedbackTemplates().waitListUpdated(1,2);
+
         }
         else {
             app.settings().goToFeedbackTemplates();
+            app.feedbackTemplates().waitListUpdated(0,2);
         }
 
         // получаем индекс первого не default шаблона опроса, так как шаблон опроса по умолчанию нельзя удалить
         int index = app.feedbackTemplates().getNotDefaultFeedbackTemplateIndex();
-
-        System.out.println(index);
-        app.feedbackTemplates().waitListUpdated(0,2);
+        Assert.assertTrue(index > 0, "Не найден шаблон опроса для удаления.");
         int count = app.feedbackTemplates().count();
         List<FeedbackTemplateData> before = app.feedbackTemplates().getList();
         app.feedbackTemplates().delete(index);

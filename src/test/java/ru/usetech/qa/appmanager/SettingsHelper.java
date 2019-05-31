@@ -58,9 +58,9 @@ public class SettingsHelper extends HttpSession{
     }
 
     // количество неудаленных активных причин закрытия инцидентов
-    public long getActiveСloseReasonsCount() throws Exception {
+    public int getActiveСloseReasonsCount() throws Exception {
 
-            return StreamSupport.stream(getСloseReasons().spliterator(), false).filter((Object obj) -> {
+            return (int) StreamSupport.stream(getСloseReasons().spliterator(), false).filter((Object obj) -> {
                 JSONObject closeReason = (JSONObject) obj;
                 return closeReason.getBoolean("is_active");
             }).count();

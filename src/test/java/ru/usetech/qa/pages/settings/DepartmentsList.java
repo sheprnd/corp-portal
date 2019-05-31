@@ -27,7 +27,6 @@ public class DepartmentsList extends Page {
     private WebElement firstRow;
 
     public int count() {
-        wait.until(visibilityOf(firstRow));
         return getDepartments().size();
     }
 
