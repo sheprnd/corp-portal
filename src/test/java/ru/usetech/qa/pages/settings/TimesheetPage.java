@@ -11,6 +11,7 @@ import ru.usetech.qa.pages.Page;
 
 import java.util.List;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeToBeNotEmpty;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class TimesheetPage extends Page {
@@ -26,6 +27,9 @@ public class TimesheetPage extends Page {
     @FindBy(css = "icon-tooltip")
     private WebElement icon;
 
+    @FindBy(css = "[formcontrolname=timezone]")
+    private WebElement timezone;
+
     @FindBy(css = "[formcontrolname='work_to']")
     private WebElement dropdownWorkTo;
 
@@ -40,7 +44,8 @@ public class TimesheetPage extends Page {
 
     private void initTimesheetCreation() {
         click(addButton);
-        wait.until(visibilityOf(icon));
+        //wait.until(visibilityOf(icon));
+        wait.until(attributeToBeNotEmpty(timezone, "textContent"));
     }
 
     private void fillTimesheetForm(UserData user) {
@@ -51,6 +56,7 @@ public class TimesheetPage extends Page {
     private void selectUser(UserData user) {
         WebElement userItem = getUserList().stream().filter(m -> m.getText().equals(user.getFullName())).findFirst().get();
         click(userItem);
+        wait.until(attributeToBeNotEmpty(dropdownUser, "textContent"));
     }
 
     private List<WebElement> getUserList() {

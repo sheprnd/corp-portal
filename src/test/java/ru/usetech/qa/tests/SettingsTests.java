@@ -271,6 +271,7 @@ public class SettingsTests extends TestBase {
                 .withEmail(System.currentTimeMillis() + "@yandex.ru")
                 .withPassword("1");
         app.user().create(user);
+        app.user().closeAlert();
         app.settings().goToTimesheets();
         int count = app.timesheets().count();
         List<TimesheetData> before = app.timesheets().getList();
