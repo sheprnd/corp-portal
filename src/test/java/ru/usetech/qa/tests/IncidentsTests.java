@@ -11,7 +11,7 @@ import static org.testng.Assert.assertTrue;
 
 public class IncidentsTests extends TestBase {
 
-    @BeforeTest
+    /*@BeforeTest
     public void ensurePreconditions() {
         app.goTo().pipeline();
         app.pipeline().goToIncidents();
@@ -97,6 +97,6 @@ public class IncidentsTests extends TestBase {
 
 
 
-    }
+    }*/
 
 }

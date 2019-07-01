@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 public class PostsTests extends TestBase {
-
+/*
     @BeforeTest
     public void ensurePreconditions() {
 
@@ -46,6 +46,6 @@ public class PostsTests extends TestBase {
 
     }
 
-
+*/
 
 }

@@ -90,7 +90,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count, "После удаления пользователя количество пользоватей в списке не уменьшилось на 1.");
         List<UserData> after = app.users().getList();
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список пользователей после удаления пользователя.");
-    }*/
+    }
 
     @Test(priority=4)
     public void testDepartmentCreation() throws Exception{
@@ -145,7 +145,7 @@ public class SettingsTests extends TestBase {
         // т.к. после редактирования отдел меняет положение в списке
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "В списке отделов не отображается обновленное имя отдела");
 
-    }
+    }*/
 
     @Test(priority=6, invocationCount = 10)
     public void testDepartmentDeletion() throws Exception {
