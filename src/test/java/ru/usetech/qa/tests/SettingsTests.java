@@ -24,7 +24,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    /*@Test(priority=1, invocationCount = 1)
+    @Test(priority=1, invocationCount = 1)
     public void testUserCreation() {
 
         app.settings().goToUsers();
@@ -90,7 +90,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count, "После удаления пользователя количество пользоватей в списке не уменьшилось на 1.");
         List<UserData> after = app.users().getList();
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список пользователей после удаления пользователя.");
-    }*/
+    }
 
     @Test(priority=4)
     public void testDepartmentCreation() throws Exception{
@@ -119,7 +119,7 @@ public class SettingsTests extends TestBase {
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список отделов после добавления нового отдела.");
     }
 
-   /* @Test(priority=5)
+    @Test(priority=5)
     public void testDepartmentEditing() throws Exception{
 
         app.settings().goToDepartments();
@@ -145,7 +145,7 @@ public class SettingsTests extends TestBase {
         // т.к. после редактирования отдел меняет положение в списке
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "В списке отделов не отображается обновленное имя отдела");
 
-    }*/
+    }
 
     @Test(priority=6)
     public void testDepartmentDeletion() throws Exception {
@@ -163,7 +163,6 @@ public class SettingsTests extends TestBase {
         int index = 1;
         app.departments().delete(index);
         app.confirmDialog().confirm();
-        assertTrue(app.department().alertSuccess(), "Не появился алерт об успешном удалении отдела.");
         app.departments().waitListUpdated(count, 1);
         int actualCount = app.departments().count();
         assertEquals(actualCount, count-1, "После удаления отдела количество отделов в списке не уменьшилось на 1.");
@@ -174,7 +173,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    /*@Test(priority=7)
+    @Test(priority=7)
     public void testRoleCreation() {
 
         app.settings().goToRoles();
@@ -674,7 +673,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-*/
+
 
 
 
