@@ -24,7 +24,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test(priority=1, invocationCount = 1)
+    /*@Test(priority=1, invocationCount = 1)
     public void testUserCreation() {
 
         app.settings().goToUsers();
@@ -90,7 +90,7 @@ public class SettingsTests extends TestBase {
         assertEquals(actualCount, count, "После удаления пользователя количество пользоватей в списке не уменьшилось на 1.");
         List<UserData> after = app.users().getList();
         assertEquals(new HashSet<>(after), new HashSet<>(before),  "Отличаются ожидаемый и полученный список пользователей после удаления пользователя.");
-    }
+    }*/
 
     @Test(priority=4)
     public void testDepartmentCreation() throws Exception{
@@ -147,7 +147,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test(priority=6)
+    @Test(priority=6, invocationCount = 10)
     public void testDepartmentDeletion() throws Exception {
 
         app.settings().goToDepartments();
@@ -174,7 +174,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test(priority=7)
+    /*@Test(priority=7)
     public void testRoleCreation() {
 
         app.settings().goToRoles();
@@ -674,7 +674,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-
+*/
 
 
 
