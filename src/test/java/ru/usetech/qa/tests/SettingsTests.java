@@ -17,7 +17,7 @@ import static org.testng.Assert.assertTrue;
 
 public class SettingsTests extends TestBase {
 
-    @BeforeClass
+    /*@BeforeClass
     public void ensurePreconditions() {
 
         app.goTo().settings();
@@ -258,7 +258,7 @@ public class SettingsTests extends TestBase {
         String actualValue = app.timesheets().getValueFromTheCell(rowIndex, cellIndex);
         assertEquals(actualValue, expectedValue, "Для общего расписания не верно отображается обновленное время в ячейке");
 
-    }
+    }*/
 
     @Test(priority=11)
     public void testUserTimesheetCreation() {
@@ -285,7 +285,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-    @Test(priority=12)
+    /*@Test(priority=12)
     public void testUserTimesheetEditing() {
 
         app.settings().goToTimesheets();
@@ -673,7 +673,7 @@ public class SettingsTests extends TestBase {
 
     }
 
-
+*/
 
 
 
