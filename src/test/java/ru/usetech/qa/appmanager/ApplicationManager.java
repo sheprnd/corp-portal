@@ -100,6 +100,8 @@ public class ApplicationManager {
         String remoteUrl = System.getProperty("remoteUrl", "http://94.177.172.202:4444/wd/hub");
         String ui = System.getProperty("ui", "false");
         String driverType = System.getProperty("driverType", "local");
+        System.setProperty("webdriver.chrome.driver", "C:\\Tools\\chromedriver.exe");
+
 
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
@@ -119,7 +121,7 @@ public class ApplicationManager {
             }
 
             options.setCapability("browserName", "chrome");
-            options.setCapability("version ", "73");
+            options.setCapability("version ", "76");
 
             driver = new RemoteWebDriver(new URL(remoteUrl), options);
 

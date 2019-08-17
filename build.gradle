@@ -30,6 +30,8 @@ dependencies {
     compile 'org.json:json:20160810'
     agent "org.aspectj:aspectjweaver:1.8.0"
     testCompile "ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4"
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
 
 }
 
@@ -125,5 +127,13 @@ allure {
     allureJunitAspectjAdaptorVersion = "0.1.1"
 
     clean = true
+}
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation"
+        }
+    }
 }
 
