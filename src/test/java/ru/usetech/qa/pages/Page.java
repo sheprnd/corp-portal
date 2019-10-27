@@ -17,7 +17,7 @@ public class Page {
     @FindBy(css = ".alert-success")
     protected WebElement alertSuccess;
 
-    @FindBy(css =(".alert-messages .remove"))
+    @FindBy(css =(".alert-messages .alert-icon .fa-remove"))
     protected WebElement alertCloseBtn;
 
     public Page(WebDriver driver) {
