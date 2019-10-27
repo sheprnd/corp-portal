@@ -38,11 +38,9 @@ public class PostsTests extends TestBase {
             app.posts().deleteCurrent();
         }
 
-/*      Нужно переработать
         if (app.settingsHelper().getActiveDeleteReasons() > 2) {
             app.deleteReasonDialog().setupReason();
          }
-*/
 
         assertTrue(app.posts().alertSuccess());
 
